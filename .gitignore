@@ -3,3 +3,7 @@
 local.properties
 __pycache__/
 *.pyc
+
+# Local signing material
+*.jks
+*.keystore
