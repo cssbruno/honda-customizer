@@ -6,11 +6,15 @@ An Android app for FYT head units using the installed `com.syu.ms` service. It h
 
 This directory is the independent Honda Customizer Git repository. Run build and Git commands here. Its four original project commits were extracted from Cabin; Cabin keeps a compatibility symlink to this directory. The older original-head-unit workspace is preserved at `../honda-customizer-original-hu-backup`.
 
-The source, Gradle wrapper, tests and CI workflow are self-contained. Sibling research directories are optional evidence for the historical catalog extraction tool, not build dependencies.
+The source, Gradle wrapper, tests and CI workflow are self-contained. Research reports and derived catalogs are included under `documents/research`. Original firmware inputs for historical extraction scripts remain external and are not build dependencies.
+
+## Documentation
+
+Start with the [documentation index](documents/README.md) for FYT protocol evidence, OEM references, catalogs and validation limits.
 
 ## FYT connection
 
-Connect tries `com.syu.ms.toolkit` (`app.ToolkitService`) and obtains CANBUS module 7. If that route is unavailable, rejected or does not finish discovery, it tries `com.syu.ms.canbus` (`app.ModuleService`) with the direct module Binder. Firmware-specific exported service names are resolved inside `com.syu.ms`. Each route has its own worker so a stuck toolkit call cannot block the direct route. Both contracts are traced in `../syu-ms-analysis/evidence/app.ToolkitService.smali`, `app.ModuleService.smali` and the Joying manifest.
+Connect tries `com.syu.ms.toolkit` (`app.ToolkitService`) and obtains CANBUS module 7. If that route is unavailable, rejected or does not finish discovery, it tries `com.syu.ms.canbus` (`app.ModuleService`) with the direct module Binder. Firmware-specific exported service names are resolved inside `com.syu.ms`. Each route has its own worker so a stuck toolkit call cannot block the direct route. See the [SYU service research](documents/research/syu-ms-analysis/REPORT.md) and [Joying manifest](documents/research/syu-ms-analysis/evidence/joying-manifest.xml). Original vendor bytecode is external source evidence.
 
 The detected profile comes from FYT field 1000. An unmapped profile is reported as a connected FYT service with no mapped controls, rather than pretending the FYT service is absent. **Report → Copy** includes the service version, unit model, attempted connection routes, exact profile and received settings. It does not upload anything or issue vehicle commands.
 
@@ -42,4 +46,4 @@ APK: `app/build/outputs/apk/release/app-release.apk`, version code 6. Signed wit
 
 Active sources: `app/src/fyt`, `fytTest`, `fytAndroidTest`. Original Honda sources/tests and `README-OEM-reference.md` are historical reference only; Gradle excludes their executable code. Old `original-HU` APKs in `dist` are not FYT builds. The distribution packaging script requires fresh API17 and modern-emulator results and emits `Honda-Customizer-3.1.0-FYT.apk` only after those checks.
 
-Command evidence: `documents/HONDA-FYT-PANEL.md`, `../honda-cluster-analysis/fyt-additional/other-honda/findings.md`, and the saved `Acrivity_RZC_17CRVSettings`, `AcrivitySiYuSettings`, `HondaIndexActi`, and `FinalCanbus` bytecode. No firmware was flashed or vehicle commands sent during development.
+Command evidence: [FYT panel protocol](documents/HONDA-FYT-PANEL.md), [RZC/BNR findings](documents/research/honda-cluster-analysis/fyt-additional/other-honda/findings.md), and the saved `Acrivity_RZC_17CRVSettings`, `AcrivitySiYuSettings`, `HondaIndexActi`, and `FinalCanbus` bytecode. No firmware was flashed or vehicle commands sent during development.

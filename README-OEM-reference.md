@@ -73,7 +73,7 @@ The legacy target is API 28; the Play publishing target-policy lint rule is disa
 
 `tools/extract_catalog.py` reproduces catalog labels from the local OEM research evidence, including the separately traced panel preset selector. Build inputs are already bundled. `tools/package_release.py` rejects stale/failed results, checks the tested APK hashes, version and signature, then exports the APK, source ZIP, unit/lint/emulator reports and checksums; it excludes caches, signing keys, local SDK configuration and proprietary decompiled source.
 
-Protocol evidence: `../honda-cluster-analysis/oem-civic/meter-binder-protocol.md`, `camera-native-implementation.md`, `action-implementation-evidence.md`, and `../honda-cluster-analysis/full-command-trace.md`.
+Protocol evidence: `documents/research/honda-cluster-analysis/oem-civic/meter-binder-protocol.md`, `camera-native-implementation.md`, `action-implementation-evidence.md`, and `documents/research/honda-cluster-analysis/full-command-trace.md`.
 
 ## 2.0.1 changes
 

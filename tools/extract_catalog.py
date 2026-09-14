@@ -1,7 +1,8 @@
 """Extract data/labels from supplied firmware evidence, not executable vendor code."""
 from pathlib import Path
 import re, json, xml.etree.ElementTree as ET
-base=Path(__file__).resolve().parents[2]
+root=Path(__file__).resolve().parents[1]
+base=root/"documents/research"
 resources=Path('/tmp/honda-inspect/DaSettings-resource-values.txt').read_text()
 # Preserve resource configurations: the default strings in this APK are English.
 configs={}; config=''; current=None
@@ -44,7 +45,7 @@ for m in re.finditer(r'<Item ID="[^"]+">.*?</Item>',raw,re.S):
  if (c,i)==(3,0x5b):lab={'(default)':{'title':'Panel configuration','options':['Preset 1','Preset 2','Preset 3']},'pt':{'title':'Configuração do painel','options':['Configuração 1','Configuração 2','Configuração 3']}}
  if (c,i)==(1,1):lab={'(default)':{'title':'TPMS calibration','options':[]},'pt':{'title':'Calibração TPMS','options':[]}}
  rows.append({'category':c,'id':i,'description':comment[1] if comment else '', 'type':int(x.findtext('DataType'),0),'values':{str(int(e.get('key'),0)):int(e.text,0) for e in x.findall('DataList/entry')},'labels':lab,'hasRoute':bool(x.findall('InfoFrom/entry'))})
-out=base/'honda-customizer/app/src/main/assets/catalog.json';out.write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n')
+out=root/'app/src/main/assets/catalog.json';out.write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n')
 assert len(rows)==313 and len({(r['category'],r['id']) for r in rows})==313
 print('Catalog:',len(rows),'settings;',len(labels),'stock title mappings')
 print(next(r for r in rows if r['category']==3 and r['id']==0x36))

@@ -1,0 +1,200 @@
+[
+  {
+    "index": 0,
+    "wire": 0,
+    "resource": "0x7f0904bd",
+    "label": "Chinese"
+  },
+  {
+    "index": 1,
+    "wire": 1,
+    "resource": "0x7f0904bc",
+    "label": "English"
+  },
+  {
+    "index": 2,
+    "wire": 2,
+    "resource": "0x7f090d1e",
+    "label": "Chinese(TW)"
+  },
+  {
+    "index": 3,
+    "wire": 3,
+    "resource": null,
+    "label": "Thai"
+  },
+  {
+    "index": 4,
+    "wire": 4,
+    "resource": null,
+    "label": "Malaysia"
+  },
+  {
+    "index": 5,
+    "wire": 5,
+    "resource": null,
+    "label": "Indonesia"
+  },
+  {
+    "index": 6,
+    "wire": 6,
+    "resource": "0x7f090d22",
+    "label": "Korean"
+  },
+  {
+    "index": 7,
+    "wire": 7,
+    "resource": "0x7f0904cb",
+    "label": "German"
+  },
+  {
+    "index": 8,
+    "wire": 8,
+    "resource": "0x7f0905ba",
+    "label": "Italian"
+  },
+  {
+    "index": 9,
+    "wire": 9,
+    "resource": "0x7f0905bb",
+    "label": "French"
+  },
+  {
+    "index": 10,
+    "wire": 10,
+    "resource": "0x7f0905bd",
+    "label": "Spanish"
+  },
+  {
+    "index": 11,
+    "wire": 11,
+    "resource": "0x7f0904c5",
+    "label": "Dutch"
+  },
+  {
+    "index": 12,
+    "wire": 12,
+    "resource": "0x7f0904e1",
+    "label": "Sweden"
+  },
+  {
+    "index": 13,
+    "wire": 13,
+    "resource": "0x7f0904d6",
+    "label": "Norwegian"
+  },
+  {
+    "index": 14,
+    "wire": 14,
+    "resource": "0x7f0905c3",
+    "label": "Danish"
+  },
+  {
+    "index": 15,
+    "wire": 15,
+    "resource": "0x7f0905bf",
+    "label": "Portug"
+  },
+  {
+    "index": 16,
+    "wire": 16,
+    "resource": "0x7f0905c4",
+    "label": "Greek"
+  },
+  {
+    "index": 17,
+    "wire": 17,
+    "resource": "0x7f0904d7",
+    "label": "Poland"
+  },
+  {
+    "index": 18,
+    "wire": 18,
+    "resource": "0x7f0904e3",
+    "label": "Turkey"
+  },
+  {
+    "index": 19,
+    "wire": 19,
+    "resource": "0x7f0904db",
+    "label": "Russia"
+  },
+  {
+    "index": 20,
+    "wire": 20,
+    "resource": "0x7f0904c3",
+    "label": "Czech"
+  },
+  {
+    "index": 21,
+    "wire": 21,
+    "resource": "0x7f0904ce",
+    "label": "Hungarian"
+  },
+  {
+    "index": 22,
+    "wire": 22,
+    "resource": "0x7f0904da",
+    "label": "Romagnio"
+  },
+  {
+    "index": 23,
+    "wire": 23,
+    "resource": "0x7f0904de",
+    "label": "Slovenia"
+  },
+  {
+    "index": 24,
+    "wire": 24,
+    "resource": "0x7f0905c5",
+    "label": "Arabic"
+  },
+  {
+    "index": 25,
+    "wire": 25,
+    "resource": "0x7f0904be",
+    "label": "Bulgarian"
+  },
+  {
+    "index": 26,
+    "wire": 26,
+    "resource": "0x7f0904e5",
+    "label": "Hebrew"
+  },
+  {
+    "index": 27,
+    "wire": 27,
+    "resource": null,
+    "label": "Latvia"
+  },
+  {
+    "index": 28,
+    "wire": 28,
+    "resource": "0x7f0904d5",
+    "label": "Lithuania"
+  },
+  {
+    "index": 29,
+    "wire": 29,
+    "resource": "0x7f0904dc",
+    "label": "Serbia"
+  },
+  {
+    "index": 30,
+    "wire": 30,
+    "resource": "0x7f0904c2",
+    "label": "Croatia"
+  },
+  {
+    "index": 31,
+    "wire": 31,
+    "resource": "0x7f0904dd",
+    "label": "Snowflake"
+  },
+  {
+    "index": 32,
+    "wire": 32,
+    "resource": "0x7f0904c8",
+    "label": "Finnish"
+  }
+]

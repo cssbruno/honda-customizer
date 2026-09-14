@@ -1,10 +1,12 @@
 # Honda instrument panel through FYT
 
+This report describes the shared protocol and its integration in Cabin. Its Cabin UI paths and test counts are historical context; see the [app README](../README.md) for the standalone Honda Customizer implementation and checks.
+
 Cabin Car Settings now includes a Honda instrument-panel section when the connected SYU profile is supported. It uses the existing SYU module 7 controller, subscriptions, freshness checks and parked-action UI guard. Values change on vendor feedback rather than on a successful send. Profile changes invalidate the controller connection and old values.
 
 ## Source and profile selection
 
-Inspected the local Joying UIS7862 2023-08-31 CANBUS APK, class `com.syu.carinfo.honda.Wc_16Civic_Pannel`, its listeners `$1` through `$21`, layout `layout_321_civic_pannel` and `Callback_0321_WC2_Honda_AllCom`. Saved bytecode, decoded layout and APK SHA-256 are in `../honda-cluster-analysis/fyt/` relative to the Cabin repository root.
+Inspected the local Joying UIS7862 2023-08-31 CANBUS APK, class `com.syu.carinfo.honda.Wc_16Civic_Pannel`, its listeners `$1` through `$21`, layout `layout_321_civic_pannel` and `Callback_0321_WC2_Honda_AllCom`. The [source metadata](research/honda-cluster-analysis/fyt/source.json) is included here; vendor bytecode and raw dumps remain external evidence.
 
 `onResume` explicitly compares profiles 0x40141, 0x50141, 0x60141, 0xB0141, 0xC0141 and 0xD0141. These are the implemented allowlist, not a comprehensive list of compatible Civics. Additional profiles require source evidence. Those six IDs apply to the WC panel dialect. Additional RZC/BNR profiles are listed below. Cabin reads the actual profile via field 1000; selecting a year or trim does not enable controls.
 
@@ -53,4 +55,4 @@ Honda Customizer remains a separate FYT-only app with its own project, APK and C
 
 BNR units are excluded because the stock entry route hides them. RZC/BNR feedback uses the full integer, never WC low-byte decoding. Unmapped profiles and invalid/missing/expired values do not authorize writes. The second tachometer option keeps the vendor wording because its distinction from display visibility remains unresolved. Metric/imperial choices display units rather than On/Off. All six Cabin languages include the new control labels.
 
-The integrated vehicle-compatibility panel includes Honda support and feedback status; existing Cabin report export and live logs carry the actual profile and FYT service connection. Source evidence: `../../honda-cluster-analysis/fyt-additional/other-honda/findings.md` from the workspace root and its saved `HondaIndexActi`, `FinalCanbus`, `AcrivitySiYuSettings` and `Acrivity_RZC_17CRVSettings` bytecode. Hardware validation remains outstanding.
+The integrated vehicle-compatibility panel includes Honda support and feedback status; existing Cabin report export and live logs carry the actual profile and FYT service connection. Source evidence: [RZC/BNR findings](research/honda-cluster-analysis/fyt-additional/other-honda/findings.md) and its saved `HondaIndexActi`, `FinalCanbus`, `AcrivitySiYuSettings` and `Acrivity_RZC_17CRVSettings` bytecode. Hardware validation remains outstanding.

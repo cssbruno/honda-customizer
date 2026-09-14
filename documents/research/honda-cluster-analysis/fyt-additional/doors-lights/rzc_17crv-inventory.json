@@ -1,0 +1,1574 @@
+[
+  {
+    "label": "wc_psa_all_lauguage_set = \"Language Settings\"",
+    "resource": "0x7f0905b6",
+    "ids": [
+      [
+        "0x7f0b00dd",
+        "all_func_btn_lauguage_set_view"
+      ],
+      [
+        "0x7f0b00c8",
+        "all_func_btn_lauguage_set"
+      ],
+      [
+        "0x7f0b00c9",
+        "lauguage_set_curr"
+      ]
+    ],
+    "renderers": [],
+    "feedback": []
+  },
+  {
+    "label": "str_guandao_amp = \"Amplifier settings\"",
+    "resource": "0x7f090af4",
+    "ids": [
+      [
+        "0x7f0b0097",
+        "layout_view1"
+      ],
+      [
+        "0x7f0b040a",
+        "ctv_checkedtext45"
+      ]
+    ],
+    "renderers": [],
+    "feedback": []
+  },
+  {
+    "label": "str_298_reset_maintenance = \"Vehicle maintenance information reset\"",
+    "resource": "0x7f0909ab",
+    "ids": [
+      [
+        "0x7f0b0403",
+        "ctv_checkedtext42"
+      ]
+    ],
+    "renderers": [],
+    "feedback": []
+  },
+  {
+    "label": "str_298_default_all = \"Restore initial values\"",
+    "resource": "0x7f0909ac",
+    "ids": [
+      [
+        "0x7f0b0404",
+        "ctv_checkedtext43"
+      ]
+    ],
+    "renderers": [],
+    "feedback": []
+  },
+  {
+    "label": "str_298_tpms_cal = \"Tire Pressure Calibration\"",
+    "resource": "0x7f0909ad",
+    "ids": [
+      [
+        "0x7f0b0409",
+        "ctv_checkedtext44"
+      ]
+    ],
+    "renderers": [],
+    "feedback": []
+  },
+  {
+    "label": "str_298_outSide_temp = \"adjust outside temp\"",
+    "resource": "0x7f090948",
+    "ids": [
+      [
+        "0x7f0b0098",
+        "btn_minus1"
+      ],
+      [
+        "0x7f0b0099",
+        "tv_text1"
+      ],
+      [
+        "0x7f0b009a",
+        "btn_plus1"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateOutTemp()V",
+        "fields": [
+          60
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 60,
+        "name": "U_CARINFO_OUT_TEMP_SHOW"
+      }
+    ]
+  },
+  {
+    "label": "str_298_tripA = \"Trip A Reset Timing\"",
+    "resource": "0x7f090943",
+    "ids": [
+      [
+        "0x7f0b009c",
+        "btn_minus2"
+      ],
+      [
+        "0x7f0b009d",
+        "tv_text2"
+      ],
+      [
+        "0x7f0b009e",
+        "btn_plus2"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateTripA()V",
+        "fields": [
+          58,
+          1000
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 58,
+        "name": "U_CARINFO_TRIP_A"
+      }
+    ]
+  },
+  {
+    "label": "str_298_tripB = \"Trip B Reset Timing\"",
+    "resource": "0x7f090947",
+    "ids": [
+      [
+        "0x7f0b00a0",
+        "btn_minus3"
+      ],
+      [
+        "0x7f0b00a1",
+        "tv_text3"
+      ],
+      [
+        "0x7f0b00a2",
+        "btn_plus3"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateTripB()V",
+        "fields": [
+          59,
+          1000
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 59,
+        "name": "U_CARINFO_TRIP_B"
+      }
+    ]
+  },
+  {
+    "label": "str_298_interior_light_dimming = \"Interior light dimming time\"",
+    "resource": "0x7f09094b",
+    "ids": [
+      [
+        "0x7f0b00a4",
+        "btn_minus4"
+      ],
+      [
+        "0x7f0b00a5",
+        "tv_text4"
+      ],
+      [
+        "0x7f0b00a6",
+        "btn_plus4"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateInteriorLightDimmingTime()V",
+        "fields": [
+          63
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 63,
+        "name": "U_CARINFO_INTERIOR_LIGHT_DIMMING_TIME"
+      }
+    ]
+  },
+  {
+    "label": "str_298_headLight_auto_off_time = \"Headlight auto off time\"",
+    "resource": "0x7f09094a",
+    "ids": [
+      [
+        "0x7f0b00a8",
+        "btn_minus5"
+      ],
+      [
+        "0x7f0b00a9",
+        "tv_text5"
+      ],
+      [
+        "0x7f0b00aa",
+        "btn_plus5"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateHeadLessAutoOff()V",
+        "fields": [
+          62
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 62,
+        "name": "U_CARINFO_HEADLIGHT_AUTO_OFF_TIME"
+      }
+    ]
+  },
+  {
+    "label": "str_298_auto_light_sensi = \"auto light sensitivity\"",
+    "resource": "0x7f090949",
+    "ids": [
+      [
+        "0x7f0b00ad",
+        "btn_minus6"
+      ],
+      [
+        "0x7f0b00ae",
+        "tv_text6"
+      ],
+      [
+        "0x7f0b00af",
+        "btn_plus6"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateAutoLightSens()V",
+        "fields": [
+          61
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 61,
+        "name": "U_CARINFO_AUTO_LIGHT_SENSITIVITY"
+      }
+    ]
+  },
+  {
+    "label": "str_298_auto_interior_illumination = \"Auto interio illumination\"",
+    "resource": "0x7f09095a",
+    "ids": [
+      [
+        "0x7f0b00c5",
+        "btn_minus12"
+      ],
+      [
+        "0x7f0b00c6",
+        "tv_text12"
+      ],
+      [
+        "0x7f0b00c7",
+        "btn_plus12"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateAutoInterIllumination()V",
+        "fields": [
+          73
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 73,
+        "name": "U_CARINFO_AUTO_INTER_ILLUMINATION"
+      }
+    ]
+  },
+  {
+    "label": "bsd_klj_str10 = \"Automatic high beam\"",
+    "resource": "0x7f090adb",
+    "ids": [
+      [
+        "0x7f0b041f",
+        "ctv_checkedtext34"
+      ]
+    ],
+    "renderers": [],
+    "feedback": [
+      {
+        "field": 192,
+        "name": "U_CARSET_D32_D10_B2"
+      }
+    ]
+  },
+  {
+    "label": "str_298_keyless_lock_answer = \"Keyless lock answer back\"",
+    "resource": "0x7f09094c",
+    "ids": [
+      [
+        "0x7f0b00cc",
+        "ctv_checkedtext3"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateKeyLockAnswer()V",
+        "fields": [
+          64
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 64,
+        "name": "U_CARINFO_KEY_LOCK_ANSWER"
+      }
+    ]
+  },
+  {
+    "label": "str_298_key_and_remote_unlock = \"Key and remote unlock mode\"",
+    "resource": "0x7f09094d",
+    "ids": [
+      [
+        "0x7f0b00b1",
+        "btn_minus7"
+      ],
+      [
+        "0x7f0b00b2",
+        "tv_text7"
+      ],
+      [
+        "0x7f0b00b3",
+        "btn_plus7"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateKeyAndRemoteUnlockMode()V",
+        "fields": [
+          65
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 65,
+        "name": "U_CARINFO_KEY_AND_REMOTE_UNLOCK_MODE"
+      }
+    ]
+  },
+  {
+    "label": "str_298_security_relock_time = \"Security relock time\"",
+    "resource": "0x7f09094e",
+    "ids": [
+      [
+        "0x7f0b00b5",
+        "btn_minus8"
+      ],
+      [
+        "0x7f0b00b6",
+        "tv_text8"
+      ],
+      [
+        "0x7f0b00b7",
+        "btn_plus8"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateSecurityRelockTime()V",
+        "fields": [
+          66
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 66,
+        "name": "U_CARINFO_SECURITY_RELOCK_TIME"
+      }
+    ]
+  },
+  {
+    "label": "str_298_auto_door_unlock = \"Auto Door Locks\"",
+    "resource": "0x7f09094f",
+    "ids": [
+      [
+        "0x7f0b00b9",
+        "btn_minus9"
+      ],
+      [
+        "0x7f0b00ba",
+        "tv_text9"
+      ],
+      [
+        "0x7f0b00bb",
+        "btn_plus9"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateAutoDoorUnLock()V",
+        "fields": [
+          67
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 67,
+        "name": "U_CARINFO_AUTO_DOOR_UNLOCK"
+      }
+    ]
+  },
+  {
+    "label": "str_298_auto_door_lock = \"Auto door lock with\"",
+    "resource": "0x7f090953",
+    "ids": [
+      [
+        "0x7f0b00bd",
+        "btn_minus10"
+      ],
+      [
+        "0x7f0b00be",
+        "tv_text10"
+      ],
+      [
+        "0x7f0b00bf",
+        "btn_plus10"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateAutoDoorLock()V",
+        "fields": [
+          68
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 68,
+        "name": "U_CARINFO_AUTO_DOOR_LOCK"
+      }
+    ]
+  },
+  {
+    "label": "str_298_keyless_access_beep = \"Keyless access beep\"",
+    "resource": "0x7f090956",
+    "ids": [
+      [
+        "0x7f0b00cd",
+        "ctv_checkedtext4"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateKeylessAccessBeep()V",
+        "fields": [
+          69
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 69,
+        "name": "U_CARINFO_KEYLESS_ACCESS_BEEP"
+      }
+    ]
+  },
+  {
+    "label": "str_298_remote_start_system = \"Remote start system\"",
+    "resource": "0x7f090957",
+    "ids": [
+      [
+        "0x7f0b00d1",
+        "ctv_checkedtext5"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateRemoteStartSys()V",
+        "fields": [
+          70
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 70,
+        "name": "U_CARINFO_REMOTE_START_SYS"
+      }
+    ]
+  },
+  {
+    "label": "str_298_door_unlock_mode = \"Door unlock mode\"",
+    "resource": "0x7f090958",
+    "ids": [
+      [
+        "0x7f0b00c1",
+        "btn_minus11"
+      ],
+      [
+        "0x7f0b00c2",
+        "tv_text11"
+      ],
+      [
+        "0x7f0b00c3",
+        "btn_plus11"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateDoorUnlockMode()V",
+        "fields": [
+          71
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 71,
+        "name": "U_CARINFO_DOOR_UNLOCK_MODE"
+      }
+    ]
+  },
+  {
+    "label": "str_298_keyless_access_light_flash = \"Keyless access light flash\"",
+    "resource": "0x7f090959",
+    "ids": [
+      [
+        "0x7f0b00d2",
+        "ctv_checkedtext6"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateKeylessAccessLightFlash()V",
+        "fields": [
+          72
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 72,
+        "name": "U_CARINFO_KEYLESS_ACCESS_LIGHT_FLASH"
+      }
+    ]
+  },
+  {
+    "label": "str_lockout_preset = \"Lockout Preset\"",
+    "resource": "0x7f0911d8",
+    "ids": [
+      [
+        "0x7f0b0307",
+        "ctv_checkedtext33"
+      ]
+    ],
+    "renderers": [],
+    "feedback": [
+      {
+        "field": 191,
+        "name": "U_CARSET_D32_D10_B3"
+      }
+    ]
+  },
+  {
+    "label": "str_298_adjust_alarm_volume = \"adjust_alarm_volume\"",
+    "resource": "0x7f09095b",
+    "ids": [
+      [
+        "0x7f0b008c",
+        "btn_minus13"
+      ],
+      [
+        "0x7f0b008d",
+        "tv_text13"
+      ],
+      [
+        "0x7f0b008e",
+        "btn_plus13"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateAdjustAlarmVolume()V",
+        "fields": [
+          74
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 74,
+        "name": "U_CARINFO_ADJUST_ALARM_VOLUME"
+      }
+    ]
+  },
+  {
+    "label": "str_298_fuel_efficiency_backlight = \"Fuel efficiency backlight\"",
+    "resource": "0x7f09095c",
+    "ids": [
+      [
+        "0x7f0b00d3",
+        "ctv_checkedtext7"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateFuelEfficBacklight()V",
+        "fields": [
+          75
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 75,
+        "name": "U_CARINFO_FUEL_EFFIC_BACKLIGHT"
+      }
+    ]
+  },
+  {
+    "label": "str_298_new_message_noti = \"New message Notifications\"",
+    "resource": "0x7f09095d",
+    "ids": [
+      [
+        "0x7f0b00d4",
+        "ctv_checkedtext8"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateNewMsgNoti()V",
+        "fields": [
+          76
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 76,
+        "name": "U_CARINFO_NEW_MSG_NOTIF"
+      }
+    ]
+  },
+  {
+    "label": "str_298_speed_distance_units = \"Speed distance units\"",
+    "resource": "0x7f09095e",
+    "ids": [
+      [
+        "0x7f0b008f",
+        "btn_minus14"
+      ],
+      [
+        "0x7f0b0090",
+        "tv_text14"
+      ],
+      [
+        "0x7f0b0091",
+        "btn_plus14"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateSpeedDistanceUnit()V",
+        "fields": [
+          77
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 77,
+        "name": "U_CARINFO_SPEED_DISTANCE_UNIT"
+      }
+    ]
+  },
+  {
+    "label": "str_298_Tachmeter = \"Tachmeter\"",
+    "resource": "0x7f09095f",
+    "ids": [
+      [
+        "0x7f0b00d5",
+        "ctv_checkedtext9"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateTachometer()V",
+        "fields": [
+          78
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 78,
+        "name": "U_CARINFO_TACHOMETER"
+      }
+    ]
+  },
+  {
+    "label": "str_298_walk_away_auto_luck = \"Walk away auto luck\"",
+    "resource": "0x7f090960",
+    "ids": [
+      [
+        "0x7f0b00d6",
+        "ctv_checkedtext10"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateWalkAwayAutoLock()V",
+        "fields": [
+          79
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 79,
+        "name": "U_CARINFO_WALK_AWAY_AUTO_LOCK"
+      }
+    ]
+  },
+  {
+    "label": "str_298_auto_headligh_on_with_wiper = \"Auto headlight on with wiper\"",
+    "resource": "0x7f090961",
+    "ids": [
+      [
+        "0x7f0b00d7",
+        "ctv_checkedtext11"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateAutoHeadlightWiper()V",
+        "fields": [
+          80
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 80,
+        "name": "U_CARINFO_AUTO_HEADLIGHT_WIPER"
+      }
+    ]
+  },
+  {
+    "label": "str_298_volume_alarm_system_volume = \"Volume Voice Alarm System\"",
+    "resource": "0x7f090962",
+    "ids": [
+      [
+        "0x7f0b0092",
+        "btn_minus15"
+      ],
+      [
+        "0x7f0b0093",
+        "tv_text15"
+      ],
+      [
+        "0x7f0b0094",
+        "btn_plus15"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateVolumeAlarmSys()V",
+        "fields": [
+          81
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 81,
+        "name": "U_CARINFO_VOLUME_ALARM_SYS"
+      }
+    ]
+  },
+  {
+    "label": "str_298_energy_save_auto_engine = \"Energy-saving automatic start and stop\"",
+    "resource": "0x7f090963",
+    "ids": [
+      [
+        "0x7f0b00d8",
+        "ctv_checkedtext12"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateEnergySaveAutoEnghine()V",
+        "fields": [
+          82
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 82,
+        "name": "U_CARINFO_ENERGY_SAVE_AUTO_ENGHINE"
+      }
+    ]
+  },
+  {
+    "label": "str_298_acc_tone = \"Acc discovery vehicle in front tone\"",
+    "resource": "0x7f090964",
+    "ids": [
+      [
+        "0x7f0b00d9",
+        "ctv_checkedtext13"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateAccDiscoveryVehicle()V",
+        "fields": [
+          83
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 83,
+        "name": "U_CARINFO_ACC_DISCOVERY_VEHICLE_IN_FRONT_TONE"
+      }
+    ]
+  },
+  {
+    "label": "str_298_pause_lkas_tone = \"Pause LKAS tone\"",
+    "resource": "0x7f090965",
+    "ids": [
+      [
+        "0x7f0b00da",
+        "ctv_checkedtext14"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updatePauseLKADTone()V",
+        "fields": [
+          84
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 84,
+        "name": "U_CARINFO_PAUSE_LKAS_TONE"
+      }
+    ]
+  },
+  {
+    "label": "str_298_set_front_hazard_distance = \"Set front hazard distance\"",
+    "resource": "0x7f090966",
+    "ids": [
+      [
+        "0x7f0b0230",
+        "btn_minus16"
+      ],
+      [
+        "0x7f0b016b",
+        "tv_text16"
+      ],
+      [
+        "0x7f0b0231",
+        "btn_plus16"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateSetFrontHazardDistance()V",
+        "fields": [
+          85
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 85,
+        "name": "U_CARINFO_SET_FRONT_HAZARD_DISTANCE"
+      }
+    ]
+  },
+  {
+    "label": "str_minor_lane_departure_sys_settings = \"Minor lane departure system settings\"",
+    "resource": "0x7f090967",
+    "ids": [
+      [
+        "0x7f0b0232",
+        "btn_minus17"
+      ],
+      [
+        "0x7f0b016c",
+        "tv_text17"
+      ],
+      [
+        "0x7f0b0233",
+        "btn_plus17"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateMinorLane()V",
+        "fields": [
+          86
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 86,
+        "name": "U_CARINFO_MINOR_LANE_DEPARTURE_SYS_SETTINGS"
+      }
+    ]
+  },
+  {
+    "label": "str_298_Tachmeter_settings = \"Tachmeter Settings\"",
+    "resource": "0x7f09096a",
+    "ids": [
+      [
+        "0x7f0b00db",
+        "ctv_checkedtext15"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateTachometerSet()V",
+        "fields": [
+          87
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 87,
+        "name": "U_CARINFO_TACHOMETER_SET"
+      }
+    ]
+  },
+  {
+    "label": "str_298_driver_attention_monitor = \"Driver attention monitor\"",
+    "resource": "0x7f090c87",
+    "ids": [
+      [
+        "0x7f0b0226",
+        "btn_minus18"
+      ],
+      [
+        "0x7f0b016d",
+        "tv_text18"
+      ],
+      [
+        "0x7f0b0227",
+        "btn_plus18"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "uAttentionMonitor(I)V",
+        "fields": []
+      }
+    ],
+    "feedback": [
+      {
+        "field": 114,
+        "name": "U_DRIVER_ATTENTION_MONITOR"
+      }
+    ]
+  },
+  {
+    "label": "str_298_ele_door_remote_open_condition = \"Sets the remote control on condition\"",
+    "resource": "0x7f090c47",
+    "ids": [
+      [
+        "0x7f0b0228",
+        "btn_minus19"
+      ],
+      [
+        "0x7f0b016e",
+        "tv_text19"
+      ],
+      [
+        "0x7f0b0229",
+        "btn_plus19"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateEleDoorRemoteOpenCondition()V",
+        "fields": [
+          110
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 110,
+        "name": "U_CARINFO_ELE_DOOR_REMOTE_OPEN_CONDITION"
+      }
+    ]
+  },
+  {
+    "label": "str_298_ele_door_open_auto_or_manule = \"Set to apply the external handle to open electrically\"",
+    "resource": "0x7f090c48",
+    "ids": [
+      [
+        "0x7f0b00dc",
+        "ctv_checkedtext16"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateEleDoorOpenAutoOrManule()V",
+        "fields": [
+          111
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 111,
+        "name": "U_CARINFO_ELE_DOOR_OPEN_AUTO_OR_MANULE"
+      }
+    ]
+  },
+  {
+    "label": "str_17crv_traffic_sign = \"Traffic sign recognition system small icon\"",
+    "resource": "0x7f090c93",
+    "ids": [
+      [
+        "0x7f0b013f",
+        "ctv_checkedtext17"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateTrafficSign(I)V",
+        "fields": []
+      }
+    ],
+    "feedback": [
+      {
+        "field": 151,
+        "name": "U_CARINFO_TRAFFIC_SIGN"
+      }
+    ]
+  },
+  {
+    "label": "str_17crv_rise_warning = \"Rise warning\"",
+    "resource": "0x7f090c8f",
+    "ids": [
+      [
+        "0x7f0b0141",
+        "ctv_checkedtext18"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateRiseWarning(I)V",
+        "fields": []
+      }
+    ],
+    "feedback": [
+      {
+        "field": 152,
+        "name": "U_CARINFO_RISE_WARNING"
+      }
+    ]
+  },
+  {
+    "label": "str_17crv_memory_position_seat = \"Memory position seat linkage\"",
+    "resource": "0x7f090c90",
+    "ids": [
+      [
+        "0x7f0b0143",
+        "ctv_checkedtext19"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateMemorySeat(I)V",
+        "fields": []
+      }
+    ],
+    "feedback": [
+      {
+        "field": 153,
+        "name": "U_CARINFO_MEMORY_SEAT"
+      }
+    ]
+  },
+  {
+    "label": "str_17crv_seat_belt_mode_set = \"Electronic preloaded seat belt movement mode setting\"",
+    "resource": "0x7f090c91",
+    "ids": [
+      [
+        "0x7f0b0145",
+        "ctv_checkedtext20"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateSeatBelt(I)V",
+        "fields": []
+      }
+    ],
+    "feedback": [
+      {
+        "field": 154,
+        "name": "U_CARINFO_SEAT_BELT"
+      }
+    ]
+  },
+  {
+    "label": "str_turning_point_guide_sign = \"Turning point guide sign\"",
+    "resource": "0x7f0911d6",
+    "ids": [
+      [
+        "0x7f0b0224",
+        "ctv_checkedtext32"
+      ]
+    ],
+    "renderers": [],
+    "feedback": [
+      {
+        "field": 178,
+        "name": "U_CARSET_D32_D10_B5"
+      }
+    ]
+  },
+  {
+    "label": "str_straight_line_driving_assistance = \"Straight line driving assistance\"",
+    "resource": "0x7f0911d7",
+    "ids": [
+      [
+        "0x7f0b022a",
+        "btn_minus21"
+      ],
+      [
+        "0x7f0b0170",
+        "tv_text21"
+      ],
+      [
+        "0x7f0b022b",
+        "btn_plus21"
+      ]
+    ],
+    "renderers": [],
+    "feedback": [
+      {
+        "field": 179,
+        "name": "U_CARSET_D32_D10_B4"
+      }
+    ]
+  },
+  {
+    "label": "str_overspeed_warning_deviation = \"Overspeed warning deviation\"",
+    "resource": "0x7f090e93",
+    "ids": [
+      [
+        "0x7f0b022c",
+        "btn_minus22"
+      ],
+      [
+        "0x7f0b0171",
+        "tv_text22"
+      ],
+      [
+        "0x7f0b022d",
+        "btn_plus22"
+      ]
+    ],
+    "renderers": [],
+    "feedback": [
+      {
+        "field": 193,
+        "name": "U_CARSET_D32_D11_B75"
+      }
+    ]
+  },
+  {
+    "label": "wc_321_civic_smallpicture_str = \"Traffic sign recognition system\"",
+    "resource": "0x7f09093d",
+    "ids": [
+      [
+        "0x7f0b0421",
+        "ctv_checkedtext35"
+      ]
+    ],
+    "renderers": [],
+    "feedback": [
+      {
+        "field": 194,
+        "name": "U_CARSET_D32_D11_B4"
+      }
+    ]
+  },
+  {
+    "label": "traffice_sign_recognition = \"Traffice Sign Recognition\"",
+    "resource": "0x7f0900a5",
+    "ids": [
+      [
+        "0x7f0b0423",
+        "ctv_checkedtext36"
+      ]
+    ],
+    "renderers": [],
+    "feedback": [
+      {
+        "field": 195,
+        "name": "U_CARSET_D32_D11_B3"
+      }
+    ]
+  },
+  {
+    "label": "blind_zone = \"Blind zone\"",
+    "resource": "0x7f0902e1",
+    "ids": [
+      [
+        "0x7f0b03de",
+        "btn_minus23"
+      ],
+      [
+        "0x7f0b0172",
+        "tv_text23"
+      ],
+      [
+        "0x7f0b0258",
+        "btn_plus23"
+      ]
+    ],
+    "renderers": [],
+    "feedback": [
+      {
+        "field": 197,
+        "name": "U_CARSET_D32_D11_B1"
+      }
+    ]
+  },
+  {
+    "label": "str_17crv_static_line = \"Static guide line\"",
+    "resource": "0x7f090c94",
+    "ids": [
+      [
+        "0x7f0b0147",
+        "ctv_checkedtext21"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateStaticLine(I)V",
+        "fields": []
+      }
+    ],
+    "feedback": [
+      {
+        "field": 155,
+        "name": "U_CARINFO_STATIC_LINE"
+      }
+    ]
+  },
+  {
+    "label": "str_17crv_dynamic_line = \"Dynamic guide line\"",
+    "resource": "0x7f090c95",
+    "ids": [
+      [
+        "0x7f0b0149",
+        "ctv_checkedtext22"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateDynamicLine(I)V",
+        "fields": []
+      }
+    ],
+    "feedback": [
+      {
+        "field": 156,
+        "name": "U_CARINFO_DYNAMIC_LINE"
+      }
+    ]
+  },
+  {
+    "label": "str_17crv_show_camera = \"Show the camera after reversing\"",
+    "resource": "0x7f090c96",
+    "ids": [
+      [
+        "0x7f0b014c",
+        "ctv_checkedtext23"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateShowCamera(I)V",
+        "fields": []
+      }
+    ],
+    "feedback": [
+      {
+        "field": 157,
+        "name": "U_CARINFO_SHOW_CAMERA"
+      }
+    ]
+  },
+  {
+    "label": "str_parking_space_width_for_reversing = \"Parking space width for reversing\"",
+    "resource": "0x7f0911d9",
+    "ids": [
+      [
+        "0x7f0b0235",
+        "btn_minus20"
+      ],
+      [
+        "0x7f0b016f",
+        "tv_text20"
+      ],
+      [
+        "0x7f0b0236",
+        "btn_plus20"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateParkSpace(I)V",
+        "fields": []
+      }
+    ],
+    "feedback": [
+      {
+        "field": 158,
+        "name": "U_CARINFO_PARK_SPACE"
+      }
+    ]
+  },
+  {
+    "label": "str_17crv_rear_view_reminder = \"Rear view dynamic reminder system settings\"",
+    "resource": "0x7f090c8e",
+    "ids": [
+      [
+        "0x7f0b01f8",
+        "ctv_checkedtext24"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateReminderSystem(I)V",
+        "fields": []
+      }
+    ],
+    "feedback": [
+      {
+        "field": 159,
+        "name": "U_CARINFO_REMINDER_SYSTEM"
+      }
+    ]
+  },
+  {
+    "label": "str_298_17crv_2 = \"Rear multifunctional system\"",
+    "resource": "0x7f090dc7",
+    "ids": [
+      [
+        "0x7f0b01fa",
+        "ctv_checkedtext25"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateMultiFunction(I)V",
+        "fields": []
+      }
+    ],
+    "feedback": [
+      {
+        "field": 161,
+        "name": "U_CARINFO_MULTI_FUNCTION"
+      }
+    ]
+  },
+  {
+    "label": "str_298_back_car_beep_tone = \"Reverse gear tone\"",
+    "resource": "0x7f090c46",
+    "ids": [
+      [
+        "0x7f0b01fc",
+        "ctv_checkedtext26"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateBackCarBeepTone()V",
+        "fields": [
+          109
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "field": 109,
+        "name": "U_CARINFO_BACK_CAR_BEEP_TONE"
+      }
+    ]
+  },
+  {
+    "label": "str_298_17crv_1 = \"Panoramic image initial\"",
+    "resource": "0x7f090dc6",
+    "ids": [
+      [
+        "0x7f0b01fe",
+        "ctv_checkedtext27"
+      ]
+    ],
+    "renderers": [],
+    "feedback": []
+  },
+  {
+    "label": "str_pack_backcart_delay = \"Reversing Delay\"",
+    "resource": "0x7f090554",
+    "ids": [
+      [
+        "0x7f0b0426",
+        "ctv_checkedtext37"
+      ]
+    ],
+    "renderers": [],
+    "feedback": [
+      {
+        "field": 196,
+        "name": "U_CARSET_D32_D11_B2"
+      }
+    ]
+  },
+  {
+    "label": "str_auto_open_tunk = \"Auto open tunk\"",
+    "resource": "0x7f090e83",
+    "ids": [
+      [
+        "0x7f0b0234",
+        "ctv_checkedtext28"
+      ]
+    ],
+    "renderers": [
+      {
+        "method": "updateAutoOpenTunk(I)V",
+        "fields": []
+      }
+    ],
+    "feedback": [
+      {
+        "field": 166,
+        "name": "U_CAMERA_AUTO_OPEN_TUNK"
+      }
+    ]
+  },
+  {
+    "label": "str_298_inout_seat_sport = \"Enter / exit seat position movement\"",
+    "resource": "0x7f090c4a",
+    "ids": [
+      [
+        "0x7f0b0096",
+        "ctv_checkedtext1"
+      ]
+    ],
+    "renderers": [],
+    "feedback": [
+      {
+        "field": 173,
+        "name": "U_CARSET_D32_D8_B6"
+      }
+    ]
+  },
+  {
+    "label": "str_rear_seat_reminder = \"Rear seat reminder\"",
+    "resource": "0x7f0911d4",
+    "ids": [
+      [
+        "0x7f0b0225",
+        "ctv_checkedtext29"
+      ]
+    ],
+    "renderers": [],
+    "feedback": [
+      {
+        "field": 175,
+        "name": "U_CARSET_D32_D8_B5"
+      }
+    ]
+  },
+  {
+    "label": "wc_weilang_remote_car_window = \"Remote window control\"",
+    "resource": "0x7f09070d",
+    "ids": [
+      [
+        "0x7f0b022e",
+        "ctv_checkedtext30"
+      ]
+    ],
+    "renderers": [],
+    "feedback": [
+      {
+        "field": 190,
+        "name": "U_CARSET_D32_D8_B4"
+      }
+    ]
+  },
+  {
+    "label": "str_trunk_sensor_opening_and_closing = \"Trunk sensor opening and closing\"",
+    "resource": "0x7f0911d5",
+    "ids": [
+      [
+        "0x7f0b022f",
+        "ctv_checkedtext31"
+      ]
+    ],
+    "renderers": [],
+    "feedback": [
+      {
+        "field": 176,
+        "name": "U_CARSET_D32_D10_B7"
+      }
+    ]
+  },
+  {
+    "label": "str_rearvauto_show = \"rear view auto\"",
+    "resource": "0x7f090dd1",
+    "ids": [
+      [
+        "0x7f0b03df",
+        "btn_minus24"
+      ],
+      [
+        "0x7f0b0173",
+        "tv_text24"
+      ],
+      [
+        "0x7f0b0254",
+        "btn_plus24"
+      ]
+    ],
+    "renderers": [],
+    "feedback": [
+      {
+        "field": 177,
+        "name": "U_CARSET_D32_D10_B6"
+      }
+    ]
+  }
+]

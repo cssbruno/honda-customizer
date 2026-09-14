@@ -1,0 +1,10 @@
+{
+  "joying": {
+    "path": "/home/bruno/Documentos/ChatGPT/R/cabin/artifacts/joying-uis7862/extracted/applications/app/190000000_com.syu.ms/190000000_com.syu.ms.apk",
+    "sha256": "4b428302e29c9e2503ccf7844a127f5bed59450736317629aa42b5eb35a9b577"
+  },
+  "teyes": {
+    "path": "/home/bruno/Documentos/ChatGPT/R/cabin/artifacts/teyes-tpro/extracted/applications/190000000_com.syu.ms.apk",
+    "sha256": "aaf78cd4f9bb2f5183f5faeb91be5ef8b30dc3c6c4e7966c250025c1670e8ed7"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "apk": "cabin/artifacts/joying-uis7862/extracted/applications/app/190000000_com.syu.canbus/190000000_com.syu.canbus.apk",
+  "sha256": "98103bc4b64cfc87cd5957a3659304c078a69d8388ae4878fe4950119f15110d",
+  "firmware": "Joying UIS7862 2023-08-31 reference",
+  "tools": [
+    "Android SDK apkanalyzer dex code",
+    "aapt2 dump xmltree/resources"
+  ],
+  "vehicle_tested": false
+}

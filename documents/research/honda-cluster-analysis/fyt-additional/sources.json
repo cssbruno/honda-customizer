@@ -1,0 +1,10 @@
+{
+  "joying": {
+    "path": "cabin/artifacts/joying-uis7862/extracted/applications/app/190000000_com.syu.canbus/190000000_com.syu.canbus.apk",
+    "sha256": "98103bc4b64cfc87cd5957a3659304c078a69d8388ae4878fe4950119f15110d"
+  },
+  "teyes": {
+    "path": "cabin/artifacts/teyes-tpro/extracted/applications/190000000_com.syu.canbus.apk",
+    "sha256": "0b61c4f6dd495b8262c6f851a9cf173834926e55effe4378fb51c88ca66dc8ef"
+  }
+}

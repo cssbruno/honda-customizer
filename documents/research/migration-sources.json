@@ -1,0 +1,452 @@
+[
+  {
+    "source": "honda-cluster-analysis/additional-settings-review.md",
+    "destination": "documents/research/honda-cluster-analysis/additional-settings-review.md",
+    "sha256": "defd2938449c420dcb2ecb87f777abbdeb1c6a58d420d5c06cad4caa48da8289"
+  },
+  {
+    "source": "honda-cluster-analysis/complete-settings-catalog.csv",
+    "destination": "documents/research/honda-cluster-analysis/complete-settings-catalog.csv",
+    "sha256": "d79a747f28565cf269b655c9f3ab49c47723c655ff72d3462d9a392f4627a7be"
+  },
+  {
+    "source": "honda-cluster-analysis/complete-settings-catalog.json",
+    "destination": "documents/research/honda-cluster-analysis/complete-settings-catalog.json",
+    "sha256": "b51e841274246a6f1a3a87baaeb07cfa150a107fd7b7b5995f187f2512142fbe"
+  },
+  {
+    "source": "honda-cluster-analysis/complete-settings-catalog.md",
+    "destination": "documents/research/honda-cluster-analysis/complete-settings-catalog.md",
+    "sha256": "a4f12a4817be67960ab9dd51f9ddcf2a14eeaec59e5120c3366fc72be1039e1a"
+  },
+  {
+    "source": "honda-cluster-analysis/configuration-audit.md",
+    "destination": "documents/research/honda-cluster-analysis/configuration-audit.md",
+    "sha256": "f910b9663d3dd5c6cf4c5e33c954f8039e7cd78cfc4be070566ef4c6e469c16f"
+  },
+  {
+    "source": "honda-cluster-analysis/customization-review.md",
+    "destination": "documents/research/honda-cluster-analysis/customization-review.md",
+    "sha256": "ea1ae531630654ae232ed54cb4d46158319831bb076bf8e41b1ed45d48b026cd"
+  },
+  {
+    "source": "honda-cluster-analysis/export_complete_catalog.py",
+    "destination": "documents/research/honda-cluster-analysis/export_complete_catalog.py",
+    "sha256": "c6eee159e8dcc993bd0e1b5cbf9a982fbec2ea23000f2548c9264b2d5698743d"
+  },
+  {
+    "source": "honda-cluster-analysis/findings.md",
+    "destination": "documents/research/honda-cluster-analysis/findings.md",
+    "sha256": "f1e73e76672ebc8e7614c94e557f1181a2010576d97523de41f18bfb1d5558a2"
+  },
+  {
+    "source": "honda-cluster-analysis/full-command-trace.md",
+    "destination": "documents/research/honda-cluster-analysis/full-command-trace.md",
+    "sha256": "9512a9c1d9cb7ad99ec61b0e0662b467987a8516080505b889bf3180e701d08b"
+  },
+  {
+    "source": "honda-cluster-analysis/fyt/source.json",
+    "destination": "documents/research/honda-cluster-analysis/fyt/source.json",
+    "sha256": "1f8d5d6de3d845ed4e252fdc9dd4ef11f263a60ae7be6e457d6a881c0821fb0b"
+  },
+  {
+    "source": "honda-cluster-analysis/fyt-additional/accord/findings.md",
+    "destination": "documents/research/honda-cluster-analysis/fyt-additional/accord/findings.md",
+    "sha256": "48b28121819bab116aa379e971daf0d1605547ba7f18466c617b09bcfe3e6fe2"
+  },
+  {
+    "source": "honda-cluster-analysis/fyt-additional/class-comparison.json",
+    "destination": "documents/research/honda-cluster-analysis/fyt-additional/class-comparison.json",
+    "sha256": "5ab8ec9cc17e3e53adaab470e8d557195fa5784754398690e1cd5badb7a665d1"
+  },
+  {
+    "source": "honda-cluster-analysis/fyt-additional/doors-lights/findings.md",
+    "destination": "documents/research/honda-cluster-analysis/fyt-additional/doors-lights/findings.md",
+    "sha256": "3baba622ba2e2b62fd89116b055cd9642d0a2f4e9202967f9806c3c8b66c4f31"
+  },
+  {
+    "source": "honda-cluster-analysis/fyt-additional/doors-lights/full-settings-inventory.md",
+    "destination": "documents/research/honda-cluster-analysis/fyt-additional/doors-lights/full-settings-inventory.md",
+    "sha256": "58069e0f8e2aa8d827ea6343c1a8fafd448a8377d124cb39324927b9d479f860"
+  },
+  {
+    "source": "honda-cluster-analysis/fyt-additional/doors-lights/resource-map.json",
+    "destination": "documents/research/honda-cluster-analysis/fyt-additional/doors-lights/resource-map.json",
+    "sha256": "7838aa397407366e8ae311651e39c92bc8a624f82b5837a6e412f983a5781d45"
+  },
+  {
+    "source": "honda-cluster-analysis/fyt-additional/doors-lights/rzc_17crv-inventory.json",
+    "destination": "documents/research/honda-cluster-analysis/fyt-additional/doors-lights/rzc_17crv-inventory.json",
+    "sha256": "cdbacfaed41929468e59653496eaa9161e059870c3397176966a223f9c49301f"
+  },
+  {
+    "source": "honda-cluster-analysis/fyt-additional/doors-lights/siyu-inventory.json",
+    "destination": "documents/research/honda-cluster-analysis/fyt-additional/doors-lights/siyu-inventory.json",
+    "sha256": "63fdb15c4d8f5d4cd31bf34f4127c7d4e2005d234157c276f053616f620b09b6"
+  },
+  {
+    "source": "honda-cluster-analysis/fyt-additional/other-honda/findings.md",
+    "destination": "documents/research/honda-cluster-analysis/fyt-additional/other-honda/findings.md",
+    "sha256": "9072230d5aa734a7091553a2c5d10d6284012a418d042bd9803e7409dbd6b3d5"
+  },
+  {
+    "source": "honda-cluster-analysis/fyt-additional/other-honda/language-findings.md",
+    "destination": "documents/research/honda-cluster-analysis/fyt-additional/other-honda/language-findings.md",
+    "sha256": "2f6be9ec381b00842dfba742fc6d18f0f16d21b7aafd50d4e2d76e0aabf77f60"
+  },
+  {
+    "source": "honda-cluster-analysis/fyt-additional/other-honda/rzc-language-options.json",
+    "destination": "documents/research/honda-cluster-analysis/fyt-additional/other-honda/rzc-language-options.json",
+    "sha256": "b290435c5f453505e3f936a555a45d1239708b8ac5516b3527556f483c3c10d0"
+  },
+  {
+    "source": "honda-cluster-analysis/fyt-additional/other-honda/rzc-settings-const-class-candidates.json",
+    "destination": "documents/research/honda-cluster-analysis/fyt-additional/other-honda/rzc-settings-const-class-candidates.json",
+    "sha256": "9c73b389c90241dab93afa66799766a61014438aae265934e4e687439cff3228"
+  },
+  {
+    "source": "honda-cluster-analysis/fyt-additional/sources.json",
+    "destination": "documents/research/honda-cluster-analysis/fyt-additional/sources.json",
+    "sha256": "070acfc999ffd61cef1f7368d5e5c980ef512c3ba1f45f92aa9ad3e494325282"
+  },
+  {
+    "source": "honda-cluster-analysis/implementation-notes.md",
+    "destination": "documents/research/honda-cluster-analysis/implementation-notes.md",
+    "sha256": "b44df2c59b571ac9548f4aedac714bcbcd98f3b4e819ebc2b628d8642f5e4867"
+  },
+  {
+    "source": "honda-cluster-analysis/meter-route-audit.json",
+    "destination": "documents/research/honda-cluster-analysis/meter-route-audit.json",
+    "sha256": "ba7ab0c59bde7e214cddda02b7b4b4ec67d92fe9ba93aa2fa5a072dafaea913d"
+  },
+  {
+    "source": "honda-cluster-analysis/meter-settings-catalog.md",
+    "destination": "documents/research/honda-cluster-analysis/meter-settings-catalog.md",
+    "sha256": "d56352a42e84c5f29b846b017cd8d7747936e9a692a7f33f6c3bb9e0caba472f"
+  },
+  {
+    "source": "honda-cluster-analysis/native/sha256.json",
+    "destination": "documents/research/honda-cluster-analysis/native/sha256.json",
+    "sha256": "628339a597936036a8dd865f52c9e77fe403e4d5fb3cc1b7a9c9453801ba4f4c"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/README.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/README.md",
+    "sha256": "8c42806cbc6147a6baefbcc6dff1efc31475f5cc538f16ec85eed58844028261"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/action-implementation-evidence.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/action-implementation-evidence.md",
+    "sha256": "3b4b516c3b232d5754d7f18ef668a9cd02877b6e2a324738753b3d76f451878e"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/build_civic_index.py",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/build_civic_index.py",
+    "sha256": "1469d6f65ba13e5cc9551df33ab6c62400355b5610b8247e5a16468fd3b18521"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/camera-native-implementation.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/camera-native-implementation.md",
+    "sha256": "1504f5bdd224041adc75e897e0f28153c277f02cc3e97ce5084d4ceb8632821e"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/catalog-labels.json",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/catalog-labels.json",
+    "sha256": "6bfe46d0677d5a8993d20329d1669358c408ad6c5a5ed3a55f4fd95a36189f82"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/civic-br-2020-index.json",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/civic-br-2020-index.json",
+    "sha256": "e22b9c72d7e54a5ff1cef224a37ba2fcad97b11a552a35130150bd7290d4af7e"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/civic-br-2020-index.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/civic-br-2020-index.md",
+    "sha256": "3ab9d4cf43fb6a13ed56b94e1463afd03cdd97c1127bc0802349dfb6354e6255"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/cpu-service-api-signatures.json",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/cpu-service-api-signatures.json",
+    "sha256": "b3992b35a97cc7ca14d4238c350ade08545ad863fba403fd4832473000bd91c7"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/instrument-evidence/meter-binder/hashes.json",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/instrument-evidence/meter-binder/hashes.json",
+    "sha256": "21b24c716e57a3cbe3b892d561fb69651c3e434be563483191415eb746a89a4d"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/instrument-evidence/meter-ui-inventory.json",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/instrument-evidence/meter-ui-inventory.json",
+    "sha256": "c1f7969dbdd1a61ee0fe8a22f80e0c20aa7bc462d0abae76876623f2c47a74ec"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/instrument-evidence/source.json",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/instrument-evidence/source.json",
+    "sha256": "3470600b2a01d8fb72868fea6046d18a5455ec3042fc5a6ddce253c343426277"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/instrument-inventory.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/instrument-inventory.md",
+    "sha256": "debd89faa55f0190827a14475a670e9b44402bc0a9be435e3697769046d54acd"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/instrument-panel-editor.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/instrument-panel-editor.md",
+    "sha256": "38f551ec96e025d2aca886f2007295f1b8b828d10c345587f4b9b30995bba9b2"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/instrument-settings.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/instrument-settings.md",
+    "sha256": "473fe498714f0a1b2d663b40511cdb4b33e9db162fa4d25c860ef38b3ce79504"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/meter-binder-protocol.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/meter-binder-protocol.md",
+    "sha256": "6f578255144377dc18cd22033a109422e3ffb27723875c567d6653b00bebe8a0"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/model-applicability.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/model-applicability.md",
+    "sha256": "524f8cd81b5336150229ee9c56285a411a2dc13d78aaad2a4f475171076bc5e8"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/non-meter-catalog-inventory.json",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/non-meter-catalog-inventory.json",
+    "sha256": "a4caad8d86b34ff71ed8960297ed23c04ea860f9f5d06d248d670b62f97cee16"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/other-civic-variants.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/other-civic-variants.md",
+    "sha256": "7750ec23568aad28853f7d608b2c26d47042406ef503e62b398d4fab7dcf3bb2"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/system-and-camera-settings.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/system-and-camera-settings.md",
+    "sha256": "9a0acf416d8d84997706e62cc44647e7fb056d408020862787d8e623e77e45c4"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/vehicle-service-api-inventory.json",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/vehicle-service-api-inventory.json",
+    "sha256": "de554aa50e9a825c033539c58b5a041f066f545cf09a894ba1003d6785f5d339"
+  },
+  {
+    "source": "honda-cluster-analysis/oem-civic/vehicle-settings-and-actions.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/vehicle-settings-and-actions.md",
+    "sha256": "cca91860bfac365433edb15136b1d06c2a15c28922bdf656ba588a1f7dc97bc9"
+  },
+  {
+    "source": "honda-cluster-analysis/offline_tachometer_trace.py",
+    "destination": "documents/research/honda-cluster-analysis/offline_tachometer_trace.py",
+    "sha256": "41ceafb4e62abec5d86d216aa549158937dc664757d5db3a82be27fc7c03f051"
+  },
+  {
+    "source": "honda-cluster-analysis/stock-language-review.md",
+    "destination": "documents/research/honda-cluster-analysis/stock-language-review.md",
+    "sha256": "f7efc26287fa9dcede500c82dfd2bf0c787757a8865e1c187aa8152ef4874aa0"
+  },
+  {
+    "source": "honda-cluster-analysis/vehicle_customize_config.xml",
+    "destination": "documents/research/honda-cluster-analysis/vehicle_customize_config.xml",
+    "sha256": "b11b0611a85f13d2bbe224dfdd29195ce6dd31bf9eeb073cb1c251a65e081ef6"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/README.md",
+    "destination": "documents/research/honda-cluster-analysis/README.md",
+    "sha256": "8756c8d7780c27cd6204ff57895f967eb930ef9061f54e1be48a223bd58beae6"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/complete-settings-catalog.csv",
+    "destination": "documents/research/honda-cluster-analysis/complete-settings-catalog.csv",
+    "sha256": "d79a747f28565cf269b655c9f3ab49c47723c655ff72d3462d9a392f4627a7be"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/complete-settings-catalog.json",
+    "destination": "documents/research/honda-cluster-analysis/complete-settings-catalog.json",
+    "sha256": "b51e841274246a6f1a3a87baaeb07cfa150a107fd7b7b5995f187f2512142fbe"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/complete-settings-catalog.md",
+    "destination": "documents/research/honda-cluster-analysis/complete-settings-catalog.md",
+    "sha256": "a4f12a4817be67960ab9dd51f9ddcf2a14eeaec59e5120c3366fc72be1039e1a"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/export_complete_catalog.py",
+    "destination": "documents/research/honda-cluster-analysis/export_complete_catalog.py",
+    "sha256": "c6eee159e8dcc993bd0e1b5cbf9a982fbec2ea23000f2548c9264b2d5698743d"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/full-command-trace.md",
+    "destination": "documents/research/honda-cluster-analysis/full-command-trace.md",
+    "sha256": "9512a9c1d9cb7ad99ec61b0e0662b467987a8516080505b889bf3180e701d08b"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/meter-route-audit.json",
+    "destination": "documents/research/honda-cluster-analysis/meter-route-audit.json",
+    "sha256": "ba7ab0c59bde7e214cddda02b7b4b4ec67d92fe9ba93aa2fa5a072dafaea913d"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/meter-settings-catalog.md",
+    "destination": "documents/research/honda-cluster-analysis/meter-settings-catalog.md",
+    "sha256": "d56352a42e84c5f29b846b017cd8d7747936e9a692a7f33f6c3bb9e0caba472f"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/README.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/README.md",
+    "sha256": "8c42806cbc6147a6baefbcc6dff1efc31475f5cc538f16ec85eed58844028261"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/action-implementation-evidence.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/action-implementation-evidence.md",
+    "sha256": "3b4b516c3b232d5754d7f18ef668a9cd02877b6e2a324738753b3d76f451878e"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/build_civic_index.py",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/build_civic_index.py",
+    "sha256": "1469d6f65ba13e5cc9551df33ab6c62400355b5610b8247e5a16468fd3b18521"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/camera-native-implementation.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/camera-native-implementation.md",
+    "sha256": "1504f5bdd224041adc75e897e0f28153c277f02cc3e97ce5084d4ceb8632821e"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/catalog-labels.json",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/catalog-labels.json",
+    "sha256": "6bfe46d0677d5a8993d20329d1669358c408ad6c5a5ed3a55f4fd95a36189f82"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/civic-br-2020-index.json",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/civic-br-2020-index.json",
+    "sha256": "e22b9c72d7e54a5ff1cef224a37ba2fcad97b11a552a35130150bd7290d4af7e"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/civic-br-2020-index.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/civic-br-2020-index.md",
+    "sha256": "3ab9d4cf43fb6a13ed56b94e1463afd03cdd97c1127bc0802349dfb6354e6255"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/cpu-service-api-signatures.json",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/cpu-service-api-signatures.json",
+    "sha256": "b3992b35a97cc7ca14d4238c350ade08545ad863fba403fd4832473000bd91c7"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/instrument-evidence/meter-ui-inventory.json",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/instrument-evidence/meter-ui-inventory.json",
+    "sha256": "c1f7969dbdd1a61ee0fe8a22f80e0c20aa7bc462d0abae76876623f2c47a74ec"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/instrument-evidence/source.json",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/instrument-evidence/source.json",
+    "sha256": "3470600b2a01d8fb72868fea6046d18a5455ec3042fc5a6ddce253c343426277"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/instrument-inventory.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/instrument-inventory.md",
+    "sha256": "debd89faa55f0190827a14475a670e9b44402bc0a9be435e3697769046d54acd"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/instrument-panel-editor.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/instrument-panel-editor.md",
+    "sha256": "38f551ec96e025d2aca886f2007295f1b8b828d10c345587f4b9b30995bba9b2"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/instrument-settings.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/instrument-settings.md",
+    "sha256": "473fe498714f0a1b2d663b40511cdb4b33e9db162fa4d25c860ef38b3ce79504"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/meter-binder-protocol.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/meter-binder-protocol.md",
+    "sha256": "6f578255144377dc18cd22033a109422e3ffb27723875c567d6653b00bebe8a0"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/model-applicability.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/model-applicability.md",
+    "sha256": "524f8cd81b5336150229ee9c56285a411a2dc13d78aaad2a4f475171076bc5e8"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/native-headunit-evidence.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/native-headunit-evidence.md",
+    "sha256": "c3ad47e5b8b3ca07af6501626e31c49c4dfd3d1668146dea35e1812564c2d312"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/non-meter-catalog-inventory.json",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/non-meter-catalog-inventory.json",
+    "sha256": "a4caad8d86b34ff71ed8960297ed23c04ea860f9f5d06d248d670b62f97cee16"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/other-civic-variants.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/other-civic-variants.md",
+    "sha256": "7750ec23568aad28853f7d608b2c26d47042406ef503e62b398d4fab7dcf3bb2"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/system-and-camera-settings.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/system-and-camera-settings.md",
+    "sha256": "9a0acf416d8d84997706e62cc44647e7fb056d408020862787d8e623e77e45c4"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/vehicle-service-api-inventory.json",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/vehicle-service-api-inventory.json",
+    "sha256": "de554aa50e9a825c033539c58b5a041f066f545cf09a894ba1003d6785f5d339"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/oem-civic/vehicle-settings-and-actions.md",
+    "destination": "documents/research/honda-cluster-analysis/oem-civic/vehicle-settings-and-actions.md",
+    "sha256": "cca91860bfac365433edb15136b1d06c2a15c28922bdf656ba588a1f7dc97bc9"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/stock-language-review.md",
+    "destination": "documents/research/honda-cluster-analysis/stock-language-review.md",
+    "sha256": "f7efc26287fa9dcede500c82dfd2bf0c787757a8865e1c187aa8152ef4874aa0"
+  },
+  {
+    "source": "cabin/honda-cluster-analysis/vehicle_customize_config.xml",
+    "destination": "documents/research/honda-cluster-analysis/vehicle_customize_config.xml",
+    "sha256": "b11b0611a85f13d2bbe224dfdd29195ce6dd31bf9eeb073cb1c251a65e081ef6"
+  },
+  {
+    "source": "syu-ms-analysis/REPORT.md",
+    "destination": "documents/research/syu-ms-analysis/REPORT.md",
+    "sha256": "5b48ca40ecc9a0599adac3575de93a2e73da8a40281f83e37c963b1234a29a04"
+  },
+  {
+    "source": "syu-ms-analysis/deeper/FINDINGS.md",
+    "destination": "documents/research/syu-ms-analysis/deeper/FINDINGS.md",
+    "sha256": "f50bdb1ba4865b47ea4ca29dc4abe8acbc65de490790e0ab9e0dcd1bb3c1b3c0"
+  },
+  {
+    "source": "syu-ms-analysis/deeper/smali-inventory.json",
+    "destination": "documents/research/syu-ms-analysis/deeper/smali-inventory.json",
+    "sha256": "ab493896d0ba5f650e234c4c6ebb9143399caac36154fafc21c78e6fc10a5a4f"
+  },
+  {
+    "source": "syu-ms-analysis/deeper/targeted-searches.json",
+    "destination": "documents/research/syu-ms-analysis/deeper/targeted-searches.json",
+    "sha256": "35f937839317b2841006f177f5a657fd002b586b0ddb0136fd0368fd9b836c3f"
+  },
+  {
+    "source": "syu-ms-analysis/evidence/joying-manifest.xml",
+    "destination": "documents/research/syu-ms-analysis/evidence/joying-manifest.xml",
+    "sha256": "eecd9469364ceb08c3d565aff6189ba42b2d1718784c7a66701f075f9f6bf667"
+  },
+  {
+    "source": "syu-ms-analysis/evidence/sources.json",
+    "destination": "documents/research/syu-ms-analysis/evidence/sources.json",
+    "sha256": "d716b5180d86d21d9135479878c421b83b5bc0a985cdc70a484d71ebf42f5e5a"
+  },
+  {
+    "source": "syu-ms-analysis/evidence/teyes-manifest.xml",
+    "destination": "documents/research/syu-ms-analysis/evidence/teyes-manifest.xml",
+    "sha256": "5fae34296791d4a2167d7a2e39f28b41df05773bdd56339aa200741702fc1ad1"
+  },
+  {
+    "source": "syu-ms-analysis/steering/FINDINGS.md",
+    "destination": "documents/research/syu-ms-analysis/steering/FINDINGS.md",
+    "sha256": "fed12e563933f514fce6c08aa6b17ad8f9cc27b6338d51590904dada74730738"
+  },
+  {
+    "source": "syu-ms-analysis/steering/sources.json",
+    "destination": "documents/research/syu-ms-analysis/steering/sources.json",
+    "sha256": "17a285f09f897ea915bafe268b42d9ceeb5fd4d5216982de81b7105e5702abe6"
+  }
+]

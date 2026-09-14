@@ -1,0 +1,72 @@
+{
+  "network": [
+    {
+      "file": "t/f.smali",
+      "line": 1097,
+      "text": "const-string p2, \"http://xmlpull.org/v1/doc/features.html#indent-output\""
+    },
+    {
+      "file": "t/n.smali",
+      "line": 2150,
+      "text": "const-string p1, \"http://xmlpull.org/v1/doc/features.html#indent-output\""
+    }
+  ],
+  "caller_checks": [],
+  "shell": [
+    {
+      "file": "f0/ip.smali",
+      "line": 158,
+      "text": "invoke-virtual {v1, v0}, Ljava/lang/Runtime;->exec(Ljava/lang/String;)Ljava/lang/Process;"
+    },
+    {
+      "file": "f0/ip.smali",
+      "line": 172,
+      "text": "invoke-virtual {v0, v1}, Ljava/lang/Runtime;->exec(Ljava/lang/String;)Ljava/lang/Process;"
+    },
+    {
+      "file": "f0/jp.smali",
+      "line": 228,
+      "text": "invoke-virtual {v1, v0}, Ljava/lang/Runtime;->exec(Ljava/lang/String;)Ljava/lang/Process;"
+    },
+    {
+      "file": "f0/jp.smali",
+      "line": 242,
+      "text": "invoke-virtual {v0, v1}, Ljava/lang/Runtime;->exec(Ljava/lang/String;)Ljava/lang/Process;"
+    },
+    {
+      "file": "f0/np.smali",
+      "line": 346,
+      "text": "invoke-virtual {v1, v0}, Ljava/lang/Runtime;->exec(Ljava/lang/String;)Ljava/lang/Process;"
+    },
+    {
+      "file": "f0/np.smali",
+      "line": 360,
+      "text": "invoke-virtual {v0, v1}, Ljava/lang/Runtime;->exec(Ljava/lang/String;)Ljava/lang/Process;"
+    },
+    {
+      "file": "f0/op.smali",
+      "line": 374,
+      "text": "invoke-virtual {v1, v0}, Ljava/lang/Runtime;->exec(Ljava/lang/String;)Ljava/lang/Process;"
+    },
+    {
+      "file": "f0/op.smali",
+      "line": 388,
+      "text": "invoke-virtual {v0, v1}, Ljava/lang/Runtime;->exec(Ljava/lang/String;)Ljava/lang/Process;"
+    },
+    {
+      "file": "f0/qp.smali",
+      "line": 522,
+      "text": "invoke-virtual {v1, v0}, Ljava/lang/Runtime;->exec(Ljava/lang/String;)Ljava/lang/Process;"
+    },
+    {
+      "file": "f0/qp.smali",
+      "line": 536,
+      "text": "invoke-virtual {v0, v1}, Ljava/lang/Runtime;->exec(Ljava/lang/String;)Ljava/lang/Process;"
+    },
+    {
+      "file": "util/log/LogRecorder$a.smali",
+      "line": 182,
+      "text": "invoke-virtual {v1, v2}, Ljava/lang/Runtime;->exec(Ljava/lang/String;)Ljava/lang/Process;"
+    }
+  ]
+}

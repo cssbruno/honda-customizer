@@ -1,0 +1,10 @@
+{
+  "/tmp/honda-inspect/extracted/system/vendor/app/ExternalDisplayApService.apk": "36fcfbc872f2c9bbb03f49706d5701c4d89c098c1c37211cd28b1184f5efee8e",
+  "IExternalDisplayApService$Stub.smali": "1f3fef7c2cf91878b6c9dc180c97add8c975cee26f773cdd52bc9c61fcfbb661",
+  "IExternalDisplayApService$Stub$Proxy.smali": "a9992eb92ab84e884c0ae19a657db4411914f0d0ad1f6034f3e380cde8aaa3d3",
+  "IContentsCustomizeListener$Stub.smali": "93b5ad8a88d24547a7fbbafc038d1d82b438915dac6d57b1ff96ba4c0f97d5d6",
+  "IContentsCustomizeListener$Stub$Proxy.smali": "0e189c4defb5e4ecf603cd1601ef7bef720262ee4c647627266c3e37bf0a71e6",
+  "CustomizeData.smali": "f8bcff19924e2e4c509c6ef27195efa32955defcd86461ed7d2d60dccf5f1350",
+  "ExternalDisplayConst.smali": "beca9179216e3cf4408908633c715602991a4686fbaa6e34394c823686db6e37",
+  "ExternalDisplayApService$3.smali": "7249457861a66a459898367268ce3ffce238274af2e9e1f09eb777ce77c38de3"
+}

@@ -1,0 +1,30 @@
+# Honda Customizer documentation
+
+## Current app: Joying / FYT
+
+- [Install, use, build and supported decoder profiles](../README.md)
+- [FYT panel commands and feedback](HONDA-FYT-PANEL.md) — shared protocol; Cabin integration details are historical context.
+- [RZC/BNR decoder findings](research/honda-cluster-analysis/fyt-additional/other-honda/findings.md)
+- [Door, lighting and other setting research](research/honda-cluster-analysis/fyt-additional/doors-lights/full-settings-inventory.md) — research does not imply app support.
+- [SYU service contracts](research/syu-ms-analysis/REPORT.md)
+
+## Original Honda head unit: reference only
+
+These documents describe the earlier OEM implementation. They do not describe features shipped in the current FYT APK.
+
+- [Original Honda app guide](../README-OEM-reference.md)
+- [Civic evidence index](research/honda-cluster-analysis/oem-civic/README.md)
+- [Complete settings catalog](research/honda-cluster-analysis/complete-settings-catalog.md)
+- [Meter Binder protocol](research/honda-cluster-analysis/oem-civic/meter-binder-protocol.md)
+- [Camera implementation](research/honda-cluster-analysis/oem-civic/camera-native-implementation.md)
+- [Vehicle actions and maintenance](research/honda-cluster-analysis/oem-civic/action-implementation-evidence.md)
+- [Compatibility report](OEM-COMPATIBILITY-REPORT.md)
+- [Diagnostics](OEM-DIAGNOSTICS.md) and [display controls](OEM-DISPLAY.md)
+
+## Evidence and provenance
+
+Research reports, derived catalogs, source manifests and analysis scripts were copied into this repository from the existing workspace. Cabin's version takes precedence where both locations contained a file. Differing workspace versions are preserved under `research/workspace-versions`; [migration source hashes](research/migration-sources.json) record the inputs before link updates. Shared originals remain available to Cabin.
+
+Historical reports retain original firmware paths, class names and tool commands as provenance. Proprietary firmware binaries, decompiled vendor classes and raw resource dumps remain external; references to those files are not repository links or build dependencies. Historical extraction scripts require their original inputs. The app builds from bundled source and assets.
+
+Unit tests, lint and emulator checks do not establish operation on a physical vehicle. Use the current app README for implemented features and validation limits.
