@@ -4,6 +4,7 @@ The goal remains full FYT Honda implementation. A researched row is not automati
 
 ## Implemented in active FYT sources
 
+- 22 independently audited XP persistent settings, exclusively for the reported `0x4012A` profile. See the [XP audit](research/XP-4012A.md).
 - Toolkit connection, module 7, exact decoder identification, connection report.
 - 13 WC panel mappings and 27 WC door/light/remote/assistance/camera/seat mappings with per-row restrictions.
 - All 59 persistent settings in the researched RZC screen, limited to the three known RZC profiles.
@@ -17,7 +18,7 @@ The goal remains full FYT Honda implementation. A researched row is not automati
 - Resolve completion evidence for maintenance reset, initial-values restore and TPMS calibration.
 - Oil/service-life fields 135–137 are traced, but the value row is hidden on all currently supported BNR profiles. Establish applicable exact-profile evidence before displaying it.
 - Establish FYT contracts for full physical panel editing, diagnostics and head-unit settings. OEM code cannot supply these contracts.
-- Real head-unit report, firmware/decoder identity and parked physical validation. No vehicle is attached here.
+- The supplied head-unit photo establishes toolkit connection, profile `0x4012A`, and service `2.23.0718.1700 / 2123071817`. Parked setting readback/write validation remains required; no vehicle is attached here.
 
 ## RZC additional-row evidence audit
 

@@ -1,8 +1,8 @@
-# Honda Customizer 3.3.2 — Joying / FYT
+# Honda Customizer 3.3.3 — Joying / FYT
 
 An Android app for FYT head units using the installed `com.syu.ms` service. It has no original Honda/Mitsubishi service dependency, permission, editor or executable client code in the APK.
 
-[3.3.2 release notes](documents/RELEASE-3.3.2.md)
+[3.3.3 release notes](documents/RELEASE-3.3.3.md)
 
 ## Repository
 
@@ -34,6 +34,7 @@ The detected profile comes from FYT field 1000. An unmapped profile is reported 
 
 | Decoder profiles | Controls |
 |---|---|
+| XP: `0x4012A` | 22 persistent settings, independently traced through the stock XP settings route. Tachometers, trip reset, temperature adjustment, lighting, remote access, locking and driver attention. Command 105; exact fields and keys in the [XP audit](documents/research/XP-4012A.md). |
 | WC: `0x40141`, `0x50141`, `0x60141`, `0xB0141`, `0xC0141`, `0xD0141` | Up to 13 panel controls, with the stock per-row restrictions: navigation directions, warning messages, Type 1–3, reverse tone, speed/message/idle-stop reminders, eco lighting, signs, alarm volume, trip A/B reset and outside-temperature adjustment. Command 106. Also up to 27 additional door, lighting, remote, camera, seat and driver-assistance controls with decoder restrictions and live feedback gating. |
 | RZC Civic: `0x10012a`, `0x11012a`, `0x29012a` | 59 persistent settings: units, tachometers, doors, lights, mirrors/windows, cameras, seats and assistance. Exact command-105 keys and feedback fields are audited separately from WC/BNR. |
 | BNR direct settings route: `0x6012a`, `0x7012a`, `0x8012a`, `0x9012a`, `0xA012a`, `0xB012a`, `0xF012a`, `0x28012a` | Up to 37 persistent mappings: 26, 31 or 32 rows are visible depending on the exact profile. Includes tachometer, doors, lighting, remote, panel and assistance settings. Units remain excluded because the stock entry route hides that row. |
@@ -52,11 +53,11 @@ python3 -m unittest discover -s tools -p 'test_*.py'
 python3 tools/package_release.py --sdk-root "$ANDROID_HOME"
 ```
 
-APK: `app/build/outputs/apk/release/app-release.apk`, version code 10. Signed with the local development certificate; installing over an earlier copy requires a matching signing certificate. Minimum Android API 17 is a compatibility floor; the target hardware is the FYT head unit.
+APK: `app/build/outputs/apk/release/app-release.apk`, version code 11. Signed with the local development certificate; installing over an earlier copy requires a matching signing certificate. Minimum Android API 17 is a compatibility floor; the target hardware is the FYT head unit.
 
-62 updater/service/protocol/localization regression tests and 7 smoke-result parser tests cover rejection without fallback (including a blocked toolkit), exact decoder commands, field subscriptions, fresh feedback, write failure, timeout and disconnect. Test-only Binder fixtures are excluded from the app; the application has no mock vehicle data. They do not establish operation on the user's physical FYT hardware. The exact installed firmware/decoder has not been supplied, and no vehicle is connected to this development environment.
+66 updater/service/protocol/localization regression tests and 7 smoke-result parser tests cover rejection without fallback (including a blocked toolkit), exact decoder commands, field subscriptions, fresh feedback, write failure, timeout and disconnect. Test-only Binder fixtures are excluded from the app; the application has no mock vehicle data. They do not establish operation on the user's physical FYT hardware. The supplied head-unit photo reports profile `0x4012A` and service `2.23.0718.1700 / 2123071817`, and confirms a toolkit connection. No vehicle is connected to this development environment; settings readback and writes remain physically unverified.
 
-Active sources: `app/src/fyt`, `fytTest`, `fytAndroidTest`. Original Honda sources/tests and `README-OEM-reference.md` are historical reference only; Gradle excludes their executable code. Old `original-HU` APKs in `dist` are not FYT builds. Emulator checks are not release requirements because emulators have no FYT service access. The distribution packaging script requires fresh release unit tests, lint, APK metadata and signature verification, and emits `Honda-Customizer-3.3.2-FYT.apk` only after those checks.
+Active sources: `app/src/fyt`, `fytTest`, `fytAndroidTest`. Original Honda sources/tests and `README-OEM-reference.md` are historical reference only; Gradle excludes their executable code. Old `original-HU` APKs in `dist` are not FYT builds. Emulator checks are not release requirements because emulators have no FYT service access. The distribution packaging script requires fresh release unit tests, lint, APK metadata and signature verification, and emits `Honda-Customizer-3.3.3-FYT.apk` only after those checks.
 
 Command evidence: [FYT panel protocol](documents/HONDA-FYT-PANEL.md), [RZC/BNR findings](documents/research/honda-cluster-analysis/fyt-additional/other-honda/findings.md), and the saved `Acrivity_RZC_17CRVSettings`, `AcrivitySiYuSettings`, `HondaIndexActi`, and `FinalCanbus` bytecode. No firmware was flashed or vehicle commands sent during development.
 

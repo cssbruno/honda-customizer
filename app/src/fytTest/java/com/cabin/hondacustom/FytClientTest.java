@@ -80,6 +80,21 @@ public class FytClientTest {
         ShadowLooper.idleMainLooper(20000,TimeUnit.MILLISECONDS);assertNull(client.value(alarm));assertFalse(client.editable(alarm));
     }
     @Test public void bindsOnlyFytModuleSeven()throws Exception{ready();assertEquals(1,bindings);assertEquals(Integer.valueOf(1),client.values.get(69));}
+    @Test public void reportedXpProfileSubscribesAndRequiresRealConfirmation()throws Exception{
+        client.connect();await(()->module.fields.size()==1);module.emit(1000,0x4012a);
+        await(()->module.fields.size()==XpProtocolTest.fields().size());
+        assertEquals(XpProtocolTest.fields(),module.fields);assertTrue(client.values.isEmpty());
+        assertTrue(client.report().contains("XP"));
+        FytProtocol.Control tachometer=null;
+        for(FytProtocol.Control c:FytProtocol.CONTROLS)if(c.xpOnly&&c.field==78)tachometer=c;
+        final FytProtocol.Control control=tachometer;assertNotNull(control);
+        assertFalse(client.editable(control));module.emit(78,0);await(()->client.editable(control));
+        client.change(control,1,true);await(()->module.writes==1);
+        assertEquals(105,module.command);assertArrayEquals(new int[]{22,1},module.args);
+        assertTrue(client.busy());assertEquals(Integer.valueOf(0),client.value(control));
+        module.emit(78,1);await(()->!client.busy());assertEquals(Integer.valueOf(1),client.value(control));
+        module.emit(78,0x101);await(()->!client.editable(control));
+    }
     @Test public void exceptionHeaderModuleStillConnectsAndConfirms()throws Exception{
         module.exceptionHeader=true;commandUsesFytEncodingAndWaitsForFeedback();
     }

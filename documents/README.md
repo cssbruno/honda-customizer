@@ -8,6 +8,7 @@
 - [Door, lighting and other setting research](research/honda-cluster-analysis/fyt-additional/doors-lights/full-settings-inventory.md) — research does not imply app support.
 - [SYU service contracts](research/syu-ms-analysis/REPORT.md)
 - [Joying empty-reply transport fix](research/fyt-transport-audit/FINDINGS.md) — command/subscription wire contract and regression evidence.
+- [XP Civic 0x4012A mapping](research/XP-4012A.md) — exact profile reported by the owner's head unit and independently traced settings.
 
 ## Original Honda head unit: reference only
 

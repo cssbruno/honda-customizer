@@ -1,0 +1,267 @@
+[
+  {
+    "category": "Panel",
+    "title": "Trip A reset condition",
+    "field": 58,
+    "key": 2,
+    "command": 105,
+    "values": [
+      "Refuel",
+      "Ignition off",
+      "Manual"
+    ]
+  },
+  {
+    "category": "Panel",
+    "title": "Trip B reset condition",
+    "field": 59,
+    "key": 3,
+    "command": 105,
+    "values": [
+      "Refuel",
+      "Ignition off",
+      "Manual"
+    ]
+  },
+  {
+    "category": "Panel",
+    "title": "Outside-temperature adjustment",
+    "field": 60,
+    "key": 0,
+    "command": 105,
+    "values": [
+      "−5",
+      "−4",
+      "−3",
+      "−2",
+      "−1",
+      "0",
+      "+1",
+      "+2",
+      "+3",
+      "+4",
+      "+5"
+    ]
+  },
+  {
+    "category": "Lighting",
+    "title": "Automatic headlight sensitivity",
+    "field": 61,
+    "key": 6,
+    "command": 105,
+    "values": [
+      "Minimum",
+      "Low",
+      "Medium",
+      "High",
+      "Maximum"
+    ]
+  },
+  {
+    "category": "Lighting",
+    "title": "Automatic headlight-off delay",
+    "field": 62,
+    "key": 5,
+    "command": 105,
+    "values": [
+      "0 seconds",
+      "15 seconds",
+      "30 seconds",
+      "60 seconds"
+    ]
+  },
+  {
+    "category": "Lighting",
+    "title": "Interior-light dimming time",
+    "field": 63,
+    "key": 4,
+    "command": 105,
+    "values": [
+      "15 seconds",
+      "30 seconds",
+      "60 seconds"
+    ]
+  },
+  {
+    "category": "Doors",
+    "title": "Remote-lock acknowledgement",
+    "field": 64,
+    "key": 10,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Doors",
+    "title": "Automatic relock time",
+    "field": 66,
+    "key": 11,
+    "command": 105,
+    "values": [
+      "30 seconds",
+      "60 seconds",
+      "90 seconds"
+    ]
+  },
+  {
+    "category": "Remote access",
+    "title": "Keyless-access buzzer",
+    "field": 69,
+    "key": 13,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Remote access",
+    "title": "Remote-start system",
+    "field": 70,
+    "key": 24,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Remote access",
+    "title": "Keyless-access exterior-light acknowledgement",
+    "field": 72,
+    "key": 26,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Lighting",
+    "title": "Automatic interior-light sensitivity",
+    "field": 73,
+    "key": 27,
+    "command": 105,
+    "values": [
+      "Minimum",
+      "Low",
+      "Medium",
+      "High",
+      "Maximum"
+    ]
+  },
+  {
+    "category": "Panel",
+    "title": "Alarm volume",
+    "field": 74,
+    "key": 18,
+    "command": 105,
+    "values": [
+      "High",
+      "Medium",
+      "Low"
+    ]
+  },
+  {
+    "category": "Panel",
+    "title": "Eco background lighting",
+    "field": 75,
+    "key": 19,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Panel",
+    "title": "New-message notifications",
+    "field": 76,
+    "key": 20,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Panel",
+    "title": "Tachometer display",
+    "field": 78,
+    "key": 22,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Doors",
+    "title": "Walk-away lock",
+    "field": 79,
+    "key": 23,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Lighting",
+    "title": "Wiper/headlight linkage",
+    "field": 80,
+    "key": 28,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Panel",
+    "title": "Voice alarm system volume (vendor wording)",
+    "field": 81,
+    "key": 30,
+    "command": 105,
+    "values": [
+      "Low",
+      "High"
+    ]
+  },
+  {
+    "category": "Driver assistance",
+    "title": "Energy-saving automatic start/stop (vendor wording)",
+    "field": 82,
+    "key": 29,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Panel",
+    "title": "Tachometer setting (vendor option)",
+    "field": 87,
+    "key": 35,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Driver assistance",
+    "title": "Driver attention monitor",
+    "field": 114,
+    "key": 36,
+    "command": 105,
+    "values": [
+      "Off",
+      "Visual warning",
+      "Tactile and visual warnings"
+    ]
+  }
+]

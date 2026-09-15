@@ -9,7 +9,7 @@ final class FytProtocol {
     static final int PROFILE=1000;
     static final class Control {
         final String title; final int field,command,key,base;
-        String category="Panel"; boolean wcOnly, rzcOnly, bnrOnly; int writeOffset; final boolean lowByte; final String[] options;
+        String category="Panel"; boolean wcOnly, rzcOnly, bnrOnly, xpOnly; int writeOffset; final boolean lowByte; final String[] options;
         Control(String title,int field,int key,int base,String... options){this(title,field,106,key,true,base,options);}
         Control(String title,int field,int command,int key,boolean lowByte,int base,String... options){this.title=title;this.field=field;this.command=command;this.key=key;this.lowByte=lowByte;this.base=base;this.options=options;}
         Integer decode(int raw){if(raw<0||raw>65535)return null;int v=(lowByte?(raw&255):raw)-base;return v>=0&&v<options.length?v:null;}
@@ -25,6 +25,10 @@ final class FytProtocol {
     private static Control bnrControl(String category,String title,int field,int key,String... options){
         Control c=new Control(title,field,105,key,false,0,options);
         c.category=category;c.bnrOnly=true;return c;
+    }
+    private static Control xpControl(String category,String title,int field,int key,String... options){
+        Control c=new Control(title,field,105,key,false,0,options);
+        c.category=category;c.xpOnly=true;return c;
     }
     static final List<Control> CONTROLS=Collections.unmodifiableList(Arrays.asList(
         new Control("Navigation directions",109,16,0,"Off","On"),
@@ -161,15 +165,41 @@ final class FytProtocol {
         bnrControl("Seats","Entry/exit seat movement",113,40,"Off","On"),
         bnrControl("Driver assistance","Driver attention monitor",114,36,"Off","Visual warning","Tactile and visual warnings"),
         bnrControl("Panel","Fatigue-driving information",149,42,"Off","On"),
-        bnrControl("Panel","AWD information",150,43,"Off","On")
+        bnrControl("Panel","AWD information",150,43,"Off","On"),
+        // Independently audited XP 0x4012a route; see xp-4012a-contracts.json.
+        xpControl("Panel","Trip A reset condition",58,2,"Refuel","Ignition off","Manual"),
+        xpControl("Panel","Trip B reset condition",59,3,"Refuel","Ignition off","Manual"),
+        xpControl("Panel","Outside-temperature adjustment",60,0,"−5","−4","−3","−2","−1","0","+1","+2","+3","+4","+5"),
+        xpControl("Lighting","Automatic headlight sensitivity",61,6,"Minimum","Low","Medium","High","Maximum"),
+        xpControl("Lighting","Automatic headlight-off delay",62,5,"0 seconds","15 seconds","30 seconds","60 seconds"),
+        xpControl("Lighting","Interior-light dimming time",63,4,"15 seconds","30 seconds","60 seconds"),
+        xpControl("Doors","Remote-lock acknowledgement",64,10,"Off","On"),
+        xpControl("Doors","Automatic relock time",66,11,"30 seconds","60 seconds","90 seconds"),
+        xpControl("Remote access","Keyless-access buzzer",69,13,"Off","On"),
+        xpControl("Remote access","Remote-start system",70,24,"Off","On"),
+        xpControl("Remote access","Keyless-access exterior-light acknowledgement",72,26,"Off","On"),
+        xpControl("Lighting","Automatic interior-light sensitivity",73,27,"Minimum","Low","Medium","High","Maximum"),
+        xpControl("Panel","Alarm volume",74,18,"High","Medium","Low"),
+        xpControl("Panel","Eco background lighting",75,19,"Off","On"),
+        xpControl("Panel","New-message notifications",76,20,"Off","On"),
+        xpControl("Panel","Tachometer display",78,22,"Off","On"),
+        xpControl("Doors","Walk-away lock",79,23,"Off","On"),
+        xpControl("Lighting","Wiper/headlight linkage",80,28,"Off","On"),
+        xpControl("Panel","Voice alarm system volume (vendor wording)",81,30,"Low","High"),
+        xpControl("Driver assistance","Energy-saving automatic start/stop (vendor wording)",82,29,"Off","On"),
+        xpControl("Panel","Tachometer setting (vendor option)",87,35,"Off","On"),
+        xpControl("Driver assistance","Driver attention monitor",114,36,"Off","Visual warning","Tactile and visual warnings")
     ));
     static boolean wc(int p){return p==0x40141||p==0x50141||p==0x60141||p==0xB0141||p==0xC0141||p==0xD0141;}
     static boolean rzc(int p){return p==0x10012a||p==0x11012a||p==0x29012a;}
     static boolean bnr(int p){return p==0x6012a||p==0x7012a||p==0x8012a||p==0x9012a||p==0xa012a||p==0xb012a||p==0xf012a||p==0x28012a;}
-    static boolean supported(int p){return wc(p)||rzc(p)||bnr(p);}
-    static String family(int p){return wc(p)?"WC":rzc(p)?"RZC":bnr(p)?"BNR":"Unmapped";}
+    static boolean xp(int p){return p==0x4012a;}
+    static boolean supported(int p){return wc(p)||rzc(p)||bnr(p)||xp(p);}
+    static String family(int p){return wc(p)?"WC":rzc(p)?"RZC":bnr(p)?"BNR":xp(p)?"XP":"Unmapped";}
     static boolean visible(int p,Control c){
         if(!supported(p)||!CONTROLS.contains(c))return false;
+        if(c.xpOnly)return xp(p);
+        if(xp(p))return false;
         if(c.bnrOnly){
             if(!bnr(p))return false;
             boolean guandao=p==0x8012a||p==0x9012a||p==0xa012a||p==0xb012a;
