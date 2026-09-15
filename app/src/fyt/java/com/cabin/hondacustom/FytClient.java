@@ -12,7 +12,7 @@ final class FytClient {
     private final Map<Integer,Long> received=new HashMap<>();
     private final Context context; private final Runnable observer;
     private final Handler main=new Handler(Looper.getMainLooper());
-    private final ExecutorService[] workers={Executors.newSingleThreadExecutor(),Executors.newSingleThreadExecutor()};
+    private final ExecutorService worker=Executors.newSingleThreadExecutor();
     private volatile Session session;
     private volatile int profile;
     private boolean closed;
@@ -25,14 +25,15 @@ final class FytClient {
         boolean accepted; Integer feedback;
         Write(FytProtocol.Control control,int value,long baselineTime){this.control=control;this.value=value;this.baselineTime=baselineTime;}
     }
-    String status="Disconnected · FYT service only";
-    FytClient(Context context,Runnable observer){this.context=context;this.observer=observer;}
+    String status;
+    FytClient(Context context,Runnable observer){this.context=context;this.observer=observer;status=message(R.string.fyt_disconnected);}
+    private String message(int id,Object... args){return context.getString(id,args);}
+    private String family(int value){return FytProtocol.supported(value)?FytProtocol.family(value):message(R.string.fyt_unmapped_family);}
     boolean connected(){return session!=null;}
     int profile(){return profile;}
     boolean busy(){return pending!=null;}
     private final class Session implements ServiceConnection {
-        final boolean direct; final ExecutorService worker;
-        Session(boolean direct){this.direct=direct;worker=workers[direct?1:0];}
+        final ExecutorService worker=FytClient.this.worker;
         volatile IBinder module; boolean bound,ready;
         final List<Integer> registered=new ArrayList<>();
         final IBinder callback=new Binder(){
@@ -55,58 +56,56 @@ final class FytClient {
         @Override public void onServiceConnected(ComponentName name,IBinder toolkit){
             if(session!=this)return;
             worker.execute(()->{try{
-                if(direct){if(!FytProtocol.MODULE.equals(toolkit.getInterfaceDescriptor()))throw new RemoteException("Unexpected direct CANBUS interface");module=toolkit;}
-                else module=FytProtocol.module(toolkit);
-                if(module==null)throw new RemoteException("FYT CANBUS module 7 unavailable");
+                module=FytProtocol.module(toolkit);
+                if(module==null)throw new RemoteException(message(R.string.fyt_module_missing));
                 if(session!=this)return;
                 registered.add(FytProtocol.PROFILE);FytProtocol.register(module,callback,FytProtocol.PROFILE,true);
-            }catch(Exception e){main.post(()->connectionFailed(this,"FYT connection failed: "+e.getMessage()));}});
+            }catch(Exception e){main.post(()->connectionFailed(this,message(R.string.fyt_connection_failed,e.getMessage())));}});
         }
-        @Override public void onServiceDisconnected(ComponentName name){fail(this,"FYT service disconnected");}
-        @Override public void onBindingDied(ComponentName name){fail(this,"FYT binding ended; reconnect");}
-        @Override public void onNullBinding(ComponentName name){connectionFailed(this,"FYT service unavailable");}
+        @Override public void onServiceDisconnected(ComponentName name){fail(this,message(R.string.fyt_service_disconnected));}
+        @Override public void onBindingDied(ComponentName name){fail(this,message(R.string.fyt_binding_ended));}
+        @Override public void onNullBinding(ComponentName name){connectionFailed(this,message(R.string.fyt_service_unavailable));}
     }
     void connect(){
-        if(closed)return;trace.clear();lastProfile=0;disconnect();bindRoute(false);
+        if(closed)return;trace.clear();lastProfile=0;disconnect();bindRoute();
     }
-    private void bindRoute(boolean direct){
+    private void bindRoute(){
         if(closed)return;
-        Session owner=new Session(direct);session=owner;status=direct?"Connecting to FYT direct CANBUS…":"Connecting to FYT toolkit…";observer.run();
-        Intent intent=new Intent(direct?"com.syu.ms.canbus":"com.syu.ms.toolkit").setPackage("com.syu.ms");
+        Session owner=new Session();session=owner;status=message(R.string.fyt_connecting);observer.run();
+        Intent intent=new Intent("com.syu.ms.toolkit").setPackage("com.syu.ms");
         ResolveInfo resolved=null;
         try{resolved=context.getPackageManager().resolveService(intent,0);}catch(RuntimeException ignored){}
-        ComponentName target=new ComponentName("com.syu.ms",direct?"app.ModuleService":"app.ToolkitService");
+        ComponentName target=new ComponentName("com.syu.ms","app.ToolkitService");
         if(resolved!=null&&resolved.serviceInfo!=null&&"com.syu.ms".equals(resolved.serviceInfo.packageName)&&resolved.serviceInfo.exported&&resolved.serviceInfo.enabled)
             target=new ComponentName(resolved.serviceInfo.packageName,resolved.serviceInfo.name);
         intent.setComponent(target);
-        trace.add("Bind: "+intent.getAction()+" → "+target.flattenToShortString());
+        trace.add(message(R.string.fyt_bind_trace,intent.getAction(),target.flattenToShortString()));
         try{owner.bound=context.bindService(intent,owner,Context.BIND_AUTO_CREATE);
             // A synchronous binding callback may already have disconnected this owner.
             if(session!=owner){releaseBinding(owner);return;}
-            if(!owner.bound){connectionFailed(owner,"FYT service unavailable on this unit");return;}
-        }catch(RuntimeException e){connectionFailed(owner,"FYT connection denied: "+e.getMessage());return;}
-        main.postDelayed(()->{if(session==owner&&!owner.ready)connectionFailed(owner,"FYT discovery did not finish; reconnect");},TIMEOUT_MS);
+            if(!owner.bound){connectionFailed(owner,message(R.string.fyt_unit_unavailable));return;}
+        }catch(RuntimeException e){connectionFailed(owner,message(R.string.fyt_connection_denied,e.getMessage()));return;}
+        main.postDelayed(()->{if(session==owner&&!owner.ready)connectionFailed(owner,message(R.string.fyt_discovery_timeout));},TIMEOUT_MS);
     }
     private void connectionFailed(Session owner,String message){
         if(session!=owner)return;
-        if(owner.direct){fail(owner,message);return;}
-        trace.add(message);disconnect();bindRoute(true);
+        fail(owner,message);
     }
     private void update(Session owner,int field,int raw,long arrived,Write observed){
         if(session!=owner)return;
         if(field==FytProtocol.PROFILE){
             if(profile==raw&&profile!=0)return;
-            if(profile!=0&&profile!=raw){fail(owner,"FYT profile changed; reconnect to reload settings");return;}
+            if(profile!=0&&profile!=raw){fail(owner,message(R.string.fyt_profile_changed));return;}
             profile=raw;lastProfile=raw;
-            trace.add(String.format(Locale.US,"FYT profile: 0x%X (%d), %s",raw,raw,FytProtocol.family(raw)));
-            if(!FytProtocol.supported(raw)){owner.ready=true;status=String.format(Locale.US,"FYT connected · profile 0x%X has no mapped controls yet. Copy the Report.",raw);observer.run();return;}
-            status=String.format(Locale.US,"Loading FYT settings · profile 0x%X",raw);observer.run();
+            trace.add(message(R.string.fyt_profile_trace,raw,raw,family(raw)));
+            if(!FytProtocol.supported(raw)){owner.ready=true;status=message(R.string.fyt_unmapped_status,raw);observer.run();return;}
+            status=message(R.string.fyt_loading,raw);observer.run();
             if(session!=owner||closed)return;
             owner.worker.execute(()->{try{
                 // The profile is established before registration requests cached setting values.
                 for(FytProtocol.Control c:FytProtocol.CONTROLS){if(session!=owner)return;if(!FytProtocol.visible(raw,c))continue;owner.registered.add(c.field);FytProtocol.register(owner.module,owner.callback,c.field,true);}
-                main.post(()->{if(session==owner){owner.ready=true;status=String.format(Locale.US,"FYT connected · profile 0x%X",raw);observer.run();}});
-            }catch(Exception e){main.post(()->connectionFailed(owner,"FYT setting discovery failed: "+e.getMessage()));}});
+                main.post(()->{if(session==owner){owner.ready=true;status=message(R.string.fyt_connected,raw);observer.run();}});
+            }catch(Exception e){main.post(()->connectionFailed(owner,message(R.string.fyt_settings_failed,e.getMessage())));}});
             return;
         }
         for(FytProtocol.Control c:FytProtocol.CONTROLS)if(c.field==field&&FytProtocol.visible(profile,c)){
@@ -125,34 +124,38 @@ final class FytClient {
         if(!parked||!editable(c)||value<0||value>=c.options.length)return;
         final Session owner=session;final int expectedProfile=profile;
         final Write request=new Write(c,value,received.get(c.field));
-        pending=request;status="Sending "+c.title+" to FYT…";observer.run();
+        pending=request;status=message(R.string.fyt_sending,FytText.label(context,c.title));observer.run();
         if(closed||session!=owner||pending!=request)return;
         owner.worker.execute(()->{
             if(session!=owner||profile!=expectedProfile||pending!=request)return;
-            if(SystemClock.elapsedRealtime()-request.baselineTime>=FRESH_MS){main.post(()->fail(owner,"FYT value expired before sending; reconnect"));return;}
+            if(SystemClock.elapsedRealtime()-request.baselineTime>=FRESH_MS){main.post(()->fail(owner,message(R.string.fyt_value_expired)));return;}
             try{FytProtocol.change(owner.module,expectedProfile,c,value,()->{
                     // Descriptor lookup is also IPC and may block. Recheck immediately before dispatch.
                     if(session!=owner||profile!=expectedProfile||pending!=request||SystemClock.elapsedRealtime()-request.baselineTime>=FRESH_MS)
-                        throw new IllegalStateException("FYT request expired or disconnected before sending");
+                        throw new IllegalStateException(message(R.string.fyt_request_expired));
                     request.started=true;
                 });
-                main.post(()->{if(session==owner&&pending==request){request.accepted=true;status="Waiting for FYT feedback: "+c.title;finishIfConfirmed(request);observer.run();}});
-            }catch(Exception e){main.post(()->fail(owner,"FYT write failed; outcome unconfirmed: "+e.getMessage()));}
+                main.post(()->{if(session==owner&&pending==request){request.accepted=true;status=message(R.string.fyt_wait_feedback,FytText.label(context,c.title));finishIfConfirmed(request);observer.run();}});
+            }catch(Exception e){main.post(()->fail(owner,message(R.string.fyt_write_failed,e.getMessage())));}
         });
-        main.postDelayed(()->{if(session==owner&&pending==request)fail(owner,"No matching FYT feedback; change unconfirmed. Reconnect to read current values.");},TIMEOUT_MS);
+        main.postDelayed(()->{if(session==owner&&pending==request)fail(owner,message(R.string.fyt_no_matching_feedback));},TIMEOUT_MS);
     }
     private void finishIfConfirmed(Write request){
-        if(pending==request&&request.accepted&&request.feedback!=null&&request.feedback==request.value){pending=null;status=request.control.title+": confirmed by FYT feedback";}
+        if(pending==request&&request.accepted&&request.feedback!=null&&request.feedback==request.value){pending=null;status=message(R.string.fyt_confirmed,FytText.label(context,request.control.title));}
     }
     private void releaseBinding(Session owner){if(owner.bound){owner.bound=false;try{context.unbindService(owner);}catch(RuntimeException ignored){}}}
     private void fail(Session owner,String message){if(session!=owner)return;trace.add(message);disconnect();status=message;observer.run();}
     String report(){
-        StringBuilder out=new StringBuilder("Honda Customizer · FYT\n");
-        out.append("Unit: ").append(Build.MANUFACTURER).append(' ').append(Build.MODEL).append("\nAndroid: ").append(Build.VERSION.RELEASE).append("\n");
-        try{android.content.pm.PackageInfo info=context.getPackageManager().getPackageInfo("com.syu.ms",0);out.append("FYT service: ").append(info.versionName).append(" / ").append(info.versionCode).append("\n");}catch(Exception e){out.append("FYT package not found\n");}
-        out.append("Status: ").append(status).append(String.format(Locale.US,"\nLast profile: 0x%X (%d), %s\n",lastProfile,lastProfile,FytProtocol.family(lastProfile)));
+        StringBuilder out=new StringBuilder(message(R.string.fyt_title)).append('\n');
+        out.append(message(R.string.fyt_report_unit,Build.MANUFACTURER,Build.MODEL,Build.VERSION.RELEASE));
+        try{android.content.pm.PackageInfo info=context.getPackageManager().getPackageInfo("com.syu.ms",0);
+            out.append(message(R.string.fyt_report_service,info.versionName,info.versionCode));
+        }catch(Exception e){out.append(message(R.string.fyt_package_missing));}
+        out.append(message(R.string.fyt_report_status,status,lastProfile,lastProfile,family(lastProfile)));
         for(String line:trace)out.append(line).append('\n');
-        for(FytProtocol.Control c:FytProtocol.CONTROLS)if(FytProtocol.visible(profile,c))out.append(c.title).append(" [").append(c.field).append("]: ").append(values.containsKey(c.field)?c.options[values.get(c.field)]:"no feedback").append('\n');
+        for(FytProtocol.Control c:FytProtocol.CONTROLS)if(FytProtocol.visible(profile,c))
+            out.append(FytText.label(context,c.title)).append(" [").append(c.field).append("]: ")
+                .append(values.containsKey(c.field)?FytText.label(context,c.options[values.get(c.field)]):message(R.string.fyt_no_feedback)).append('\n');
         return out.toString();
     }
     void disconnect(){
@@ -162,7 +165,7 @@ final class FytClient {
             releaseBinding(old);
             old.worker.execute(()->{if(old.module!=null)for(int field:old.registered)try{FytProtocol.register(old.module,old.callback,field,false);}catch(Exception ignored){}});
         }
-        status=unconfirmed?"Disconnected · last change unconfirmed; reconnect to read values":"Disconnected · FYT service only";observer.run();
+        status=unconfirmed?message(R.string.fyt_disconnected_unconfirmed):message(R.string.fyt_disconnected);observer.run();
     }
-    void destroy(){if(closed)return;closed=true;disconnect();for(ExecutorService worker:workers)worker.shutdown();}
+    void destroy(){if(closed)return;closed=true;disconnect();worker.shutdown();}
 }

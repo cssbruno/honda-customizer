@@ -1,0 +1,569 @@
+[
+  {
+    "category": "Panel",
+    "title": "Outside-temperature adjustment",
+    "field": 60,
+    "command": 105,
+    "key": 0,
+    "values": [
+      "−5",
+      "−4",
+      "−3",
+      "−2",
+      "−1",
+      "0",
+      "+1",
+      "+2",
+      "+3",
+      "+4",
+      "+5"
+    ]
+  },
+  {
+    "category": "Panel",
+    "title": "Trip A reset condition",
+    "field": 58,
+    "command": 105,
+    "key": 2,
+    "values": [
+      "Refuel",
+      "Ignition off",
+      "Manual"
+    ]
+  },
+  {
+    "category": "Panel",
+    "title": "Trip B reset condition",
+    "field": 59,
+    "command": 105,
+    "key": 3,
+    "values": [
+      "Refuel",
+      "Ignition off",
+      "Manual"
+    ]
+  },
+  {
+    "category": "Lighting",
+    "title": "Interior-light dimming time",
+    "field": 63,
+    "command": 105,
+    "key": 4,
+    "values": [
+      "15 seconds",
+      "30 seconds",
+      "60 seconds"
+    ]
+  },
+  {
+    "category": "Lighting",
+    "title": "Automatic headlight-off delay",
+    "field": 62,
+    "command": 105,
+    "key": 5,
+    "values": [
+      "0 seconds",
+      "15 seconds",
+      "30 seconds",
+      "60 seconds"
+    ]
+  },
+  {
+    "category": "Lighting",
+    "title": "Automatic headlight sensitivity",
+    "field": 61,
+    "command": 105,
+    "key": 6,
+    "values": [
+      "Minimum",
+      "Low",
+      "Medium",
+      "High",
+      "Maximum"
+    ]
+  },
+  {
+    "category": "Lighting",
+    "title": "Automatic interior-light sensitivity",
+    "field": 73,
+    "command": 105,
+    "key": 27,
+    "values": [
+      "Minimum",
+      "Low",
+      "Medium",
+      "High",
+      "Maximum"
+    ]
+  },
+  {
+    "category": "Lighting",
+    "title": "Automatic high beam",
+    "field": 192,
+    "command": 105,
+    "key": 76,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Doors",
+    "title": "Remote-lock acknowledgement",
+    "field": 64,
+    "command": 105,
+    "key": 10,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Doors",
+    "title": "Key and remote unlock mode",
+    "field": 65,
+    "command": 105,
+    "key": 9,
+    "values": [
+      "Driver door",
+      "All doors"
+    ]
+  },
+  {
+    "category": "Doors",
+    "title": "Automatic relock time",
+    "field": 66,
+    "command": 105,
+    "key": 11,
+    "values": [
+      "30 seconds",
+      "60 seconds",
+      "90 seconds"
+    ]
+  },
+  {
+    "category": "Doors",
+    "title": "Automatic door-unlock condition",
+    "field": 67,
+    "command": 105,
+    "key": 8,
+    "values": [
+      "All doors when driver door opens",
+      "All doors when shifted into P",
+      "All doors when ignition off",
+      "Off"
+    ]
+  },
+  {
+    "category": "Doors",
+    "title": "Automatic door-lock condition",
+    "field": 68,
+    "command": 105,
+    "key": 7,
+    "values": [
+      "Speed-linked",
+      "Shift out of P",
+      "Off"
+    ]
+  },
+  {
+    "category": "Remote access",
+    "title": "Keyless-access buzzer",
+    "field": 69,
+    "command": 105,
+    "key": 13,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Remote access",
+    "title": "Remote-start system",
+    "field": 70,
+    "command": 105,
+    "key": 24,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Doors",
+    "title": "Door unlock mode",
+    "field": 71,
+    "command": 105,
+    "key": 25,
+    "values": [
+      "All doors",
+      "Driver door"
+    ]
+  },
+  {
+    "category": "Remote access",
+    "title": "Keyless-access exterior-light acknowledgement",
+    "field": 72,
+    "command": 105,
+    "key": 26,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Doors",
+    "title": "Lockout Preset (vendor wording; meaning unresolved)",
+    "field": 191,
+    "command": 105,
+    "key": 75,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Panel",
+    "title": "Alarm volume",
+    "field": 74,
+    "command": 105,
+    "key": 18,
+    "values": [
+      "High",
+      "Medium",
+      "Low"
+    ]
+  },
+  {
+    "category": "Panel",
+    "title": "Eco background lighting",
+    "field": 75,
+    "command": 105,
+    "key": 19,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Panel",
+    "title": "New-message notifications",
+    "field": 76,
+    "command": 105,
+    "key": 20,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Doors",
+    "title": "Walk-away lock",
+    "field": 79,
+    "command": 105,
+    "key": 23,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Lighting",
+    "title": "Wiper/headlight linkage",
+    "field": 80,
+    "command": 105,
+    "key": 28,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Panel",
+    "title": "Voice alarm system volume (vendor wording)",
+    "field": 81,
+    "command": 105,
+    "key": 30,
+    "values": [
+      "Low",
+      "High"
+    ]
+  },
+  {
+    "category": "Driver assistance",
+    "title": "Energy-saving automatic start/stop (vendor wording)",
+    "field": 82,
+    "command": 105,
+    "key": 29,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Driver assistance",
+    "title": "ACC vehicle-ahead detection tone",
+    "field": 83,
+    "command": 105,
+    "key": 32,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Driver assistance",
+    "title": "LKAS suspension tone",
+    "field": 84,
+    "command": 105,
+    "key": 33,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Driver assistance",
+    "title": "Forward-collision warning distance",
+    "field": 85,
+    "command": 105,
+    "key": 31,
+    "values": [
+      "Far",
+      "Middle",
+      "Near"
+    ]
+  },
+  {
+    "category": "Driver assistance",
+    "title": "Lane-departure system behavior",
+    "field": 86,
+    "command": 105,
+    "key": 34,
+    "values": [
+      "Middle",
+      "Wide",
+      "Warnings only"
+    ]
+  },
+  {
+    "category": "Driver assistance",
+    "title": "Driver attention monitor",
+    "field": 114,
+    "command": 105,
+    "key": 36,
+    "values": [
+      "Off",
+      "Visual warning",
+      "Tactile and visual warnings"
+    ]
+  },
+  {
+    "category": "Doors",
+    "title": "Electric tailgate remote-opening condition",
+    "field": 110,
+    "command": 105,
+    "key": 37,
+    "values": [
+      "Any time",
+      "After unlocking"
+    ]
+  },
+  {
+    "category": "Doors",
+    "title": "Electric tailgate external-handle opening",
+    "field": 111,
+    "command": 105,
+    "key": 38,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Driver assistance",
+    "title": "Traffic-sign small icon (vendor wording)",
+    "field": 151,
+    "command": 105,
+    "key": 39,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Driver assistance",
+    "title": "Rise warning (vendor wording; meaning unresolved)",
+    "field": 152,
+    "command": 105,
+    "key": 40,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Seats",
+    "title": "Seat-position memory linkage",
+    "field": 153,
+    "command": 105,
+    "key": 41,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Seats",
+    "title": "Electronic preloaded seat-belt movement mode (vendor wording)",
+    "field": 154,
+    "command": 105,
+    "key": 42,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Panel",
+    "title": "Turning-point guide sign (vendor wording)",
+    "field": 178,
+    "command": 105,
+    "key": 72,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Driver assistance",
+    "title": "Traffic-sign recognition (vendor option 1)",
+    "field": 194,
+    "command": 105,
+    "key": 77,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Driver assistance",
+    "title": "Traffic-sign recognition (vendor option 2)",
+    "field": 195,
+    "command": 105,
+    "key": 78,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Cameras",
+    "title": "Static reversing guidelines",
+    "field": 155,
+    "command": 105,
+    "key": 43,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Cameras",
+    "title": "Dynamic reversing guidelines",
+    "field": 156,
+    "command": 105,
+    "key": 44,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Cameras",
+    "title": "Show camera after reversing",
+    "field": 157,
+    "command": 105,
+    "key": 45,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Cameras",
+    "title": "Reversing parking-space width",
+    "field": 158,
+    "command": 105,
+    "key": 46,
+    "values": [
+      "Narrow",
+      "Wide"
+    ]
+  },
+  {
+    "category": "Cameras",
+    "title": "Rear-view dynamic reminder (vendor wording)",
+    "field": 159,
+    "command": 105,
+    "key": 47,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Cameras",
+    "title": "Rear multifunctional system (vendor wording)",
+    "field": 161,
+    "command": 105,
+    "key": 49,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Cameras",
+    "title": "Reverse tone",
+    "field": 109,
+    "command": 105,
+    "key": 50,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Cameras",
+    "title": "Reversing delay",
+    "field": 196,
+    "command": 105,
+    "key": 97,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Doors",
+    "title": "Automatic trunk opening (vendor wording)",
+    "field": 166,
+    "command": 105,
+    "key": 51,
+    "values": [
+      "Off",
+      "On"
+    ]
+  },
+  {
+    "category": "Seats",
+    "title": "Entry/exit seat movement",
+    "field": 173,
+    "command": 105,
+    "key": 52,
+    "values": [
+      "Off",
+      "On"
+    ]
+  }
+]

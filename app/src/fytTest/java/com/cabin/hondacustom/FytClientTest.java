@@ -58,7 +58,11 @@ public class FytClientTest {
     }
     @After public void close(){releaseToolkit=true;module.released=true;module.releaseDescriptor=true;client.destroy();}
     void await(BooleanSupplier condition)throws Exception{long end=System.nanoTime()+TimeUnit.SECONDS.toNanos(5);while(!condition.getAsBoolean()&&System.nanoTime()<end){ShadowLooper.idleMainLooper();Thread.sleep(5);}ShadowLooper.idleMainLooper();assertTrue(client.status,condition.getAsBoolean());}
-    void ready()throws Exception{client.connect();await(()->module.fields.size()==1);module.emit(1000,0x40141);await(()->module.fields.size()==12);module.emit(69,2);await(()->client.editable(alarm));}
+    static Set<Integer> rzcFields(){
+        Set<Integer> fields=new HashSet<>(Arrays.asList(1000,109,110,111,114,151,152,153,154,155,156,157,158,159,161,166,173,175,176,177,178,179,190,191,192,193,194,195,196,197));
+        for(int field=58;field<=87;field++)fields.add(field);return fields;
+    }
+    void ready()throws Exception{client.connect();await(()->module.fields.size()==1);module.emit(1000,0x40141);await(()->module.fields.size()==39);module.emit(69,2);await(()->client.editable(alarm));}
     @Test public void bindsOnlyFytModuleSeven()throws Exception{ready();assertEquals(1,bindings);assertEquals(Integer.valueOf(1),client.values.get(69));}
     @Test public void commandUsesFytEncodingAndWaitsForFeedback()throws Exception{ready();client.change(alarm,2,true);await(()->module.writes==1);assertEquals(106,module.command);assertArrayEquals(new int[]{4,3},module.args);assertTrue(client.busy());assertEquals(Integer.valueOf(1),client.values.get(69));module.emit(69,3);await(()->!client.busy());assertEquals(Integer.valueOf(2),client.values.get(69));assertTrue(client.status.contains("confirmed"));}
     @Test public void parkedRequired()throws Exception{ready();client.change(alarm,2,false);assertFalse(client.busy());assertEquals(0,module.writes);}
@@ -77,8 +81,8 @@ public class FytClientTest {
     @Test public void earlyFeedbackCannotConfirmRejectedTransaction()throws Exception{ready();module.holdWrite=true;module.rejectWrite=true;client.change(alarm,2,true);await(()->module.writes==1);module.emit(69,3);ShadowLooper.idleMainLooper();assertTrue("Must wait for transaction result",client.busy());assertFalse(client.status.contains("confirmed"));module.released=true;await(()->!client.connected());assertTrue(client.status.contains("unconfirmed"));}
     @Test public void earlyFeedbackIsConfirmedAfterSuccessfulTransaction()throws Exception{ready();module.holdWrite=true;client.change(alarm,2,true);await(()->module.writes==1);module.emit(69,3);ShadowLooper.idleMainLooper();assertTrue(client.busy());module.released=true;await(()->!client.busy());assertTrue(client.status.contains("confirmed"));}
     @Test public void duplicateProfileDoesNotEraseWriteOutcome()throws Exception{ready();client.change(alarm,2,true);await(()->module.writes==1);module.emit(69,3);await(()->!client.busy());String outcome=client.status;module.emit(1000,0x40141);ShadowLooper.idleMainLooper();assertEquals(outcome,client.status);}
-    @Test public void synchronousNullBindingIsReleased(){nullBinding=true;client.connect();assertFalse(client.connected());assertEquals(2,unbindings);}
-    @Test public void settingsSubscribeOnlyAfterVerifiedProfile()throws Exception{client.connect();await(()->module.fields.size()==1);assertTrue(module.fields.contains(1000));assertFalse(module.fields.contains(69));module.emit(1000,0x40141);await(()->module.fields.size()==12);module.emit(69,2);await(()->client.editable(alarm));}
+    @Test public void synchronousNullBindingIsReleased(){nullBinding=true;client.connect();assertFalse(client.connected());assertEquals(1,unbindings);}
+    @Test public void settingsSubscribeOnlyAfterVerifiedProfile()throws Exception{client.connect();await(()->module.fields.size()==1);assertTrue(module.fields.contains(1000));assertFalse(module.fields.contains(69));module.emit(1000,0x40141);await(()->module.fields.size()==39);module.emit(69,2);await(()->client.editable(alarm));}
     @Test public void unsupportedProfileNeverSubscribesSettings()throws Exception{client.connect();await(()->module.fields.size()==1);module.emit(1000,0x141);await(()->client.profile()==0x141);assertFalse(module.fields.contains(69));assertFalse(client.editable(alarm));}
     @Test public void latestFeedbackMustStillMatchWhenTransactionCompletes()throws Exception{ready();module.holdWrite=true;client.change(alarm,2,true);await(()->module.writes==1);module.emit(69,3);module.emit(69,1);ShadowLooper.idleMainLooper();module.released=true;await(()->client.status.startsWith("Waiting"));assertTrue(client.busy());}
     @Test public void disconnectDuringWriteReportsUncertainOutcome()throws Exception{ready();module.holdWrite=true;client.change(alarm,2,true);await(()->module.writes==1);client.disconnect();assertTrue(client.status.contains("unconfirmed"));module.released=true;assertFalse(client.connected());}
@@ -102,26 +106,27 @@ public class FytClientTest {
         await(()->client.status.startsWith("Waiting"));assertTrue(client.busy());
         module.emit(69,3);await(()->!client.busy());
     }
-    @Test public void directCanbusFallbackUsesModuleBinderWithoutToolkitCall()throws Exception{
-        missingToolkit=true;ready();assertEquals(java.util.Arrays.asList("com.syu.ms.toolkit","com.syu.ms.canbus"),actions);
-        client.change(alarm,2,true);await(()->module.writes==1);assertArrayEquals(new int[]{4,3},module.args);
-        assertTrue(client.report().contains("app.ModuleService"));module.emit(69,3);await(()->!client.busy());
+    @Test public void missingToolkitFailsWithoutFallback(){
+        missingToolkit=true;client.connect();assertFalse(client.connected());
+        assertEquals(Collections.singletonList("com.syu.ms.toolkit"),actions);
+        assertTrue(client.values.isEmpty());assertEquals(0,module.writes);
     }
-    @Test public void blockedToolkitDoesNotBlockDirectCanbusFallback()throws Exception{
-        holdToolkit=true;client.connect();await(()->toolkitEntered);ShadowLooper.idleMainLooper(FytClient.TIMEOUT_MS+1,TimeUnit.MILLISECONDS);
-        await(()->module.fields.contains(1000));assertTrue(actions.contains("com.syu.ms.canbus"));
-        module.emit(1000,0x40141);await(()->module.fields.size()==12);module.emit(69,2);await(()->client.editable(alarm));
+    @Test public void blockedToolkitTimesOutWithoutFallback()throws Exception{
+        holdToolkit=true;client.connect();await(()->toolkitEntered);
+        ShadowLooper.idleMainLooper(FytClient.TIMEOUT_MS+1,TimeUnit.MILLISECONDS);
+        assertFalse(client.connected());assertEquals(Collections.singletonList("com.syu.ms.toolkit"),actions);
+        assertTrue(client.values.isEmpty());assertEquals(0,module.writes);
     }
     @Test public void rzcCivicUsesItsOwnUnitsAndTachometerCommands()throws Exception{
-        missingToolkit=true;client.connect();await(()->module.fields.contains(1000));module.emit(1000,0x10012a);
-        await(()->module.fields.size()==4);assertEquals(new HashSet<>(java.util.Arrays.asList(1000,77,78,87)),module.fields);
+        client.connect();await(()->module.fields.contains(1000));module.emit(1000,0x10012a);
+        await(()->module.fields.size()==60);assertEquals(rzcFields(),module.fields);
         FytProtocol.Control units=FytProtocol.CONTROLS.get(13);module.emit(77,0);await(()->client.editable(units));
         client.change(units,1,true);await(()->module.writes==1);assertEquals(105,module.command);assertArrayEquals(new int[]{21,1},module.args);
         module.emit(77,1);await(()->!client.busy());assertFalse(client.editable(alarm));
     }
     @Test public void bnrDoesNotExposeItsHiddenUnitsControl()throws Exception{
-        client.connect();await(()->module.fields.contains(1000));module.emit(1000,0x6012a);await(()->module.fields.size()==3);
-        assertEquals(new HashSet<>(java.util.Arrays.asList(1000,78,87)),module.fields);
+        client.connect();await(()->module.fields.contains(1000));module.emit(1000,0x6012a);await(()->module.fields.size()==27);
+        assertEquals(BnrProtocolTest.expectedFields(0x6012a),module.fields);
         assertFalse(FytProtocol.visible(0x6012a,FytProtocol.CONTROLS.get(13)));
         FytProtocol.change(module,0x6012a,FytProtocol.CONTROLS.get(14),1);assertEquals(105,module.command);assertArrayEquals(new int[]{22,1},module.args);
     }
@@ -130,5 +135,68 @@ public class FytClientTest {
             FytProtocol.change(module,p,FytProtocol.CONTROLS.get(15),1);assertArrayEquals(new int[]{35,1},module.args);assertEquals(105,module.command);}
         assertFalse(FytProtocol.supported(0x12012a));assertFalse(FytProtocol.visible(0x40141,FytProtocol.CONTROLS.get(14)));
         assertNull(FytProtocol.CONTROLS.get(14).decode(0x101));
+    }
+    @Test public void additionalWcContractsAreExactAndIsolated()throws Exception{
+        // Independent expected values from doors-lights/findings.md: field, command, key, first wire, count.
+        int[][] expected={{58,104,3,0,2},{60,104,1,0,2},{59,104,2,1,3},{87,104,4,0,3},{86,104,5,0,3},
+            {49,102,5,0,2},{50,102,4,0,5},{51,102,3,0,5},{52,102,2,0,4},{53,102,1,1,3},
+            {54,103,4,0,2},{55,103,3,0,2},{56,103,2,0,2},{57,103,1,0,2},
+            {62,105,3,0,2},{63,105,2,0,2},{61,105,4,1,3},{64,105,1,1,3},
+            {93,110,12,0,2},{94,110,12,4,2},{95,110,14,0,2},{96,105,8,0,2},
+            {97,105,7,0,3},{98,106,11,0,2},{99,106,12,0,2},{100,106,10,0,2},{101,105,9,1,4}};
+        for(int i=0;i<expected.length;i++){
+            int[] e=expected[i];FytProtocol.Control c=FytProtocol.CONTROLS.get(16+i);
+            assertEquals(e[0],c.field);assertEquals(e[4],c.options.length);
+            for(int value=0;value<e[4];value++){
+                FytProtocol.change(module,0x40141,c,value);
+                assertEquals(e[1],module.command);assertArrayEquals(new int[]{e[2],e[3]+value},module.args);
+            }
+            for(int profile:new int[]{0x10012a,0x6012a,0x141,0x140141}){
+                try{FytProtocol.change(module,profile,c,0);fail("Wrong decoder accepted");}catch(IllegalArgumentException expectedFailure){}
+            }
+        }
+    }
+    @Test public void additionalControlsNeedRealFreshFeedback()throws Exception{
+        ready();FytProtocol.Control door=FytProtocol.CONTROLS.get(16);
+        assertFalse(client.editable(door));client.change(door,1,true);assertEquals(0,module.writes);
+        module.emit(58,0);await(()->client.editable(door));client.change(door,1,true);await(()->module.writes==1);
+        assertTrue(client.busy());assertEquals(Integer.valueOf(0),client.values.get(58));
+        module.emit(58,1);await(()->!client.busy());
+        ShadowLooper.idleMainLooper(FytClient.FRESH_MS+1,TimeUnit.MILLISECONDS);assertFalse(client.editable(door));
+    }
+    @Test public void lightingExclusionsAndDurationReadback(){
+        for(int i=21;i<=23;i++){
+            assertFalse(FytProtocol.visible(0x50141,FytProtocol.CONTROLS.get(i)));
+            assertFalse(FytProtocol.visible(0x60141,FytProtocol.CONTROLS.get(i)));
+        }
+        FytProtocol.Control duration=FytProtocol.CONTROLS.get(35);
+        assertEquals(Integer.valueOf(0),duration.decode(0));assertEquals(Integer.valueOf(1),duration.decode(1));
+        assertNull(duration.decode(4));assertNull(duration.decode(0x101));
+        assertNull(FytProtocol.CONTROLS.get(18).decode(0));assertNull(FytProtocol.CONTROLS.get(25).decode(0));
+    }
+
+    @Test public void rzcAdditionalContractsAndDecoderIsolation()throws Exception{
+        int[][] expected={{177,71,2},{190,81,2},{176,70,2},{175,74,2},{179,73,2},{193,79,4},{197,82,2}};
+        for(int i=0;i<expected.length;i++){
+            FytProtocol.Control c=FytProtocol.CONTROLS.get(43+i);int[] e=expected[i];
+            assertEquals(e[0],c.field);assertEquals(e[2],c.options.length);
+            for(int p:new int[]{0x10012a,0x11012a,0x29012a})for(int value=0;value<e[2];value++){
+                FytProtocol.change(module,p,c,value);assertEquals(105,module.command);
+                assertArrayEquals(new int[]{e[1],value},module.args);assertEquals(Integer.valueOf(value),c.decode(value));
+            }
+            assertNull(c.decode(-1));assertNull(c.decode(e[2]));assertNull(c.decode(0x101));
+            for(int p:new int[]{0x40141,0x6012a,0x28012a,0x12012a}){
+                try{FytProtocol.change(module,p,c,0);fail("Wrong profile accepted");}catch(IllegalArgumentException expectedFailure){}
+            }
+        }
+    }
+    @Test public void rzcMirrorRequiresRealMatchingFeedback()throws Exception{
+        client.connect();await(()->module.fields.contains(1000));module.emit(1000,0x10012a);
+        await(()->module.fields.size()==60);FytProtocol.Control mirror=FytProtocol.CONTROLS.get(43);
+        assertFalse(client.editable(mirror));client.change(mirror,1,true);assertEquals(0,module.writes);
+        module.emit(177,0);await(()->client.editable(mirror));client.change(mirror,1,true);
+        await(()->module.writes==1);assertTrue(client.busy());assertEquals(Integer.valueOf(0),client.values.get(177));
+        module.emit(177,0x101);await(()->!client.values.containsKey(177));assertTrue(client.busy());
+        module.emit(177,1);await(()->!client.busy());assertEquals(Integer.valueOf(1),client.values.get(177));
     }
 }

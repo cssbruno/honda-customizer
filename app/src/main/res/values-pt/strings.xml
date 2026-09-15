@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Honda Customizer FYT</string>
+    <string name="catalog">Catálogo</string>
+    <string name="setting_count">%1$s • %2$d configurações</string>
+    <string name="unknown_count"> • %1$d entradas desconhecidas no relatório</string>
+</resources>

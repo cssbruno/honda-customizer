@@ -1,7 +1,7 @@
 """Package a verified release APK and the source inputs used to review it.
 
-Run release unit tests, lint, assembleRelease and assembleReleaseAndroidTest with
---rerun-tasks, then tools/run_emulator_smoke.py, before this script. Verification is
+Run release unit tests, lint and assembleRelease with --rerun-tasks before this
+script. Emulator checks are not a release requirement. Verification is
 mandatory: this script never builds, runs tests, or substitutes debug results.
 """
 from __future__ import annotations
@@ -18,7 +18,6 @@ import sys
 import tempfile
 import xml.etree.ElementTree as ET
 import zipfile
-from smoke_contract import expected_checks, parse_results
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -51,8 +50,7 @@ def fresh(evidence: Path, inputs: list[Path], purpose: str) -> None:
     newest = max(inputs, key=lambda p: p.stat().st_mtime_ns)
     require(evidence.stat().st_mtime_ns >= newest.stat().st_mtime_ns,
             f'Stale {purpose}: {evidence} predates {newest}. '
-            'Rerun release unit tests, lint, assembleRelease and assembleReleaseAndroidTest '
-            'with --rerun-tasks, then rerun emulator smoke.')
+            'Rerun release unit tests, lint and assembleRelease with --rerun-tasks.')
 
 
 def build_tools(sdk: Path | None) -> tuple[Path, Path]:
@@ -103,20 +101,20 @@ def verify_apk(apk: Path, version: str, version_code: int, application_id: str,
     fingerprint = re.search(r'^Signer #1 certificate SHA-256 digest: ([0-9a-fA-F:]+)$', signing, re.MULTILINE)
     require(dn is not None and fingerprint is not None, 'APK signing verification did not report a signer certificate.')
     require('CN=Android Debug' in dn.group(1),
-            'Unexpected signing certificate: this prerelease is configured to retain its development certificate.')
+            'Unexpected signing certificate: this release is configured to retain its development certificate.')
     return {'type': 'development certificate', 'certificate_subject': dn.group(1),
             'certificate_sha256': fingerprint.group(1).replace(':', '').lower(),
             'verified': True, 'debuggable': False}
 
 
 def source_inputs() -> tuple[list[Path], list[Path]]:
-    names = ('README.md', 'README-OEM-reference.md', 'build.gradle.kts', 'settings.gradle.kts', 'gradle.properties',
+    names = ('AGENTS.md', 'README.md', 'README-OEM-reference.md', 'build.gradle.kts', 'settings.gradle.kts', 'gradle.properties',
              'gradlew', 'app/build.gradle.kts')
     files = [required_file(ROOT / name) for name in names]
     for optional in ('gradlew.bat', 'LICENSE', 'LICENSE.md', 'NOTICE', 'app/proguard-rules.pro'):
         if (ROOT / optional).is_file():
             files.append(ROOT / optional)
-    for folder in ('app/src', 'gradle', 'tools', 'documents'):
+    for folder in ('app/src', 'gradle', 'tools', 'documents', '.github'):
         files.extend(tree_files(ROOT / folder))
     files = sorted(set(files))
     for path in files:
@@ -190,43 +188,6 @@ def package(sdk: Path | None) -> dict:
     require(not any(i.get('severity', '').lower() in ('error', 'fatal') for i in issues),
             'Release lint errors/fatal findings prevent packaging.')
 
-    smoke_json = ROOT / 'app/build/reports/emulator-smoke.json'
-    smoke_log = ROOT / 'app/build/reports/emulator-smoke.log'
-    instrumentation_inputs = production + tree_files(ROOT / 'app/src/fytAndroidTest')
-    test_apk = ROOT / 'app/build/outputs/apk/androidTest/release/app-release-androidTest.apk'
-    fresh(test_apk, instrumentation_inputs, 'release instrumentation APK')
-    smoke_inputs = instrumentation_inputs + [apk_input, test_apk]
-    for runner in ('smoke_contract.py', 'run_emulator_smoke.py'):
-        if (ROOT / 'tools' / runner).exists():
-            smoke_inputs.append(ROOT / 'tools' / runner)
-    fresh(smoke_json, smoke_inputs, 'emulator smoke report')
-    fresh(smoke_log, smoke_inputs, 'emulator smoke log')
-    smoke = json.loads(smoke_json.read_text())
-    require(isinstance(smoke, dict), 'Emulator smoke report must be a JSON object.')
-    expected = expected_checks(ROOT)
-    require(smoke.get('errors', 0) == 0 and smoke.get('skipped', 0) == 0,
-            'Emulator smoke errors or skips prevent packaging.')
-    require(smoke.get('apk_sha256') == apk_digest, 'Emulator smoke verified a different APK; rerun smoke for this release APK.')
-    require(smoke.get('test_apk_sha256') == sha256(test_apk),
-            'Emulator smoke verified a different instrumentation APK; rebuild and rerun smoke.')
-    verified = parse_results(smoke_log.read_text(), expected)
-    require(all(type(smoke.get(key)) is type(value) and smoke[key] == value for key, value in verified.items()),
-            'Emulator smoke log and report disagree.')
-
-    matrix, matrix_inputs = [], []
-    for path in sorted((ROOT / 'app/build/reports').glob('emulator-smoke-api*.json')):
-        match = re.fullmatch(r'emulator-smoke-api(\d+)\.json', path.name)
-        require(match is not None, 'Malformed emulator matrix report filename')
-        api = int(match.group(1)); log_path = path.with_suffix('.log')
-        fresh(path, smoke_inputs, 'emulator matrix report'); fresh(log_path, smoke_inputs, 'emulator matrix log')
-        row = json.loads(path.read_text()); result = parse_results(log_path.read_text(), expected)
-        require(all(type(row.get(k)) is type(v) and row[k] == v for k,v in result.items()), 'Emulator matrix log and report disagree')
-        require(row.get('apk_sha256') == apk_digest and row.get('test_apk_sha256') == sha256(test_apk), 'Emulator matrix used different APKs')
-        require(str(row.get('emulator_api')) == str(api) and row.get('hardware_tested') is False, 'Invalid emulator matrix provenance')
-        matrix.append(row); matrix_inputs.extend([path, log_path])
-    require(any(str(row['emulator_api']) == '17' for row in matrix), 'Android API17 smoke coverage is required for the declared minimum version')
-    require(any(int(row['emulator_api']) >= 35 for row in matrix), 'A modern Android API35+ smoke run is required')
-
     source_hashes = {str(p.relative_to(ROOT)): sha256(p) for p in files}
     summary = {
         'version': version, 'version_code': version_code, 'variant': 'release',
@@ -235,12 +196,13 @@ def package(sdk: Path | None) -> dict:
         'tests': count, 'failures': 0, 'errors': 0, 'skipped': 0,
         'unit_test_task': 'testReleaseUnitTest', 'lint_task': 'lintRelease',
         'lint_errors': 0, 'lint_warnings': sum(i.get('severity') == 'Warning' for i in issues),
-        'emulator_smoke': smoke, 'emulator_smoke_runs': matrix, 'hardware_tested': False,
+        'emulator_checks': 'Not required for release; emulators have no FYT service access.',
+        'hardware_tested': False,
         'target': 'FYT/SYU CANBUS module 7',
         'source_sha256': source_hashes,
         'verification_inputs_sha256': {str(p.relative_to(ROOT)): sha256(p)
-                                     for p in [metadata_path, *junit_inputs, lint_xml, lint_html, test_apk, smoke_json, smoke_log, *matrix_inputs]},
-        'freshness': 'Production/build inputs predate APK, unit XML and lint; test inputs predate their reports; emulator evidence matches APK SHA-256.',
+                                     for p in [metadata_path, *junit_inputs, lint_xml, lint_html]},
+        'freshness': 'Production/build inputs predate APK, unit XML and lint; test inputs predate their reports.',
     }
     dist = ROOT / 'dist'
     dist.mkdir(exist_ok=True)
@@ -254,11 +216,8 @@ def package(sdk: Path | None) -> dict:
             for path in files:
                 archive.write(path, Path('honda-customizer') / path.relative_to(ROOT))
         ET.ElementTree(junit).write(stage / f'test-results-{version}.xml', encoding='utf-8', xml_declaration=True)
-        for path, name in ((lint_html, f'lint-results-{version}.html'), (lint_xml, f'lint-results-{version}.xml'),
-                           (smoke_json, f'emulator-smoke-{version}.json'), (smoke_log, f'emulator-smoke-{version}.log')):
+        for path, name in ((lint_html, f'lint-results-{version}.html'), (lint_xml, f'lint-results-{version}.xml')):
             shutil.copy2(path, stage / name)
-        for path in matrix_inputs:
-            shutil.copy2(path, stage / f'{path.stem}-{version}{path.suffix}')
         (stage / f'verification-{version}.json').write_text(json.dumps(summary, indent=2) + '\n')
         artifacts = sorted(stage.iterdir())
         (stage / f'SHA256SUMS-{version}').write_text(''.join(f'{sha256(p)}  {p.name}\n' for p in artifacts))

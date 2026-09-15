@@ -1,0 +1,450 @@
+[
+  {
+    "category": "Panel",
+    "title": "Trip A reset condition",
+    "field": 58,
+    "key": 2,
+    "command": 105,
+    "values": [
+      "Refuel",
+      "Ignition off",
+      "Manual"
+    ],
+    "callback_branch": ":pswitch_14"
+  },
+  {
+    "category": "Panel",
+    "title": "Trip B reset condition",
+    "field": 59,
+    "key": 3,
+    "command": 105,
+    "values": [
+      "Refuel",
+      "Ignition off",
+      "Manual"
+    ],
+    "callback_branch": ":pswitch_1a"
+  },
+  {
+    "category": "Panel",
+    "title": "Outside-temperature adjustment",
+    "field": 60,
+    "key": 0,
+    "command": 105,
+    "values": [
+      "−5",
+      "−4",
+      "−3",
+      "−2",
+      "−1",
+      "0",
+      "+1",
+      "+2",
+      "+3",
+      "+4",
+      "+5"
+    ],
+    "callback_branch": ":pswitch_20"
+  },
+  {
+    "category": "Lighting",
+    "title": "Automatic headlight sensitivity",
+    "field": 61,
+    "key": 6,
+    "command": 105,
+    "values": [
+      "Minimum",
+      "Low",
+      "Medium",
+      "High",
+      "Maximum"
+    ],
+    "callback_branch": ":pswitch_26"
+  },
+  {
+    "category": "Lighting",
+    "title": "Automatic headlight-off delay",
+    "field": 62,
+    "key": 5,
+    "command": 105,
+    "values": [
+      "0 seconds",
+      "15 seconds",
+      "30 seconds",
+      "60 seconds"
+    ],
+    "callback_branch": ":pswitch_2c"
+  },
+  {
+    "category": "Lighting",
+    "title": "Interior-light dimming time",
+    "field": 63,
+    "key": 4,
+    "command": 105,
+    "values": [
+      "15 seconds",
+      "30 seconds",
+      "60 seconds"
+    ],
+    "callback_branch": ":pswitch_38"
+  },
+  {
+    "category": "Doors",
+    "title": "Remote-lock acknowledgement",
+    "field": 64,
+    "key": 10,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ],
+    "callback_branch": ":pswitch_3e"
+  },
+  {
+    "category": "Doors",
+    "title": "Key and remote unlock mode (vendor option)",
+    "field": 65,
+    "key": 9,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ],
+    "callback_branch": ":pswitch_44"
+  },
+  {
+    "category": "Doors",
+    "title": "Automatic relock time",
+    "field": 66,
+    "key": 11,
+    "command": 105,
+    "values": [
+      "30 seconds",
+      "60 seconds",
+      "90 seconds"
+    ],
+    "callback_branch": ":pswitch_4a"
+  },
+  {
+    "category": "Doors",
+    "title": "Automatic door-unlock condition",
+    "field": 67,
+    "key": 8,
+    "command": 105,
+    "values": [
+      "All doors when driver door opens",
+      "All doors when shifted into P",
+      "All doors when ignition off",
+      "Off"
+    ],
+    "callback_branch": ":pswitch_50"
+  },
+  {
+    "category": "Doors",
+    "title": "Automatic door-lock condition",
+    "field": 68,
+    "key": 7,
+    "command": 105,
+    "values": [
+      "Speed-linked",
+      "Shift out of P",
+      "Off"
+    ],
+    "callback_branch": ":pswitch_56"
+  },
+  {
+    "category": "Remote access",
+    "title": "Keyless-access buzzer",
+    "field": 69,
+    "key": 13,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ],
+    "callback_branch": ":pswitch_62"
+  },
+  {
+    "category": "Remote access",
+    "title": "Remote-start system",
+    "field": 70,
+    "key": 24,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ],
+    "callback_branch": ":pswitch_68"
+  },
+  {
+    "category": "Doors",
+    "title": "Door unlock mode",
+    "field": 71,
+    "key": 25,
+    "command": 105,
+    "values": [
+      "All doors",
+      "Driver door"
+    ],
+    "callback_branch": ":pswitch_6e"
+  },
+  {
+    "category": "Remote access",
+    "title": "Keyless-access exterior-light acknowledgement",
+    "field": 72,
+    "key": 26,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ],
+    "callback_branch": ":pswitch_74"
+  },
+  {
+    "category": "Lighting",
+    "title": "Automatic interior-light sensitivity",
+    "field": 73,
+    "key": 27,
+    "command": 105,
+    "values": [
+      "Minimum",
+      "Low",
+      "Medium",
+      "High",
+      "Maximum"
+    ],
+    "callback_branch": ":pswitch_7a"
+  },
+  {
+    "category": "Panel",
+    "title": "Alarm volume",
+    "field": 74,
+    "key": 18,
+    "command": 105,
+    "values": [
+      "High",
+      "Medium",
+      "Low"
+    ],
+    "callback_branch": ":pswitch_80"
+  },
+  {
+    "category": "Panel",
+    "title": "Eco background lighting",
+    "field": 75,
+    "key": 19,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ],
+    "callback_branch": ":pswitch_86"
+  },
+  {
+    "category": "Panel",
+    "title": "New-message notifications",
+    "field": 76,
+    "key": 20,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ],
+    "callback_branch": ":pswitch_8d"
+  },
+  {
+    "category": "Doors",
+    "title": "Walk-away lock",
+    "field": 79,
+    "key": 23,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ],
+    "callback_branch": ":pswitch_a2"
+  },
+  {
+    "category": "Lighting",
+    "title": "Wiper/headlight linkage",
+    "field": 80,
+    "key": 28,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ],
+    "callback_branch": ":pswitch_a9"
+  },
+  {
+    "category": "Panel",
+    "title": "Voice alarm system volume (vendor wording)",
+    "field": 81,
+    "key": 30,
+    "command": 105,
+    "values": [
+      "Low",
+      "High"
+    ],
+    "callback_branch": ":pswitch_b0"
+  },
+  {
+    "category": "Driver assistance",
+    "title": "Energy-saving automatic start/stop (vendor wording)",
+    "field": 82,
+    "key": 29,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ],
+    "callback_branch": ":pswitch_b7"
+  },
+  {
+    "category": "Driver assistance",
+    "title": "ACC vehicle-ahead detection tone",
+    "field": 83,
+    "key": 32,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ],
+    "callback_branch": ":pswitch_be"
+  },
+  {
+    "category": "Driver assistance",
+    "title": "LKAS suspension tone",
+    "field": 84,
+    "key": 33,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ],
+    "callback_branch": ":pswitch_c5"
+  },
+  {
+    "category": "Driver assistance",
+    "title": "Forward-collision warning distance",
+    "field": 85,
+    "key": 31,
+    "command": 105,
+    "values": [
+      "Far",
+      "Middle",
+      "Near"
+    ],
+    "callback_branch": ":pswitch_cc"
+  },
+  {
+    "category": "Driver assistance",
+    "title": "Lane-departure system behavior",
+    "field": 86,
+    "key": 34,
+    "command": 105,
+    "values": [
+      "Middle",
+      "Wide",
+      "Warnings only"
+    ],
+    "callback_branch": ":pswitch_d3"
+  },
+  {
+    "category": "Cameras",
+    "title": "Reverse tone",
+    "field": 109,
+    "key": 36,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ],
+    "callback_branch": ":pswitch_e1"
+  },
+  {
+    "category": "Doors",
+    "title": "Electric tailgate remote-opening condition",
+    "field": 110,
+    "key": 37,
+    "command": 105,
+    "values": [
+      "Any time",
+      "After unlocking"
+    ],
+    "callback_branch": ":pswitch_e8"
+  },
+  {
+    "category": "Doors",
+    "title": "Electric tailgate external-handle opening",
+    "field": 111,
+    "key": 38,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ],
+    "callback_branch": ":pswitch_ef"
+  },
+  {
+    "category": "Seats",
+    "title": "Seat-position memory linkage",
+    "field": 112,
+    "key": 39,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ],
+    "callback_branch": ":pswitch_f6"
+  },
+  {
+    "category": "Seats",
+    "title": "Entry/exit seat movement",
+    "field": 113,
+    "key": 40,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ],
+    "callback_branch": ":pswitch_fd"
+  },
+  {
+    "category": "Driver assistance",
+    "title": "Driver attention monitor",
+    "field": 114,
+    "key": 36,
+    "command": 105,
+    "values": [
+      "Off",
+      "Visual warning",
+      "Tactile and visual warnings"
+    ],
+    "callback_branch": ":pswitch_119"
+  },
+  {
+    "category": "Panel",
+    "title": "Fatigue-driving information",
+    "field": 149,
+    "key": 42,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ],
+    "callback_branch": ":pswitch_8"
+  },
+  {
+    "category": "Panel",
+    "title": "AWD information",
+    "field": 150,
+    "key": 43,
+    "command": 105,
+    "values": [
+      "Off",
+      "On"
+    ],
+    "callback_branch": ":pswitch_e"
+  }
+]

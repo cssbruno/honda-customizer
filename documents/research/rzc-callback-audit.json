@@ -1,0 +1,387 @@
+[
+  {
+    "field": 58,
+    "callback_branch": ":pswitch_13",
+    "renderers": [
+      "updateTripA"
+    ]
+  },
+  {
+    "field": 59,
+    "callback_branch": ":pswitch_19",
+    "renderers": [
+      "updateTripB"
+    ]
+  },
+  {
+    "field": 60,
+    "callback_branch": ":pswitch_1f",
+    "renderers": [
+      "updateOutTemp"
+    ]
+  },
+  {
+    "field": 61,
+    "callback_branch": ":pswitch_25",
+    "renderers": [
+      "updateAutoLightSens"
+    ]
+  },
+  {
+    "field": 62,
+    "callback_branch": ":pswitch_2b",
+    "renderers": [
+      "updateHeadLessAutoOff"
+    ]
+  },
+  {
+    "field": 63,
+    "callback_branch": ":pswitch_31",
+    "renderers": [
+      "updateInteriorLightDimmingTime"
+    ]
+  },
+  {
+    "field": 64,
+    "callback_branch": ":pswitch_37",
+    "renderers": [
+      "updateKeyLockAnswer"
+    ]
+  },
+  {
+    "field": 65,
+    "callback_branch": ":pswitch_3d",
+    "renderers": [
+      "updateKeyAndRemoteUnlockMode"
+    ]
+  },
+  {
+    "field": 66,
+    "callback_branch": ":pswitch_43",
+    "renderers": [
+      "updateSecurityRelockTime"
+    ]
+  },
+  {
+    "field": 67,
+    "callback_branch": ":pswitch_49",
+    "renderers": [
+      "updateAutoDoorUnLock"
+    ]
+  },
+  {
+    "field": 68,
+    "callback_branch": ":pswitch_4f",
+    "renderers": [
+      "updateAutoDoorLock"
+    ]
+  },
+  {
+    "field": 69,
+    "callback_branch": ":pswitch_55",
+    "renderers": [
+      "updateKeylessAccessBeep"
+    ]
+  },
+  {
+    "field": 70,
+    "callback_branch": ":pswitch_5b",
+    "renderers": [
+      "updateRemoteStartSys"
+    ]
+  },
+  {
+    "field": 71,
+    "callback_branch": ":pswitch_61",
+    "renderers": [
+      "updateDoorUnlockMode"
+    ]
+  },
+  {
+    "field": 72,
+    "callback_branch": ":pswitch_67",
+    "renderers": [
+      "updateKeylessAccessLightFlash"
+    ]
+  },
+  {
+    "field": 73,
+    "callback_branch": ":pswitch_6d",
+    "renderers": [
+      "updateAutoInterIllumination"
+    ]
+  },
+  {
+    "field": 74,
+    "callback_branch": ":pswitch_73",
+    "renderers": [
+      "updateAdjustAlarmVolume"
+    ]
+  },
+  {
+    "field": 75,
+    "callback_branch": ":pswitch_79",
+    "renderers": [
+      "updateFuelEfficBacklight"
+    ]
+  },
+  {
+    "field": 76,
+    "callback_branch": ":pswitch_7f",
+    "renderers": [
+      "updateNewMsgNoti"
+    ]
+  },
+  {
+    "field": 77,
+    "callback_branch": ":pswitch_85",
+    "renderers": [
+      "updateSpeedDistanceUnit"
+    ]
+  },
+  {
+    "field": 78,
+    "callback_branch": ":pswitch_8b",
+    "renderers": [
+      "updateTachometer"
+    ]
+  },
+  {
+    "field": 79,
+    "callback_branch": ":pswitch_91",
+    "renderers": [
+      "updateWalkAwayAutoLock"
+    ]
+  },
+  {
+    "field": 80,
+    "callback_branch": ":pswitch_98",
+    "renderers": [
+      "updateAutoHeadlightWiper"
+    ]
+  },
+  {
+    "field": 81,
+    "callback_branch": ":pswitch_9f",
+    "renderers": [
+      "updateVolumeAlarmSys"
+    ]
+  },
+  {
+    "field": 82,
+    "callback_branch": ":pswitch_a6",
+    "renderers": [
+      "updateEnergySaveAutoEnghine"
+    ]
+  },
+  {
+    "field": 83,
+    "callback_branch": ":pswitch_ad",
+    "renderers": [
+      "updateAccDiscoveryVehicle"
+    ]
+  },
+  {
+    "field": 84,
+    "callback_branch": ":pswitch_b4",
+    "renderers": [
+      "updatePauseLKADTone"
+    ]
+  },
+  {
+    "field": 85,
+    "callback_branch": ":pswitch_bb",
+    "renderers": [
+      "updateSetFrontHazardDistance"
+    ]
+  },
+  {
+    "field": 86,
+    "callback_branch": ":pswitch_c2",
+    "renderers": [
+      "updateMinorLane"
+    ]
+  },
+  {
+    "field": 87,
+    "callback_branch": ":pswitch_c9",
+    "renderers": [
+      "updateTachometerSet"
+    ]
+  },
+  {
+    "field": 109,
+    "callback_branch": ":pswitch_d0",
+    "renderers": [
+      "updateBackCarBeepTone"
+    ]
+  },
+  {
+    "field": 110,
+    "callback_branch": ":pswitch_d7",
+    "renderers": [
+      "updateEleDoorRemoteOpenCondition"
+    ]
+  },
+  {
+    "field": 111,
+    "callback_branch": ":pswitch_de",
+    "renderers": [
+      "updateEleDoorOpenAutoOrManule"
+    ]
+  },
+  {
+    "field": 114,
+    "callback_branch": ":pswitch_e5",
+    "renderers": [
+      "uAttentionMonitor"
+    ]
+  },
+  {
+    "field": 151,
+    "callback_branch": ":pswitch_ec",
+    "renderers": [
+      "updateTrafficSign"
+    ]
+  },
+  {
+    "field": 152,
+    "callback_branch": ":pswitch_f3",
+    "renderers": [
+      "updateRiseWarning"
+    ]
+  },
+  {
+    "field": 153,
+    "callback_branch": ":pswitch_fa",
+    "renderers": [
+      "updateMemorySeat"
+    ]
+  },
+  {
+    "field": 154,
+    "callback_branch": ":pswitch_101",
+    "renderers": [
+      "updateSeatBelt"
+    ]
+  },
+  {
+    "field": 155,
+    "callback_branch": ":pswitch_108",
+    "renderers": [
+      "updateStaticLine"
+    ]
+  },
+  {
+    "field": 156,
+    "callback_branch": ":pswitch_10f",
+    "renderers": [
+      "updateDynamicLine"
+    ]
+  },
+  {
+    "field": 157,
+    "callback_branch": ":pswitch_116",
+    "renderers": [
+      "updateShowCamera"
+    ]
+  },
+  {
+    "field": 158,
+    "callback_branch": ":pswitch_11d",
+    "renderers": [
+      "updateParkSpace"
+    ]
+  },
+  {
+    "field": 159,
+    "callback_branch": ":pswitch_124",
+    "renderers": [
+      "updateReminderSystem"
+    ]
+  },
+  {
+    "field": 161,
+    "callback_branch": ":pswitch_12b",
+    "renderers": [
+      "updateMultiFunction"
+    ]
+  },
+  {
+    "field": 166,
+    "callback_branch": ":pswitch_132",
+    "renderers": [
+      "updateAutoOpenTunk"
+    ]
+  },
+  {
+    "field": 173,
+    "callback_branch": ":pswitch_139",
+    "renderers": []
+  },
+  {
+    "field": 175,
+    "callback_branch": ":pswitch_14f",
+    "renderers": []
+  },
+  {
+    "field": 176,
+    "callback_branch": ":pswitch_17b",
+    "renderers": []
+  },
+  {
+    "field": 177,
+    "callback_branch": ":pswitch_215",
+    "renderers": []
+  },
+  {
+    "field": 178,
+    "callback_branch": ":pswitch_191",
+    "renderers": []
+  },
+  {
+    "field": 179,
+    "callback_branch": ":pswitch_274",
+    "renderers": []
+  },
+  {
+    "field": 190,
+    "callback_branch": ":pswitch_165",
+    "renderers": []
+  },
+  {
+    "field": 191,
+    "callback_branch": ":pswitch_1a7",
+    "renderers": []
+  },
+  {
+    "field": 192,
+    "callback_branch": ":pswitch_1bd",
+    "renderers": []
+  },
+  {
+    "field": 193,
+    "callback_branch": ":pswitch_29e",
+    "renderers": []
+  },
+  {
+    "field": 194,
+    "callback_branch": ":pswitch_1d3",
+    "renderers": []
+  },
+  {
+    "field": 195,
+    "callback_branch": ":pswitch_1e9",
+    "renderers": []
+  },
+  {
+    "field": 196,
+    "callback_branch": ":pswitch_1ff",
+    "renderers": []
+  },
+  {
+    "field": 197,
+    "callback_branch": ":pswitch_24a",
+    "renderers": []
+  }
+]
