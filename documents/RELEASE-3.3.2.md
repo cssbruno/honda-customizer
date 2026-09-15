@@ -11,3 +11,5 @@ Version code 10; existing development certificate retained. Install **Honda-Cust
 Validation: the empty-reply regression failed before the fix. Release unit tests cover empty and exception-header replies, connection, cleanup, command encoding, rejection and feedback confirmation. All 62 Java release tests and 7 Python tests passed; release lint reported no errors. APK metadata and signature checks are required by the distribution packager. Physical head-unit operation remains unverified.
 
 See the [wire-contract evidence](research/fyt-transport-audit/FINDINGS.md).
+
+CI setup now requests `platform-tools` explicitly, avoiding the retired `tools` package that stopped Android setup before tests could run.

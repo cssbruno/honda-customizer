@@ -24,7 +24,7 @@
   "hardware_tested": false,
   "target": "FYT/SYU CANBUS module 7",
   "source_sha256": {
-    ".github/workflows/honda-customizer.yml": "b739b4c071182ce599a29f5dc495819866b4a7acbda9392c2ad80430c200a506",
+    ".github/workflows/honda-customizer.yml": "d7e07951ee093b065484de4951720fbe5bed2182d74f1baed08fb65e3a279cc9",
     "AGENTS.md": "8cbadee59772460d01fff8b5772fb3bc207bd9550c684d289dccd2ccf4cc6c3d",
     "README-OEM-reference.md": "19e118d20a8e3fecbc3e1584999df8dfe6dc24b374222dd54c2003141f915c6c",
     "README.md": "b6e159d5e5aba6cd643e87b4a509d2c502efeed0490b45683b18f25d814cc102",
@@ -111,7 +111,7 @@
     "documents/RELEASE-3.2.0.md": "3a1eba3164571d29f73002cb9918c3f021e91fff665d294b76c730e6a26dfef7",
     "documents/RELEASE-3.3.0.md": "d193f206036a9468d5b98a70d4fe4c7328d059111bf9c0511c4c455c44f0c660",
     "documents/RELEASE-3.3.1.md": "b395ee3035ceceb56067c5c625d3fc80fdf038dfdc9a014517b606685ccc9952",
-    "documents/RELEASE-3.3.2.md": "cd116074a24317f4caeba8ccb6213915ee55383299518362ef7830f79804a2f8",
+    "documents/RELEASE-3.3.2.md": "38a697c4c4de9dab881e89d38c8d0edd3ae6e2fdc36b3eaedb8756c997d2529b",
     "documents/diagnostics-evidence/DiagApService-manifest.txt": "e212eb7b1abe4fbc7affab74d19379fdb2ba23214b4d53536d0f1aa4914386b4",
     "documents/diagnostics-evidence/abi-and-schema-excerpts.txt": "9df6779b6fc2d83a4008b4aab3a74ff0f856c8f750ff1be8dc4c8e8bdc1fbfb7",
     "documents/diagnostics-evidence/source-sha256.json": "04a68ae3eda3a8f76551f935695109afe1e8d5e2e69d839bfb742f1d8795e73a",
