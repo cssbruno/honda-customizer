@@ -35,3 +35,13 @@ The source review is scoped evidence, not a claim that no other firmware can pro
 ## Next required evidence
 
 A real head-unit Report, the exact installed `com.syu.ms`/CANBUS firmware identity, and vendor protocol documentation or captured matching real FYT responses are needed. The Report identifies the target; it does not by itself establish the missing reset/language acknowledgements. Do not execute blind writes to try to create that evidence.
+
+## Follow-up: synchronous reads do not resolve freshness
+
+The follow-up inspected both `f0/xp.get` and the selected 298 driver’s `module/canbus/v.get`, preserved in the same verified source excerpts:
+
+- Calls for field codes below 1000 are delegated to the driver. This driver’s `get` returns null unconditionally.
+- Wrapper command 1000 with an index returns an entry from `f0/tp.Z`; it does not request a new vehicle response or provide an observation timestamp. It cannot be substituted for setting feedback.
+- The driver’s command-105 branch sends its two supplied values to MCU transport and returns. It provides no action result in the Binder return path. Language/reset dispatch therefore does not establish successful completion.
+
+This closes the immediate synchronous-read alternative for the inspected firmware. The implementation remains event-driven and does not issue an unverified refresh or diagnostic command. Further feature implementation requires a matching firmware response contract or real-device evidence; repeating cached reads will not supply it.

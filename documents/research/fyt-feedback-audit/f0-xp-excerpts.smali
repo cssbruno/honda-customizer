@@ -393,3 +393,67 @@
         :pswitch_36
     .end packed-switch
 .end method
+
+.method public get(I[I[F[Ljava/lang/String;)Lx/f;
+    .registers 6
+
+    const/16 v0, 0x3e8
+
+    if-ge p1, v0, :cond_d
+
+    .line 1
+    iget-object v0, p0, Lf0/xp;->c:Lf0/rp;
+
+    if-eqz v0, :cond_2c
+
+    .line 2
+    invoke-virtual {v0, p1, p2, p3, p4}, Lf0/rp;->get(I[I[F[Ljava/lang/String;)Lx/f;
+
+    move-result-object p1
+
+    return-object p1
+
+    :cond_d
+    if-eq p1, v0, :cond_10
+
+    goto :goto_2c
+
+    :cond_10
+    const/4 p1, 0x1
+
+    .line 3
+    invoke-virtual {p0, p2, p1}, Lf0/rp;->intsOk([II)Z
+
+    move-result p1
+
+    if-eqz p1, :cond_2c
+
+    const/4 p1, 0x0
+
+    aget p3, p2, p1
+
+    if-ltz p3, :cond_2c
+
+    aget p3, p2, p1
+
+    if-ge p3, v0, :cond_2c
+
+    .line 4
+    new-instance p3, Lx/f;
+
+    sget-object p4, Lf0/tp;->Z:[I
+
+    aget p1, p2, p1
+
+    aget p1, p4, p1
+
+    invoke-direct {p3, p1}, Lx/f;-><init>(I)V
+
+    return-object p3
+
+    :cond_2c
+    :goto_2c
+    const/4 p1, 0x0
+
+    return-object p1
+.end method

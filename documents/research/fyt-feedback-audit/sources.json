@@ -6,7 +6,8 @@
       "path": "/tmp/cabin-syu-ms-smali/f0/xp.smali",
       "sha256": "8c3d76dd7c65e6a13c77ae9e06a415d7e44df59898f0f98028b53839ab1675cf",
       "methods": [
-        "register"
+        "register",
+        "get"
       ],
       "excerpt": "f0-xp-excerpts.smali"
     },
@@ -38,7 +39,8 @@
       "path": "/tmp/cabin-syu-ms-smali/module/canbus/v.smali",
       "sha256": "86d727f8ff26415bca860cea4f81dae406e0c6de480afa583d3172e09c5c82ba",
       "methods": [
-        "register"
+        "register",
+        "get"
       ],
       "excerpt": "canbus-v-excerpts.smali"
     }
