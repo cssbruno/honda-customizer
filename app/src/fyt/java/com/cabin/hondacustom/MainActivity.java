@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.*;
 
 public final class MainActivity extends Activity {
+    private AppUpdater updater;
     private FytClient client; private LinearLayout rows; private TextView status; private CheckBox parked; private Button connect;
     private TextView text(String value,int size){TextView t=new TextView(this);t.setText(value);t.setTextSize(size);t.setPadding(12,8,12,8);return t;}
     @Override public void onCreate(Bundle saved){super.onCreate(saved);
@@ -18,7 +19,9 @@ public final class MainActivity extends Activity {
         Button report=new Button(this);report.setText(getString(R.string.fyt_report));report.setOnClickListener(v->report());actions.addView(report);
         parked=new CheckBox(this);parked.setText(R.string.parked);parked.setOnCheckedChangeListener((b,on)->render());root.addView(parked);
         ScrollView scroll=new ScrollView(this);rows=new LinearLayout(this);rows.setOrientation(LinearLayout.VERTICAL);scroll.addView(rows);root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
+        Button updates=new Button(this);updates.setText(R.string.update_check);root.addView(updates);
         client=new FytClient(this,this::render);setContentView(root);render();
+        updater=new AppUpdater(this,updates);updater.check(false);
     }
     private void render(){if(client==null)return;
         status.setText(client.status);connect.setText(client.connected()?getString(R.string.fyt_disconnect):getString(R.string.fyt_connect));rows.removeAllViews();
@@ -45,5 +48,5 @@ public final class MainActivity extends Activity {
             ((android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText(getString(R.string.fyt_clipboard_label),content));Toast.makeText(this,getString(R.string.fyt_report_copied),Toast.LENGTH_SHORT).show();}).show();
     }
     @Override protected void onStop(){super.onStop();if(client!=null)client.disconnect();}
-    @Override protected void onDestroy(){if(client!=null)client.destroy();super.onDestroy();}
+    @Override protected void onDestroy(){if(updater!=null)updater.close();if(client!=null)client.destroy();super.onDestroy();}
 }

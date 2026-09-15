@@ -1,0 +1,14 @@
+<resources>
+    <string name="update_check">Check for updates</string>
+    <string name="update_checking">Checking for updates…</string>
+    <string name="update_retry">Update check unavailable — retry</string>
+    <string name="update_available">App update available</string>
+    <string name="update_offer">Version %1$s is available. Download and install while parked. Android will ask you to confirm installation.</string>
+    <string name="update_download">Download and install</string>
+    <string name="update_current">You have the latest published version.</string>
+    <string name="update_failed">Could not check or verify the update. Check your internet connection and try again.</string>
+    <string name="update_downloading">Downloading and verifying…</string>
+    <string name="update_install">Install downloaded update</string>
+    <string name="update_permission">Allow updates from this app in Android settings, then return and tap Install downloaded update.</string>
+    <string name="update_settings">Open settings</string>
+</resources>
