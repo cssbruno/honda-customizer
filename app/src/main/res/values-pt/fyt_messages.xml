@@ -1,17 +1,17 @@
 <resources>
     <string name="fyt_title">"Honda Customizer · FYT"</string>
-    <string name="fyt_refresh">"Atualizar"</string>
+    <string name="fyt_refresh">"Reconectar"</string>
     <string name="fyt_report">"Relatório"</string>
     <string name="fyt_disconnect">"Desconectar"</string>
     <string name="fyt_connect">"Conectar ao FYT"</string>
     <string name="fyt_unmapped_help">"O serviço FYT está conectado. Este decodificador CAN precisa de um mapeamento de configurações. Use Relatório para copiar o perfil detectado e a versão do serviço."</string>
     <string name="fyt_connect_help">"Conecte para carregar as configurações do seu perfil FYT CANBUS.\n\nOs controles disponíveis dependem do decodificador CAN instalado. Apenas configurações FYT verificadas são exibidas."</string>
-    <string name="fyt_wait_value">"Aguardando valor do FYT"</string>
-    <string name="fyt_refresh_required">" · Atualização necessária"</string>
+    <string name="fyt_wait_value">"Aguardando atualização ao vivo do FYT"</string>
+    <string name="fyt_refresh_required">" · Atualização ao vivo necessária"</string>
     <string name="fyt_apply_question">"Aplicar configuração?"</string>
     <string name="fyt_cancel">"Cancelar"</string>
     <string name="fyt_apply">"Aplicar"</string>
-    <string name="fyt_feedback_help">"Valores ausentes ou vencidos exigem atualização. Uma alteração só é confirmada quando o FYT retorna o valor escolhido."</string>
+    <string name="fyt_feedback_help">"Somente atualizações ao vivo do FYT permitem alterações. Valores ausentes ou expirados ficam indisponíveis, mesmo após reconectar. As alterações exigem confirmação correspondente do FYT."</string>
     <string name="fyt_report_title">"Relatório de conexão FYT"</string>
     <string name="fyt_close">"Fechar"</string>
     <string name="fyt_copy">"Copiar"</string>
@@ -39,9 +39,9 @@
     <string name="fyt_request_expired">"Solicitação FYT vencida ou conexão encerrada antes do envio"</string>
     <string name="fyt_wait_feedback">"Aguardando retorno do FYT: %1$s"</string>
     <string name="fyt_write_failed">"Falha no envio ao FYT; resultado não confirmado: %1$s"</string>
-    <string name="fyt_no_matching_feedback">"O FYT não retornou o valor esperado; alteração não confirmada. Reconecte para ler os valores atuais."</string>
+    <string name="fyt_no_matching_feedback">"Sem confirmação correspondente do FYT; alteração não confirmada. Reconecte e aguarde uma atualização ao vivo."</string>
     <string name="fyt_confirmed">"%1$s: confirmado pelo retorno do FYT"</string>
-    <string name="fyt_disconnected_unconfirmed">"Desconectado · Última alteração não confirmada; reconecte para ler os valores"</string>
+    <string name="fyt_disconnected_unconfirmed">"Desconectado · última alteração não confirmada; aguarde atualizações ao vivo após reconectar"</string>
     <string name="fyt_report_unit">"Central: %1$s %2$s\nAndroid: %3$s\n"</string>
     <string name="fyt_report_service">"Serviço FYT: %1$s / %2$d\n"</string>
     <string name="fyt_package_missing">"Pacote FYT não encontrado\n"</string>

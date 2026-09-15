@@ -19,7 +19,8 @@ public class FytClientTest {
     final java.util.List<String> actions=new java.util.ArrayList<>();
     final FytProtocol.Control alarm=FytProtocol.CONTROLS.get(9);
     static class FakeModule extends Binder {
-        volatile IBinder callback; volatile int writes; int command; int[] args;
+        volatile IBinder callback; volatile int writes;
+        final Map<Integer,Integer> notificationFlags=Collections.synchronizedMap(new HashMap<>()); int command; int[] args;
         volatile boolean holdWrite, rejectWrite, released;
         volatile boolean holdDescriptor,descriptorEntered,releaseDescriptor;
         final Set<Integer> fields=Collections.synchronizedSet(new HashSet<>());
@@ -31,7 +32,7 @@ public class FytClientTest {
         }
         @Override protected boolean onTransact(int code,Parcel d,Parcel r,int flags)throws RemoteException{
             d.enforceInterface("com.syu.ipc.IRemoteModule");
-            if(code==3){callback=d.readStrongBinder();fields.add(d.readInt());assertEquals(1,d.readInt());}
+            if(code==3){callback=d.readStrongBinder();int field=d.readInt();fields.add(field);int notify=d.readInt();notificationFlags.put(field,notify);assertEquals(field==1000?1:0,notify);}
             else if(code==4){d.readStrongBinder();fields.remove(d.readInt());}
             else if(code==1){command=d.readInt();args=d.createIntArray();assertNull(d.createFloatArray());assertNull(d.createStringArray());writes++;
                 long end=System.nanoTime()+TimeUnit.SECONDS.toNanos(5);
@@ -63,13 +64,26 @@ public class FytClientTest {
         for(int field=58;field<=87;field++)fields.add(field);return fields;
     }
     void ready()throws Exception{client.connect();await(()->module.fields.size()==1);module.emit(1000,0x40141);await(()->module.fields.size()==39);module.emit(69,2);await(()->client.editable(alarm));}
+    @Test public void subscribesWithoutReplayingCachedVehicleSettings()throws Exception{
+        client.connect();await(()->module.fields.size()==1);module.emit(1000,0x10012a);await(()->module.fields.size()==rzcFields().size());
+        assertEquals(Integer.valueOf(1),module.notificationFlags.get(1000));
+        for(int field:rzcFields())if(field!=1000)assertEquals(Integer.valueOf(0),module.notificationFlags.get(field));
+        assertTrue(client.values.isEmpty());
+        for(FytProtocol.Control c:FytProtocol.CONTROLS)if(FytProtocol.visible(0x10012a,c)){assertNull(client.value(c));assertFalse(client.editable(c));}
+        assertEquals(0,module.writes);
+    }
+    @Test public void earlierExpiryDoesNotEraseNewerFeedback()throws Exception{
+        ready();ShadowLooper.idleMainLooper(20000,TimeUnit.MILLISECONDS);module.emit(69,3);await(()->Integer.valueOf(2).equals(client.value(alarm)));
+        ShadowLooper.idleMainLooper(10002,TimeUnit.MILLISECONDS);assertEquals(Integer.valueOf(2),client.value(alarm));assertTrue(client.editable(alarm));
+        ShadowLooper.idleMainLooper(20000,TimeUnit.MILLISECONDS);assertNull(client.value(alarm));assertFalse(client.editable(alarm));
+    }
     @Test public void bindsOnlyFytModuleSeven()throws Exception{ready();assertEquals(1,bindings);assertEquals(Integer.valueOf(1),client.values.get(69));}
     @Test public void commandUsesFytEncodingAndWaitsForFeedback()throws Exception{ready();client.change(alarm,2,true);await(()->module.writes==1);assertEquals(106,module.command);assertArrayEquals(new int[]{4,3},module.args);assertTrue(client.busy());assertEquals(Integer.valueOf(1),client.values.get(69));module.emit(69,3);await(()->!client.busy());assertEquals(Integer.valueOf(2),client.values.get(69));assertTrue(client.status.contains("confirmed"));}
     @Test public void parkedRequired()throws Exception{ready();client.change(alarm,2,false);assertFalse(client.busy());assertEquals(0,module.writes);}
     @Test public void unmappedProfileKeepsFytConnectionForReport()throws Exception{client.connect();await(()->module.fields.size()==1);module.emit(1000,0x140141);await(()->client.profile()==0x140141);assertTrue(client.connected());assertTrue(client.values.isEmpty());assertTrue(client.report().contains("0x140141"));}
     @Test public void changedProfileInvalidatesValues()throws Exception{ready();module.emit(1000,0xC0141);await(()->!client.connected());assertFalse(client.editable(alarm));}
     @Test public void invalidFeedbackDisablesControl()throws Exception{ready();module.emit(69,0);await(()->!client.editable(alarm));assertFalse(client.values.containsKey(69));}
-    @Test public void expiredFeedbackDisablesControl()throws Exception{ready();ShadowLooper.idleMainLooper(FytClient.FRESH_MS+1,TimeUnit.MILLISECONDS);assertFalse(client.editable(alarm));}
+    @Test public void expiredFeedbackDisablesControl()throws Exception{ready();ShadowLooper.idleMainLooper(FytClient.FRESH_MS+1,TimeUnit.MILLISECONDS);assertFalse(client.editable(alarm));assertNull(client.value(alarm));assertFalse(client.values.containsKey(alarm.field));assertFalse(client.report().contains("Alarm volume [69]: Medium"));}
     @Test public void mismatchedFeedbackDoesNotConfirm()throws Exception{ready();client.change(alarm,2,true);await(()->module.writes==1);module.emit(69,1);ShadowLooper.idleMainLooper();assertTrue(client.busy());}
     @Test public void missingFeedbackTimesOut()throws Exception{ready();client.change(alarm,2,true);await(()->module.writes==1);ShadowLooper.idleMainLooper(FytClient.TIMEOUT_MS+1,TimeUnit.MILLISECONDS);assertFalse(client.connected());assertTrue(client.status.contains("unconfirmed"));}
     @Test public void oldSessionCannotRestoreValues()throws Exception{ready();IBinder old=module.callback;client.disconnect();module.callback=old;module.emit(1000,0x40141);module.emit(69,3);ShadowLooper.idleMainLooper();assertFalse(client.connected());assertTrue(client.values.isEmpty());}

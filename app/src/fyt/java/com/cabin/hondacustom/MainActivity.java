@@ -34,7 +34,7 @@ public final class MainActivity extends Activity {
         for(String category:categories){
             rows.addView(text(FytText.label(this,category),22));
             for(FytProtocol.Control c:FytProtocol.CONTROLS)if(category.equals(c.category)&&FytProtocol.visible(client.profile(),c)){
-            Integer value=client.values.get(c.field);Button b=new Button(this);
+            Integer value=client.value(c);Button b=new Button(this);
             b.setText(FytText.label(this,c.title)+"\n"+(value==null?getString(R.string.fyt_wait_value):FytText.label(this,c.options[value]))+(value!=null&&!client.busy()&&!client.editable(c)?getString(R.string.fyt_refresh_required):""));
             b.setEnabled(parked.isChecked()&&client.editable(c));b.setOnClickListener(v->new AlertDialog.Builder(this).setTitle(FytText.label(this,c.title)).setItems(FytText.options(this,c),(dialog,index)->
                 new AlertDialog.Builder(this).setTitle(getString(R.string.fyt_apply_question)).setMessage(FytText.label(this,c.title)+": "+FytText.label(this,c.options[index])).setNegativeButton(getString(R.string.fyt_cancel),null).setPositiveButton(getString(R.string.fyt_apply),(d,w)->client.change(c,index,parked.isChecked())).show()

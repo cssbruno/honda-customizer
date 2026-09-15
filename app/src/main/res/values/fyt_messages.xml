@@ -1,17 +1,17 @@
 <resources>
     <string name="fyt_title">"Honda Customizer · FYT"</string>
-    <string name="fyt_refresh">"Refresh"</string>
+    <string name="fyt_refresh">"Reconnect"</string>
     <string name="fyt_report">"Report"</string>
     <string name="fyt_disconnect">"Disconnect"</string>
     <string name="fyt_connect">"Connect to FYT"</string>
     <string name="fyt_unmapped_help">"Your FYT service is connected. This CAN decoder needs a setting map. Use Report to copy its detected profile and service version."</string>
     <string name="fyt_connect_help">"Connect to load settings for your FYT CANBUS profile.\n\nAvailable controls depend on the installed CAN decoder. Only verified FYT settings are shown."</string>
-    <string name="fyt_wait_value">"Waiting for FYT value"</string>
-    <string name="fyt_refresh_required">" · Refresh required"</string>
+    <string name="fyt_wait_value">"Waiting for a live FYT update"</string>
+    <string name="fyt_refresh_required">" · Live update required"</string>
     <string name="fyt_apply_question">"Apply setting?"</string>
     <string name="fyt_cancel">"Cancel"</string>
     <string name="fyt_apply">"Apply"</string>
-    <string name="fyt_feedback_help">"Missing or expired values require Refresh. Changes are confirmed only when FYT returns the selected value."</string>
+    <string name="fyt_feedback_help">"Only live FYT updates enable editing. Missing or expired values stay unavailable, even after reconnecting. Changes require matching FYT feedback."</string>
     <string name="fyt_report_title">"FYT connection report"</string>
     <string name="fyt_close">"Close"</string>
     <string name="fyt_copy">"Copy"</string>
@@ -39,9 +39,9 @@
     <string name="fyt_request_expired">"FYT request expired or disconnected before sending"</string>
     <string name="fyt_wait_feedback">"Waiting for FYT feedback: %1$s"</string>
     <string name="fyt_write_failed">"FYT write failed; outcome unconfirmed: %1$s"</string>
-    <string name="fyt_no_matching_feedback">"No matching FYT feedback; change unconfirmed. Reconnect to read current values."</string>
+    <string name="fyt_no_matching_feedback">"No matching FYT feedback; change unconfirmed. Reconnect and wait for a live update."</string>
     <string name="fyt_confirmed">"%1$s: confirmed by FYT feedback"</string>
-    <string name="fyt_disconnected_unconfirmed">"Disconnected · last change unconfirmed; reconnect to read values"</string>
+    <string name="fyt_disconnected_unconfirmed">"Disconnected · last change unconfirmed; wait for live updates after reconnecting"</string>
     <string name="fyt_report_unit">"Unit: %1$s %2$s\nAndroid: %3$s\n"</string>
     <string name="fyt_report_service">"FYT service: %1$s / %2$d\n"</string>
     <string name="fyt_package_missing">"FYT package not found\n"</string>

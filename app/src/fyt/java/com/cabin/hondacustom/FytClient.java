@@ -102,7 +102,7 @@ final class FytClient {
             status=message(R.string.fyt_loading,raw);observer.run();
             if(session!=owner||closed)return;
             owner.worker.execute(()->{try{
-                // The profile is established before registration requests cached setting values.
+                // Subscribe to future setting events only; cached startup zeros are not vehicle feedback.
                 for(FytProtocol.Control c:FytProtocol.CONTROLS){if(session!=owner)return;if(!FytProtocol.visible(raw,c))continue;owner.registered.add(c.field);FytProtocol.register(owner.module,owner.callback,c.field,true);}
                 main.post(()->{if(session==owner){owner.ready=true;status=message(R.string.fyt_connected,raw);observer.run();}});
             }catch(Exception e){main.post(()->connectionFailed(owner,message(R.string.fyt_settings_failed,e.getMessage())));}});
@@ -113,8 +113,16 @@ final class FytClient {
             if(value==null){values.remove(field);received.remove(field);}else{values.put(field,value);received.put(field,arrived);}
             if(observed!=null&&pending==observed&&observed.control==c){observed.feedback=value;finishIfConfirmed(observed);}
             observer.run();
-            main.postDelayed(()->{if(session==owner)observer.run();},FRESH_MS+1);return;
+            main.postDelayed(()->{
+                if(session!=owner)return;
+                Long time=received.get(field);
+                if(time!=null&&SystemClock.elapsedRealtime()-time>=FRESH_MS){values.remove(field);received.remove(field);observer.run();}
+            },FRESH_MS+1);return;
         }
+    }
+    Integer value(FytProtocol.Control c){
+        Long time=received.get(c.field);
+        return session!=null&&FytProtocol.visible(profile,c)&&time!=null&&SystemClock.elapsedRealtime()-time<FRESH_MS?values.get(c.field):null;
     }
     boolean editable(FytProtocol.Control c){
         Session s=session;Long time=received.get(c.field);
@@ -155,7 +163,7 @@ final class FytClient {
         for(String line:trace)out.append(line).append('\n');
         for(FytProtocol.Control c:FytProtocol.CONTROLS)if(FytProtocol.visible(profile,c))
             out.append(FytText.label(context,c.title)).append(" [").append(c.field).append("]: ")
-                .append(values.containsKey(c.field)?FytText.label(context,c.options[values.get(c.field)]):message(R.string.fyt_no_feedback)).append('\n');
+                .append(value(c)!=null?FytText.label(context,c.options[value(c)]):message(R.string.fyt_no_feedback)).append('\n');
         return out.toString();
     }
     void disconnect(){

@@ -1,0 +1,47 @@
+{
+  "service_apk_sha256": "4b428302e29c9e2503ccf7844a127f5bed59450736317629aa42b5eb35a9b577",
+  "scope": "Static service evidence; no vehicle attached. Excerpts preserve original instructions.",
+  "sources": [
+    {
+      "path": "/tmp/cabin-syu-ms-smali/f0/xp.smali",
+      "sha256": "8c3d76dd7c65e6a13c77ae9e06a415d7e44df59898f0f98028b53839ab1675cf",
+      "methods": [
+        "register"
+      ],
+      "excerpt": "f0-xp-excerpts.smali"
+    },
+    {
+      "path": "/tmp/cabin-syu-ms-smali/f0/tp.smali",
+      "sha256": "709dac0a38036a96de888b05502d5e468f76a2fb605be4fb7c06a075f5ce4bd4",
+      "methods": [
+        "<clinit>"
+      ],
+      "excerpt": "f0-tp-excerpts.smali"
+    },
+    {
+      "path": "/tmp/cabin-syu-ms-smali/f0/wp.smali",
+      "sha256": "3f062d15b1cf425c4cd526950dffbb6db1f865c03257415feb88ab6a2301ef6e",
+      "methods": [
+        "g0"
+      ],
+      "excerpt": "f0-wp-excerpts.smali"
+    },
+    {
+      "path": "/tmp/cabin-syu-ms-smali/i1/v.smali",
+      "sha256": "cdb405f8c8d56a7f764188147e595e6e9d4e8d12d20ae82cc21251825a290ce6",
+      "methods": [
+        "s"
+      ],
+      "excerpt": "i1-v-excerpts.smali"
+    },
+    {
+      "path": "/tmp/cabin-syu-ms-smali/module/canbus/v.smali",
+      "sha256": "86d727f8ff26415bca860cea4f81dae406e0c6de480afa583d3172e09c5c82ba",
+      "methods": [
+        "register"
+      ],
+      "excerpt": "canbus-v-excerpts.smali"
+    }
+  ],
+  "verified_against": "documents/research/syu-ms-analysis/deeper/smali-inventory.json"
+}

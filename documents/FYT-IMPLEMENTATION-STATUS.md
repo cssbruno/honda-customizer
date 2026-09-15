@@ -12,10 +12,10 @@ The goal remains full FYT Honda implementation. A researched row is not automati
 
 ## Still required
 
-- Remaining SiYu rows: amplifier navigation/controls, right-turn camera entry (no write handler established), hidden beep-volume row (constant-zero writer), maintenance data/actions. The supported persistent rows have been audited and ported.
+- Remaining in-scope SiYu maintenance data/actions. New sound and camera additions are excluded by the project owner. Their newly traced contracts are not enabled. The hidden beep-volume row remains excluded.
 - Resolve vehicle language feedback before enabling language writes; Portuguese command is known, acknowledgement is not.
-- Resolve completion evidence for maintenance reset, initial-values restore, TPMS calibration and panorama initialization.
-- Trace read-only oil/service-life values and applicable profiles.
+- Resolve completion evidence for maintenance reset, initial-values restore and TPMS calibration.
+- Oil/service-life fields 135–137 are traced, but the value row is hidden on all currently supported BNR profiles. Establish applicable exact-profile evidence before displaying it.
 - Establish FYT contracts for full physical panel editing, diagnostics and head-unit settings. OEM code cannot supply these contracts.
 - Real head-unit report, firmware/decoder identity and parked physical validation. No vehicle is attached here.
 
@@ -63,3 +63,11 @@ The existing disposable API17 and API36.1 emulators both exited with SIGSEGV (13
 ## 3.2.0 release policy
 
 Emulator checks are no longer release requirements at the project owner’s request: emulators do not have access to the FYT service. Historical emulator failures above are not release blockers. Release packaging still requires fresh release unit tests, lint, matching APK metadata and a verified signature. Physical FYT validation remains unverified and is not replaced by software tests.
+
+## 3.3.1 focused implementation audit
+
+New sound/camera work has been removed at the owner’s direction. The current scope focuses on panel customization, language, maintenance and diagnostics. See [live-feedback and remaining-evidence audit](research/fyt-feedback-audit/FINDINGS.md).
+
+The service subscription path was traced beyond the UI. Settings now use notify=0 so that untimestamped cache entries (including startup zeros) cannot be presented as fresh vehicle feedback. Only profile identity uses notify=1. Expired values are removed from the UI/report; expiry of an older observation cannot erase a newer one. Some values remain unavailable on firmware that suppresses unchanged notifications; no fresh-read command is assumed.
+
+The full feature goal remains incomplete. Language/reset completion responses, additional physical cluster contracts and exact vehicle diagnostic contracts are still missing. No physical head-unit report or validation has been supplied.

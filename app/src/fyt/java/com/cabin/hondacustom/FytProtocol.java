@@ -210,8 +210,10 @@ final class FytProtocol {
         }finally{data.recycle();reply.recycle();}
     }
     static IBinder module(IBinder toolkit)throws RemoteException{return exchange(toolkit,TOOLKIT,1,p->p.writeInt(7),Parcel::readStrongBinder);}
+    // f0/xp.register: notify=0 subscribes without replaying the untimestamped settings cache.
+    // Only decoder identity requests an initial snapshot; it is configuration, not vehicle state.
     static void register(IBinder module,IBinder callback,int field,boolean add)throws RemoteException{
-        exchange(module,MODULE,add?3:4,p->{p.writeStrongBinder(callback);p.writeInt(field);if(add)p.writeInt(1);},p->null);
+        exchange(module,MODULE,add?3:4,p->{p.writeStrongBinder(callback);p.writeInt(field);if(add)p.writeInt(field==PROFILE?1:0);},p->null);
     }
     static void change(IBinder module,int profile,Control c,int value)throws RemoteException{
         change(module,profile,c,value,()->{});
