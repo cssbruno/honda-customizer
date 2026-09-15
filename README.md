@@ -1,8 +1,8 @@
-# Honda Customizer 3.3.1 — Joying / FYT
+# Honda Customizer 3.3.2 — Joying / FYT
 
 An Android app for FYT head units using the installed `com.syu.ms` service. It has no original Honda/Mitsubishi service dependency, permission, editor or executable client code in the APK.
 
-[3.3.1 release notes](documents/RELEASE-3.3.1.md)
+[3.3.2 release notes](documents/RELEASE-3.3.2.md)
 
 ## Repository
 
@@ -23,6 +23,8 @@ Downloads must match the release SHA-256 digest, application ID, newer version c
 Install 3.3.0 manually once to get the updater. Future published stable releases can be discovered in the app. This is automatic checking with confirmed installation, not silent background installation. The updater never sends FYT commands.
 
 ## FYT connection
+
+Version 3.3.2 fixes rejection of valid empty Joying command/subscription replies. Toolkit lookup still requires a reply, and vehicle changes still require matching live feedback. See the [transport audit](documents/research/fyt-transport-audit/FINDINGS.md).
 
 Connect uses `com.syu.ms.toolkit` (`app.ToolkitService`) and obtains CANBUS module 7. There is no automatic fallback to the direct CANBUS service or to OEM services. If the toolkit is unavailable, rejects access, or times out, the app disconnects and reports the failure. Firmware-specific exported toolkit names are resolved only inside `com.syu.ms`. See the [SYU service research](documents/research/syu-ms-analysis/REPORT.md).
 
@@ -50,11 +52,11 @@ python3 -m unittest discover -s tools -p 'test_*.py'
 python3 tools/package_release.py --sdk-root "$ANDROID_HOME"
 ```
 
-APK: `app/build/outputs/apk/release/app-release.apk`, version code 9. Signed with the local development certificate; installing over an earlier copy requires a matching signing certificate. Minimum Android API 17 is a compatibility floor; the target hardware is the FYT head unit.
+APK: `app/build/outputs/apk/release/app-release.apk`, version code 10. Signed with the local development certificate; installing over an earlier copy requires a matching signing certificate. Minimum Android API 17 is a compatibility floor; the target hardware is the FYT head unit.
 
-53 updater/service/protocol/localization regression tests and 7 smoke-result parser tests cover rejection without fallback (including a blocked toolkit), exact decoder commands, field subscriptions, fresh feedback, write failure, timeout and disconnect. Test-only Binder fixtures are excluded from the app; the application has no mock vehicle data. They do not establish operation on the user's physical FYT hardware. The exact installed firmware/decoder has not been supplied, and no vehicle is connected to this development environment.
+62 updater/service/protocol/localization regression tests and 7 smoke-result parser tests cover rejection without fallback (including a blocked toolkit), exact decoder commands, field subscriptions, fresh feedback, write failure, timeout and disconnect. Test-only Binder fixtures are excluded from the app; the application has no mock vehicle data. They do not establish operation on the user's physical FYT hardware. The exact installed firmware/decoder has not been supplied, and no vehicle is connected to this development environment.
 
-Active sources: `app/src/fyt`, `fytTest`, `fytAndroidTest`. Original Honda sources/tests and `README-OEM-reference.md` are historical reference only; Gradle excludes their executable code. Old `original-HU` APKs in `dist` are not FYT builds. Emulator checks are not release requirements because emulators have no FYT service access. The distribution packaging script requires fresh release unit tests, lint, APK metadata and signature verification, and emits `Honda-Customizer-3.3.1-FYT.apk` only after those checks.
+Active sources: `app/src/fyt`, `fytTest`, `fytAndroidTest`. Original Honda sources/tests and `README-OEM-reference.md` are historical reference only; Gradle excludes their executable code. Old `original-HU` APKs in `dist` are not FYT builds. Emulator checks are not release requirements because emulators have no FYT service access. The distribution packaging script requires fresh release unit tests, lint, APK metadata and signature verification, and emits `Honda-Customizer-3.3.2-FYT.apk` only after those checks.
 
 Command evidence: [FYT panel protocol](documents/HONDA-FYT-PANEL.md), [RZC/BNR findings](documents/research/honda-cluster-analysis/fyt-additional/other-honda/findings.md), and the saved `Acrivity_RZC_17CRVSettings`, `AcrivitySiYuSettings`, `HondaIndexActi`, and `FinalCanbus` bytecode. No firmware was flashed or vehicle commands sent during development.
 

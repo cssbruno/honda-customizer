@@ -21,7 +21,7 @@ public class FytClientTest {
     static class FakeModule extends Binder {
         volatile IBinder callback; volatile int writes;
         final Map<Integer,Integer> notificationFlags=Collections.synchronizedMap(new HashMap<>()); int command; int[] args;
-        volatile boolean holdWrite, rejectWrite, released;
+        volatile boolean holdWrite, rejectWrite, released, exceptionHeader;
         volatile boolean holdDescriptor,descriptorEntered,releaseDescriptor;
         final Set<Integer> fields=Collections.synchronizedSet(new HashSet<>());
         FakeModule(){attachInterface(null,FytProtocol.MODULE);}
@@ -40,7 +40,9 @@ public class FytClientTest {
                 if(rejectWrite)throw new RemoteException("Rejected write");
             }
             else return false;
-            assertEquals(0,d.dataAvail());r.writeNoException();return true;
+            assertEquals(0,flags);assertEquals(0,d.dataAvail());
+            // Joying x/c$a writes no reply for cmd/register/unregister.
+            if(exceptionHeader)r.writeNoException();return true;
         }
         void emit(int field,int raw)throws Exception{Parcel d=Parcel.obtain();try{d.writeInterfaceToken("com.syu.ipc.IModuleCallback");d.writeInt(field);d.writeIntArray(new int[]{raw});d.writeFloatArray(null);d.writeStringArray(null);callback.transact(1,d,null,IBinder.FLAG_ONEWAY);}finally{d.recycle();}}
     }
@@ -78,6 +80,12 @@ public class FytClientTest {
         ShadowLooper.idleMainLooper(20000,TimeUnit.MILLISECONDS);assertNull(client.value(alarm));assertFalse(client.editable(alarm));
     }
     @Test public void bindsOnlyFytModuleSeven()throws Exception{ready();assertEquals(1,bindings);assertEquals(Integer.valueOf(1),client.values.get(69));}
+    @Test public void exceptionHeaderModuleStillConnectsAndConfirms()throws Exception{
+        module.exceptionHeader=true;commandUsesFytEncodingAndWaitsForFeedback();
+    }
+    @Test public void emptyReplyCleanupUnregistersEveryField()throws Exception{
+        ready();client.disconnect();await(()->module.fields.isEmpty());assertEquals(1,bindings);assertEquals(1,unbindings);
+    }
     @Test public void commandUsesFytEncodingAndWaitsForFeedback()throws Exception{ready();client.change(alarm,2,true);await(()->module.writes==1);assertEquals(106,module.command);assertArrayEquals(new int[]{4,3},module.args);assertTrue(client.busy());assertEquals(Integer.valueOf(1),client.values.get(69));module.emit(69,3);await(()->!client.busy());assertEquals(Integer.valueOf(2),client.values.get(69));assertTrue(client.status.contains("confirmed"));}
     @Test public void parkedRequired()throws Exception{ready();client.change(alarm,2,false);assertFalse(client.busy());assertEquals(0,module.writes);}
     @Test public void unmappedProfileKeepsFytConnectionForReport()throws Exception{client.connect();await(()->module.fields.size()==1);module.emit(1000,0x140141);await(()->client.profile()==0x140141);assertTrue(client.connected());assertTrue(client.values.isEmpty());assertTrue(client.report().contains("0x140141"));}

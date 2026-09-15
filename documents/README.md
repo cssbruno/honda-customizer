@@ -7,6 +7,7 @@
 - [RZC/BNR decoder findings](research/honda-cluster-analysis/fyt-additional/other-honda/findings.md)
 - [Door, lighting and other setting research](research/honda-cluster-analysis/fyt-additional/doors-lights/full-settings-inventory.md) — research does not imply app support.
 - [SYU service contracts](research/syu-ms-analysis/REPORT.md)
+- [Joying empty-reply transport fix](research/fyt-transport-audit/FINDINGS.md) — command/subscription wire contract and regression evidence.
 
 ## Original Honda head unit: reference only
 

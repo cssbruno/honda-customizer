@@ -205,7 +205,12 @@ final class FytProtocol {
         Parcel data=Parcel.obtain(),reply=Parcel.obtain();
         try{data.writeInterfaceToken(descriptor);writer.write(data);
             beforeSend.run();
-            if(!binder.transact(code,data,reply,0)||reply.dataSize()>65536||reply.dataAvail()<4)throw new RemoteException("Invalid FYT reply");
+            if(!binder.transact(code,data,reply,0))throw new RemoteException("Unsupported FYT transaction");
+            // Joying x/c$a returns no body for cmd/register/unregister. As in Cabin's
+            // documented fix, retain synchronous dispatch for exception-header stubs.
+            // Accept empty replies only for these void module calls; never resend.
+            if(MODULE.equals(descriptor)&&(code==1||code==3||code==4)&&reply.dataSize()==0)return reader.read(reply);
+            if(reply.dataSize()>65536||reply.dataAvail()<4)throw new RemoteException("Invalid FYT reply");
             reply.readException();return reader.read(reply);
         }finally{data.recycle();reply.recycle();}
     }

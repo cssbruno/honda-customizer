@@ -71,3 +71,7 @@ New sound/camera work has been removed at the owner’s direction. The current s
 The service subscription path was traced beyond the UI. Settings now use notify=0 so that untimestamped cache entries (including startup zeros) cannot be presented as fresh vehicle feedback. Only profile identity uses notify=1. Expired values are removed from the UI/report; expiry of an older observation cannot erase a newer one. Some values remain unavailable on firmware that suppresses unchanged notifications; no fresh-read command is assumed.
 
 The full feature goal remains incomplete. Language/reset completion responses, additional physical cluster contracts and exact vehicle diagnostic contracts are still missing. No physical head-unit report or validation has been supplied.
+
+## 3.3.2 transport correction
+
+The documented Joying service returns empty bodies for module command/register/unregister operations. The app incorrectly required an exception header, causing valid registration to fail. The [transport correction and evidence](research/fyt-transport-audit/FINDINGS.md) follow Cabin’s existing fix. Toolkit replies and all live-feedback requirements remain strict. Physical validation and the remaining feature evidence above are still outstanding.
