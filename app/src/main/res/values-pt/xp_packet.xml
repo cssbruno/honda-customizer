@@ -1,0 +1,16 @@
+<resources>
+    <string name="xp_packet_title">Pacote XP manual</string>
+    <string name="xp_packet_help">Digite o corpo do pacote do decodificador XP em hexadecimal, sem o prefixo E3 adicionado pelo FYT. Isto não traduz pacotes do serviço Honda nem IDs CAN. Não há repetição automática nem confirmação do veículo. Após o envio, reconecte para receber novos dados do veículo.</string>
+    <string name="xp_packet_hint">Bytes hexadecimais separados por espaços</string>
+    <string name="xp_packet_review">Revisar pacote</string>
+    <string name="xp_packet_invalid">Digite de 1 a 64 bytes, cada um com dois dígitos hexadecimais, separados por espaços.</string>
+    <string name="xp_packet_session_expired">A conexão ou a confirmação de estacionamento mudou. Abra o editor de pacote novamente.</string>
+    <string name="xp_packet_confirm_title">Enviar este pacote XP?</string>
+    <string name="xp_packet_confirm">Perfil: XP 0x4012A\nComando FYT: 1008\nCorpo do pacote: %1$s\n\nIsto envia ao FYT exatamente os bytes digitados. O resultado no veículo permanecerá não confirmado. O app desconecta depois; reconecte para receber novas leituras.</string>
+    <string name="xp_packet_send">Enviar pacote</string>
+    <string name="xp_packet_sending">Enviando pacote XP manual — resultado no veículo não confirmado.</string>
+    <string name="xp_packet_requested">Pacote XP manual solicitado (comando 1008): %1$s. Não confirma alteração no veículo.</string>
+    <string name="xp_packet_dispatched">Pacote encaminhado ao FYT; resultado no veículo não confirmado. Desconectado — reconecte para receber dados reais.</string>
+    <string name="xp_packet_failed">Falha ao encaminhar pacote XP; resultado no veículo não confirmado: %1$s</string>
+    <string name="xp_packet_timeout">Tempo esgotado ao encaminhar pacote XP; resultado no veículo não confirmado. Sem repetição automática.</string>
+</resources>

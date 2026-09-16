@@ -19,6 +19,7 @@ final class FytClient {
     private int lastProfile;
     private final List<String> trace=new ArrayList<>();
     private volatile Write pending;
+    private volatile Object pendingPacket;
     private static final class Write {
         final FytProtocol.Control control; final int value; final long baselineTime;
         volatile boolean started;
@@ -31,7 +32,9 @@ final class FytClient {
     private String family(int value){return FytProtocol.supported(value)?FytProtocol.family(value):message(R.string.fyt_unmapped_family);}
     boolean connected(){return session!=null;}
     int profile(){return profile;}
-    boolean busy(){return pending!=null;}
+    boolean busy(){return pending!=null||pendingPacket!=null;}
+    Object connectionToken(){return session;}
+    boolean canSendPacket(){Session s=session;return !closed&&s!=null&&s.ready&&s.module!=null&&FytProtocol.xp(profile)&&!busy();}
     private final class Session implements ServiceConnection {
         final ExecutorService worker=FytClient.this.worker;
         volatile IBinder module; boolean bound,ready;
@@ -108,6 +111,8 @@ final class FytClient {
             }catch(Exception e){main.post(()->connectionFailed(owner,message(R.string.fyt_settings_failed,e.getMessage())));}});
             return;
         }
+        // Manual packets have no verified response contract. Do not attribute events to them.
+        if(pendingPacket!=null)return;
         for(FytProtocol.Control c:FytProtocol.CONTROLS)if(c.field==field&&FytProtocol.visible(profile,c)){
             Integer value=c.decode(raw);
             if(value==null){values.remove(field);received.remove(field);}else{values.put(field,value);received.put(field,arrived);}
@@ -126,7 +131,31 @@ final class FytClient {
     }
     boolean editable(FytProtocol.Control c){
         Session s=session;Long time=received.get(c.field);
-        return s!=null&&s.ready&&s.module!=null&&pending==null&&FytProtocol.visible(profile,c)&&values.containsKey(c.field)&&time!=null&&SystemClock.elapsedRealtime()-time<FRESH_MS;
+        return s!=null&&s.ready&&s.module!=null&&!busy()&&FytProtocol.visible(profile,c)&&values.containsKey(c.field)&&time!=null&&SystemClock.elapsedRealtime()-time<FRESH_MS;
+    }
+    void sendPacket(byte[] input,boolean parked,Object expectedConnection){
+        if(!parked||!canSendPacket()||session!=expectedConnection)return;
+        XpPacket.unsigned(input);final byte[] bytes=input.clone();
+        final Session owner=session;final int expectedProfile=profile;
+        final Object request=new Object();final long deadline=SystemClock.elapsedRealtime()+TIMEOUT_MS;
+        pendingPacket=request;values.clear();received.clear();
+        status=message(R.string.xp_packet_sending);trace.add(message(R.string.xp_packet_requested,XpPacket.hex(bytes)));observer.run();
+        if(closed||session!=owner||pendingPacket!=request)return;
+        owner.worker.execute(()->{
+            if(session!=owner||pendingPacket!=request)return;
+            try{
+                FytProtocol.sendXpPacket(owner.module,expectedProfile,bytes,()->{
+                    if(closed||session!=owner||profile!=expectedProfile||pendingPacket!=request||SystemClock.elapsedRealtime()>=deadline)
+                        throw new IllegalStateException(message(R.string.fyt_request_expired));
+                });
+                main.post(()->{
+                    if(session!=owner||pendingPacket!=request)return;
+                    // Start any later editing with a new session and new live observations.
+                    disconnect();status=message(R.string.xp_packet_dispatched);trace.add(status);observer.run();
+                });
+            }catch(Exception e){main.post(()->fail(owner,message(R.string.xp_packet_failed,e.getMessage())));}
+        });
+        main.postDelayed(()->{if(session==owner&&pendingPacket==request)fail(owner,message(R.string.xp_packet_timeout));},TIMEOUT_MS);
     }
     void change(FytProtocol.Control c,int value,boolean parked){
         if(!parked||!editable(c)||value<0||value>=c.options.length)return;
@@ -167,8 +196,8 @@ final class FytClient {
         return out.toString();
     }
     void disconnect(){
-        boolean unconfirmed=pending!=null;
-        Session old=session;session=null;profile=0;pending=null;values.clear();received.clear();main.removeCallbacksAndMessages(null);
+        boolean unconfirmed=busy();
+        Session old=session;session=null;profile=0;pending=null;pendingPacket=null;values.clear();received.clear();main.removeCallbacksAndMessages(null);
         if(old!=null){
             releaseBinding(old);
             old.worker.execute(()->{if(old.module!=null)for(int field:old.registered)try{FytProtocol.register(old.module,old.callback,field,false);}catch(Exception ignored){}});

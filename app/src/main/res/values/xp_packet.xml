@@ -1,0 +1,16 @@
+<resources>
+    <string name="xp_packet_title">Manual XP packet</string>
+    <string name="xp_packet_help">Enter an XP decoder packet body in hexadecimal, without the E3 prefix added by FYT. This does not translate Honda service packets or CAN IDs. No automatic retry or vehicle confirmation is available. After dispatch, reconnect to obtain new vehicle feedback.</string>
+    <string name="xp_packet_hint">Hexadecimal bytes separated by spaces</string>
+    <string name="xp_packet_review">Review packet</string>
+    <string name="xp_packet_invalid">Enter 1–64 bytes, each with two hexadecimal digits, separated by spaces.</string>
+    <string name="xp_packet_session_expired">Connection or parked acknowledgement changed. Reopen the packet editor.</string>
+    <string name="xp_packet_confirm_title">Send this XP packet?</string>
+    <string name="xp_packet_confirm">Profile: XP 0x4012A\nFYT command: 1008\nPacket body: %1$s\n\nThis sends exactly the entered bytes to FYT. The vehicle result will remain unconfirmed. The app disconnects afterward; reconnect for new live readings.</string>
+    <string name="xp_packet_send">Send packet</string>
+    <string name="xp_packet_sending">Dispatching manual XP packet — vehicle result unconfirmed.</string>
+    <string name="xp_packet_requested">Manual XP packet requested (command 1008): %1$s. Not vehicle confirmation.</string>
+    <string name="xp_packet_dispatched">Packet dispatched to FYT; vehicle result unconfirmed. Disconnected — reconnect for live feedback.</string>
+    <string name="xp_packet_failed">XP packet dispatch failed; vehicle result unconfirmed: %1$s</string>
+    <string name="xp_packet_timeout">XP packet dispatch timed out; vehicle result unconfirmed. No automatic retry.</string>
+</resources>

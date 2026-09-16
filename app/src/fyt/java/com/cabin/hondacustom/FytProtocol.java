@@ -245,6 +245,13 @@ final class FytProtocol {
         }finally{data.recycle();reply.recycle();}
     }
     static IBinder module(IBinder toolkit)throws RemoteException{return exchange(toolkit,TOOLKIT,1,p->p.writeInt(7),Parcel::readStrongBinder);}
+    static void sendXpPacket(IBinder module,int profile,byte[] bytes,Runnable beforeSend)throws RemoteException{
+        if(!xp(profile))throw new IllegalArgumentException("Unsupported XP profile");
+        final int[] body=XpPacket.unsigned(bytes);
+        // f0/xp.cmd 1008 prefixes E3 and forwards the caller body to y/k.t.
+        // This is a decoder packet, not a physical CAN-frame schema or acknowledgement.
+        exchange(module,MODULE,1,p->{p.writeInt(1008);p.writeIntArray(body);p.writeFloatArray(null);p.writeStringArray(null);},p->null,beforeSend);
+    }
     // f0/xp.register: notify=0 subscribes without replaying the untimestamped settings cache.
     // Only decoder identity requests an initial snapshot; it is configuration, not vehicle state.
     static void register(IBinder module,IBinder callback,int field,boolean add)throws RemoteException{

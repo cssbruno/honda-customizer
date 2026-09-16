@@ -29,6 +29,10 @@ public final class MainActivity extends Activity {
         if(!FytProtocol.supported(client.profile())){
             rows.addView(text(client.connected()&&client.profile()!=0?getString(R.string.fyt_unmapped_help):getString(R.string.fyt_connect_help),18));return;
         }
+        if(FytProtocol.xp(client.profile())){
+            Button packet=new Button(this);packet.setText(R.string.xp_packet_title);
+            packet.setEnabled(parked.isChecked()&&client.canSendPacket());packet.setOnClickListener(v->packet());rows.addView(packet);
+        }
         java.util.Set<String> categories=new java.util.LinkedHashSet<>();
         for(FytProtocol.Control c:FytProtocol.CONTROLS)if(FytProtocol.visible(client.profile(),c))categories.add(c.category);
         for(String category:categories){
@@ -42,6 +46,33 @@ public final class MainActivity extends Activity {
         }
         }
         rows.addView(text(getString(R.string.fyt_feedback_help),14));
+    }
+    private void packet(){
+        final Object owner=client.connectionToken();
+        LinearLayout content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);
+        content.addView(text(getString(R.string.xp_packet_help),16));
+        EditText input=new EditText(this);input.setHint(R.string.xp_packet_hint);
+        input.setInputType(android.text.InputType.TYPE_CLASS_TEXT|android.text.InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS|android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        input.setFilters(new android.text.InputFilter[]{new android.text.InputFilter.LengthFilter(1024)});
+        content.addView(input);ScrollView scroll=new ScrollView(this);scroll.addView(content);
+        AlertDialog editor=new AlertDialog.Builder(this).setTitle(R.string.xp_packet_title).setView(scroll)
+            .setNegativeButton(R.string.fyt_cancel,null).setPositiveButton(R.string.xp_packet_review,null).create();
+        editor.setOnShowListener(d->editor.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{
+            final byte[] bytes;
+            try{bytes=XpPacket.parse(input.getText().toString());}
+            catch(IllegalArgumentException e){input.setError(getString(R.string.xp_packet_invalid));return;}
+            if(owner!=client.connectionToken()||!client.canSendPacket()||!parked.isChecked()){
+                input.setError(getString(R.string.xp_packet_session_expired));return;
+            }
+            new AlertDialog.Builder(this).setTitle(R.string.xp_packet_confirm_title)
+                .setMessage(getString(R.string.xp_packet_confirm,XpPacket.hex(bytes)))
+                .setNegativeButton(R.string.fyt_cancel,null).setPositiveButton(R.string.xp_packet_send,(d2,w)->{
+                    if(owner!=client.connectionToken()||!client.canSendPacket()||!parked.isChecked()){
+                        Toast.makeText(this,R.string.xp_packet_session_expired,Toast.LENGTH_LONG).show();return;
+                    }
+                    editor.dismiss();client.sendPacket(bytes,parked.isChecked(),owner);
+                }).show();
+        }));editor.show();
     }
     private void report(){String content=client.report();TextView body=text(content,15);body.setTextIsSelectable(true);ScrollView scroll=new ScrollView(this);scroll.addView(body);
         new AlertDialog.Builder(this).setTitle(getString(R.string.fyt_report_title)).setView(scroll).setNegativeButton(getString(R.string.fyt_close),null).setPositiveButton(getString(R.string.fyt_copy),(d,w)->{

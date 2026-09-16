@@ -80,6 +80,50 @@ public class FytClientTest {
         ShadowLooper.idleMainLooper(20000,TimeUnit.MILLISECONDS);assertNull(client.value(alarm));assertFalse(client.editable(alarm));
     }
     @Test public void bindsOnlyFytModuleSeven()throws Exception{ready();assertEquals(1,bindings);assertEquals(Integer.valueOf(1),client.values.get(69));}
+    void xpReady()throws Exception{
+        client.connect();await(()->module.fields.size()==1);module.emit(1000,0x4012a);await(()->client.canSendPacket());
+    }
+    @Test public void manualPacketDispatchNeverConfirmsVehicleAndDiscardsValues()throws Exception{
+        xpReady();module.emit(78,0);await(()->client.values.containsKey(78));module.holdWrite=true;
+        byte[] bytes=XpPacket.parse("C6 02 16 01");client.sendPacket(bytes,true,client.connectionToken());bytes[0]=0;
+        await(()->module.writes==1);assertTrue(client.busy());assertTrue(client.values.isEmpty());
+        assertEquals(1008,module.command);assertArrayEquals(new int[]{198,2,22,1},module.args);
+        module.emit(78,1);ShadowLooper.idleMainLooper();assertTrue(client.values.isEmpty());
+        module.released=true;await(()->!client.connected());assertTrue(client.values.isEmpty());
+        assertTrue(client.status.contains("unconfirmed"));assertTrue(client.report().contains("C6 02 16 01"));
+        assertEquals(1,module.writes);
+    }
+    @Test public void manualPacketRequiresParkedAcknowledgementAndCurrentSession()throws Exception{
+        xpReady();Object old=client.connectionToken();byte[] bytes=XpPacket.parse("C6 02 16 01");
+        client.sendPacket(bytes,false,old);assertEquals(0,module.writes);
+        client.disconnect();await(()->module.fields.isEmpty());xpReady();
+        client.sendPacket(bytes,true,old);assertEquals(0,module.writes);assertFalse(client.busy());
+    }
+    @Test public void manualPacketCannotRaceWithSettingsWrite()throws Exception{
+        xpReady();FytProtocol.Control c=null;
+        for(FytProtocol.Control item:FytProtocol.CONTROLS)if(item.xpOnly&&item.field==78)c=item;
+        final FytProtocol.Control target=c;module.emit(78,0);await(()->client.editable(target));
+        client.change(target,1,true);await(()->module.writes==1);
+        client.sendPacket(new byte[]{1},true,client.connectionToken());assertEquals(1,module.writes);assertEquals(105,module.command);
+    }
+    @Test public void manualPacketDisconnectDuringDescriptorLookupCancelsDispatch()throws Exception{
+        xpReady();module.holdDescriptor=true;client.sendPacket(new byte[]{1},true,client.connectionToken());
+        await(()->module.descriptorEntered);client.disconnect();module.releaseDescriptor=true;
+        await(()->module.fields.isEmpty());assertEquals(0,module.writes);
+    }
+    @Test public void manualPacketTimeoutDoesNotRetryOrReportConfirmation()throws Exception{
+        xpReady();module.holdDescriptor=true;client.sendPacket(new byte[]{1},true,client.connectionToken());
+        await(()->module.descriptorEntered);ShadowLooper.idleMainLooper(FytClient.TIMEOUT_MS+1,TimeUnit.MILLISECONDS);
+        assertFalse(client.connected());assertTrue(client.status.contains("unconfirmed"));module.releaseDescriptor=true;
+        await(()->module.fields.isEmpty());assertEquals(0,module.writes);
+    }
+    @Test public void manualPacketRejectedDispatchDisconnectsWithoutRetry()throws Exception{
+        xpReady();module.rejectWrite=true;client.sendPacket(new byte[]{1},true,client.connectionToken());
+        await(()->!client.connected());assertEquals(1,module.writes);assertTrue(client.status.contains("unconfirmed"));
+    }
+    @Test public void manualPacketUnavailableOnOtherDecoder()throws Exception{
+        ready();assertFalse(client.canSendPacket());client.sendPacket(new byte[]{1},true,client.connectionToken());assertEquals(0,module.writes);
+    }
     @Test public void reportedXpProfileSubscribesAndRequiresRealConfirmation()throws Exception{
         client.connect();await(()->module.fields.size()==1);module.emit(1000,0x4012a);
         await(()->module.fields.size()==XpProtocolTest.fields().size());

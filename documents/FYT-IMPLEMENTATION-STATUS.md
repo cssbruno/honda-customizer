@@ -4,6 +4,7 @@ The goal remains full FYT Honda implementation. A researched row is not automati
 
 ## Implemented in active FYT sources
 
+- Manual XP packet dispatch through the verified module-7 command 1008, exact profile `0x4012A`, with byte review, explicit confirmation and always-unconfirmed vehicle outcome. This supplies a transport tool, not additional OEM feature mappings; see [the send-path evidence](research/XP-RAW-SEND.md).
 - 22 independently audited XP persistent settings, exclusively for the reported `0x4012A` profile. See the [XP audit](research/XP-4012A.md).
 - Toolkit connection, module 7, exact decoder identification, connection report.
 - 13 WC panel mappings and 27 WC door/light/remote/assistance/camera/seat mappings with per-row restrictions.
