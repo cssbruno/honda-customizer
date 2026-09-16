@@ -245,6 +245,12 @@ final class FytProtocol {
         }finally{data.recycle();reply.recycle();}
     }
     static IBinder module(IBinder toolkit)throws RemoteException{return exchange(toolkit,TOOLKIT,1,p->p.writeInt(7),Parcel::readStrongBinder);}
+    static void requestXpData(IBinder module,int profile,Runnable beforeSend)throws RemoteException{
+        if(!xp(profile))throw new IllegalArgumentException("Unsupported XP profile");
+        // HondaIndexActi.onCreate: cmd(100, 0). The exact 298 driver requests
+        // packets 33 and 32. See documents/research/XP-DATA-REQUEST.md.
+        exchange(module,MODULE,1,p->{p.writeInt(100);p.writeIntArray(new int[]{0});p.writeFloatArray(null);p.writeStringArray(null);},p->null,beforeSend);
+    }
     static void sendXpPacket(IBinder module,int profile,byte[] bytes,Runnable beforeSend)throws RemoteException{
         if(!xp(profile))throw new IllegalArgumentException("Unsupported XP profile");
         final int[] body=XpPacket.unsigned(bytes);

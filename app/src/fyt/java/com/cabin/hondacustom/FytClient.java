@@ -23,6 +23,13 @@ final class FytClient {
     private final List<String> trace=new ArrayList<>();
     private volatile Write pending;
     private volatile Object pendingPacket;
+    private volatile Read reading;
+    private static final class Read {
+        final long deadline=SystemClock.elapsedRealtime()+TIMEOUT_MS;
+        final Set<Integer> fields=new HashSet<>();
+        volatile boolean started,active=true;
+        boolean sent;
+    }
     private static final class Write {
         final FytProtocol.Control control; final int value; final long baselineTime;
         volatile boolean started;
@@ -35,7 +42,8 @@ final class FytClient {
     private String family(int value){return FytProtocol.supported(value)?FytProtocol.family(value):message(R.string.fyt_unmapped_family);}
     boolean connected(){return session!=null;}
     int profile(){return profile;}
-    boolean busy(){return pending!=null||pendingPacket!=null;}
+    boolean busy(){return pending!=null||pendingPacket!=null||(reading!=null&&reading.active);}
+    boolean canRequestData(){return canSendPacket();}
     Object connectionToken(){return session;}
     boolean canSendPacket(){Session s=session;return !closed&&s!=null&&s.ready&&s.module!=null&&FytProtocol.xp(profile)&&!busy();}
     private final class Session implements ServiceConnection {
@@ -64,7 +72,9 @@ final class FytClient {
                     Write request=pending;
                     // Record ownership at callback arrival, not when the UI drains its queue.
                     Write observed=request!=null&&request.started?request:null;
-                    main.post(()->update(Session.this,field,raw,arrived,observed));}
+                    Read read=reading;
+                    Read observedRead=read!=null&&read.active&&read.started&&arrived<read.deadline?read:null;
+                    main.post(()->update(Session.this,field,raw,arrived,observed,observedRead));}
                 if(reply!=null)reply.writeNoException();return true;
             }
         };
@@ -110,7 +120,7 @@ final class FytClient {
         if(session!=owner)return;
         fail(owner,message);
     }
-    private void update(Session owner,int field,int raw,long arrived,Write observed){
+    private void update(Session owner,int field,int raw,long arrived,Write observed,Read observedRead){
         if(session!=owner)return;
         if(field==FytProtocol.PROFILE){
             if(profile==raw&&profile!=0)return;
@@ -132,7 +142,8 @@ final class FytClient {
                     try{FytProtocol.registerDecoderInfo(owner.module,owner.callback);}
                     catch(Exception e){main.post(()->{if(session==owner){trace.add(message(R.string.fyt_decoder_version_failed));decoderInfo(owner,null,R.string.audit_decoder_failed);}});}
                 }
-                main.post(()->{if(session==owner){owner.ready=true;status=message(R.string.fyt_connected,raw);observer.run();}});
+                main.post(()->{if(session==owner){owner.ready=true;status=message(R.string.fyt_connected,raw);
+                    if(FytProtocol.xp(raw))requestData();else observer.run();}});
             }catch(Exception e){main.post(()->connectionFailed(owner,message(R.string.fyt_settings_failed,e.getMessage())));}});
             return;
         }
@@ -140,6 +151,8 @@ final class FytClient {
         if(pendingPacket!=null)return;
         for(FytProtocol.Control c:FytProtocol.CONTROLS)if(c.field==field&&FytProtocol.visible(profile,c)){
             Integer value=c.decode(raw);
+            if(value!=null&&observedRead!=null&&reading==observedRead&&observedRead.active)
+                observedRead.fields.add(field);
             if(value==null){values.remove(field);received.remove(field);unavailableReasons.put(field,R.string.audit_feedback_invalid);}
             else{values.put(field,value);received.put(field,arrived);unavailableReasons.remove(field);}
             if(observed!=null&&pending==observed&&observed.control==c){observed.feedback=value;finishIfConfirmed(observed);}
@@ -158,6 +171,37 @@ final class FytClient {
     boolean editable(FytProtocol.Control c){
         Session s=session;Long time=received.get(c.field);
         return s!=null&&s.ready&&s.module!=null&&!busy()&&FytProtocol.visible(profile,c)&&values.containsKey(c.field)&&time!=null&&SystemClock.elapsedRealtime()-time<FRESH_MS;
+    }
+    void requestData(){
+        if(!canRequestData())return;
+        final Session owner=session;final int expectedProfile=profile;
+        final Read request=new Read();reading=request;
+        values.clear();received.clear();unavailableReasons.clear();
+        trace.add(message(R.string.audit_read_requested));observer.run();
+        if(closed||session!=owner||reading!=request)return;
+        owner.worker.execute(()->{
+            try{
+                FytProtocol.requestXpData(owner.module,expectedProfile,()->{
+                    if(closed||session!=owner||profile!=expectedProfile||reading!=request||!request.active||SystemClock.elapsedRealtime()>=request.deadline)
+                        throw new IllegalStateException(message(R.string.fyt_request_expired));
+                    request.started=true;
+                });
+                main.post(()->{if(session==owner&&reading==request&&request.active){request.sent=true;observer.run();}});
+            }catch(Exception e){main.post(()->{
+                if(session==owner&&reading==request&&request.active)fail(owner,message(R.string.audit_read_failed,e.getMessage()));
+            });}
+        });
+        main.postDelayed(()->{
+            if(session!=owner||reading!=request)return;
+            request.active=false;trace.add(auditRead());observer.run();
+        },TIMEOUT_MS);
+    }
+    private String auditRead(){
+        Read request=reading;
+        if(request==null)return message(R.string.audit_read_idle);
+        if(!request.sent)return message(request.active?R.string.audit_read_sending:R.string.audit_read_call_timeout);
+        if(request.active)return message(R.string.audit_read_waiting,request.fields.size());
+        return request.fields.isEmpty()?message(R.string.audit_read_no_feedback):message(R.string.audit_read_observed,request.fields.size());
     }
     void sendAction(XpAction action,boolean parked,Object expectedConnection){
         if(action==null||!parked||!canSendPacket()||session!=expectedConnection)return;
@@ -224,6 +268,7 @@ final class FytClient {
         else if(profile==0)out.append('\n').append(message(R.string.audit_profile_waiting));
         else if(!FytProtocol.supported(profile))out.append('\n').append(message(R.string.fyt_unmapped_help));
         else out.append('\n').append(message(R.string.audit_live_hint));
+        if(connected()&&FytProtocol.xp(profile))out.append("\n\n").append(auditRead()).append('\n').append(message(R.string.audit_read_help));
         return out.toString();
     }
     String auditIdentity(){
@@ -280,8 +325,8 @@ final class FytClient {
             message(R.string.audit_history)+"\n"+auditHistory();
     }
     void disconnect(){
-        boolean unconfirmed=busy();
-        Session old=session;session=null;profile=0;pending=null;pendingPacket=null;values.clear();received.clear();unavailableReasons.clear();main.removeCallbacksAndMessages(null);
+        boolean unconfirmed=pending!=null||pendingPacket!=null;
+        Session old=session;session=null;profile=0;pending=null;pendingPacket=null;reading=null;values.clear();received.clear();unavailableReasons.clear();main.removeCallbacksAndMessages(null);
         if(old!=null){
             releaseBinding(old);
             old.worker.execute(()->{if(old.module!=null)for(int field:old.registered)try{FytProtocol.register(old.module,old.callback,field,false);}catch(Exception ignored){}});

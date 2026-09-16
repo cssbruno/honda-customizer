@@ -48,7 +48,7 @@ public class FytAuditUiTest {
     }
 
     @Test @Config(qualifiers="pt-rBR-w1024dp-h600dp-land")
-    public void liveAuditAndCopyUseLatestFeedbackWithoutCommandsOrNewConnection()throws Exception{
+    public void liveAuditAndCopyUseLatestFeedbackAndOfferExplicitDataRequest()throws Exception{
         FytClientTest fixture=new FytClientTest();fixture.setup();
         ActivityController<MainActivity> controller=Robolectric.buildActivity(MainActivity.class).setup();
         try{
@@ -56,6 +56,7 @@ public class FytAuditUiTest {
             java.lang.reflect.Field field=MainActivity.class.getDeclaredField("client");field.setAccessible(true);
             ((FytClient)field.get(activity)).destroy();field.set(activity,fixture.client);
             View root=activity.getWindow().getDecorView();find(root,"Auditoria FYT").performClick();
+            assertEquals(1,fixture.module.reads); // Opening the audit does not send another request.
             assertFullScreen(root,1024,600);
             assertNotNull(find(root,"0 de 22"));
             fixture.module.emit(78,1);FytAuditTest.version(fixture.module.callback,"screen-fixture");
@@ -71,6 +72,13 @@ public class FytAuditUiTest {
             assertNotNull(find(root,"Leituras do veículo"));
             ShadowLooper.idleMainLooper(30,TimeUnit.SECONDS);
             assertNotNull(find(root,"0 de 22"));assertNotNull(find(root,"retorno vencido"));
+            find(root,"Solicitar dados FYT").performClick();
+            fixture.await(()->fixture.module.reads==2);
+            ShadowLooper.idleMainLooper(1,TimeUnit.SECONDS);
+            assertFalse(find(root,"Solicitar dados FYT").isEnabled());
+            ShadowLooper.idleMainLooper(8,TimeUnit.SECONDS);
+            assertTrue(find(root,"Solicitar dados FYT").isEnabled());
+            assertNotNull(find(root,"nenhum retorno válido dos ajustes observado"));
             find(root,"Voltar").performClick();assertTrue(fixture.client.connected());
             assertEquals(1,fixture.bindings);assertEquals(0,fixture.module.writes);
         }finally{controller.pause().stop().destroy();fixture.close();}

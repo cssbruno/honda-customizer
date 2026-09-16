@@ -1,8 +1,8 @@
-# Honda Customizer 3.4.3 — Joying / FYT
+# Honda Customizer 3.4.4 — Joying / FYT
 
 An Android app for FYT head units using the installed `com.syu.ms` service. It has no original Honda/Mitsubishi service dependency, permission, editor or executable client code in the APK.
 
-[3.4.3 release notes](documents/RELEASE-3.4.3.md)
+[3.4.4 release notes](documents/RELEASE-3.4.4.md)
 
 ## Repository
 
@@ -31,6 +31,8 @@ Connect uses `com.syu.ms.toolkit` (`app.ToolkitService`) and obtains CANBUS modu
 The detected profile comes from FYT field 1000. An unmapped profile is reported as a connected FYT service with no mapped controls, rather than pretending the FYT service is absent. **FYT audit** opens a full-screen view with the service version, unit model, attempted toolkit connection, exact profile, protocol findings and received settings. It updates while open, preserves scrolling, and distinguishes missing, invalid and expired readings. **Back** returns to the controls; **Copy** optionally copies the latest audit without closing it. No report file, upload or vehicle command is required.
 
 On XP `0x4012A`, the audit also includes decoder version text from FYT field 1005 when available. Empty/invalid replies, subscription failure and no reply within 8 seconds have distinct explanations. This service-held value is explicitly marked as potentially cached, and historical after disconnecting. It is diagnostic metadata, not vehicle state or a guarantee of current hardware identity. It can help identify a box without a label. See the [cluster bridge investigation](documents/research/CLUSTER-BRIDGE-AUDIT.md).
+
+For exact XP **0x4012A**, connecting now sends the stock Honda data request **100 [0]** once after subscribing. The audit offers **Request FYT data** to repeat it explicitly and shows valid events observed during an 8-second window. Earlier readings are cleared; no automatic retry or cache replay occurs. The reference service can still suppress unchanged values. See [the request trace and owner decoder observation](documents/research/XP-DATA-REQUEST.md).
 
 ## Ready XP actions
 
@@ -65,11 +67,11 @@ python3 -m unittest discover -s tools -p 'test_*.py'
 python3 tools/package_release.py --sdk-root "$ANDROID_HOME"
 ```
 
-APK: `app/build/outputs/apk/release/app-release.apk`, version code 15. Signed with the local development certificate; installing over an earlier copy requires a matching signing certificate. Minimum Android API 17 is a compatibility floor; the target hardware is the FYT head unit.
+APK: `app/build/outputs/apk/release/app-release.apk`, version code 16. Signed with the local development certificate; installing over an earlier copy requires a matching signing certificate. Minimum Android API 17 is a compatibility floor; the target hardware is the FYT head unit.
 
-95 updater/service/protocol/localization/audit regression tests and 11 Python tests cover rejection without fallback (including a blocked toolkit), exact decoder commands, field subscriptions, fresh feedback, write failure, timeout and disconnect. Test-only Binder fixtures are excluded from the app; the application has no mock vehicle data. They do not establish operation on the user's physical FYT hardware. The supplied head-unit photo reports profile `0x4012A` and service `2.23.0718.1700 / 2123071817`, and confirms a toolkit connection. No vehicle is connected to this development environment; settings readback and writes remain physically unverified.
+101 updater/service/protocol/localization/audit regression tests and 11 Python tests cover rejection without fallback (including a blocked toolkit), exact decoder commands, field subscriptions, fresh feedback, write failure, timeout and disconnect. Test-only Binder fixtures are excluded from the app; the application has no mock vehicle data. They do not establish operation on the user's physical FYT hardware. The supplied head-unit photo reports profile `0x4012A` and service `2.23.0718.1700 / 2123071817`, and confirms a toolkit connection. No vehicle is connected to this development environment; settings readback and writes remain physically unverified.
 
-Active sources: `app/src/fyt`, `fytTest`, `fytAndroidTest`. Original Honda sources/tests and `README-OEM-reference.md` are historical reference only; Gradle excludes their executable code. Old `original-HU` APKs in `dist` are not FYT builds. Emulator checks are not release requirements because emulators have no FYT service access. The distribution packaging script requires fresh release unit tests, lint, APK metadata and signature verification, and emits `Honda-Customizer-3.4.3-FYT.apk` only after those checks.
+Active sources: `app/src/fyt`, `fytTest`, `fytAndroidTest`. Original Honda sources/tests and `README-OEM-reference.md` are historical reference only; Gradle excludes their executable code. Old `original-HU` APKs in `dist` are not FYT builds. Emulator checks are not release requirements because emulators have no FYT service access. The distribution packaging script requires fresh release unit tests, lint, APK metadata and signature verification, and emits `Honda-Customizer-3.4.4-FYT.apk` only after those checks.
 
 Command evidence: [FYT panel protocol](documents/HONDA-FYT-PANEL.md), [RZC/BNR findings](documents/research/honda-cluster-analysis/fyt-additional/other-honda/findings.md), and the saved `Acrivity_RZC_17CRVSettings`, `AcrivitySiYuSettings`, `HondaIndexActi`, and `FinalCanbus` bytecode. No firmware was flashed or vehicle commands sent during development.
 

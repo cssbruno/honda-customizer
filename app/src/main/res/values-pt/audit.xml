@@ -1,4 +1,14 @@
 <resources>
+    <string name="audit_read_button">Solicitar dados FYT</string>
+    <string name="audit_read_idle">Nenhuma solicitação de dados nesta conexão.</string>
+    <string name="audit_read_requested">Solicitada a leitura original XP (100 [0]).</string>
+    <string name="audit_read_sending">Enviando a solicitação de dados ao FYT…</string>
+    <string name="audit_read_waiting">Solicitação enviada. Observando retornos por 8 segundos: %1$d ajustes com eventos válidos desde o envio.</string>
+    <string name="audit_read_observed">Observação encerrada: %1$d ajustes tiveram eventos válidos durante os 8 segundos. Veja as leituras atuais abaixo.</string>
+    <string name="audit_read_no_feedback">Solicitação enviada; nenhum retorno válido dos ajustes observado em 8 segundos.</string>
+    <string name="audit_read_call_timeout">O FYT não concluiu a chamada em 8 segundos. O envio e a resposta do veículo não foram confirmados.</string>
+    <string name="audit_read_failed">Falha na solicitação de dados FYT: %1$s</string>
+    <string name="audit_read_help">O app solicita dados uma vez ao conectar neste perfil XP. Você pode solicitar novamente aqui. O FYT pode omitir valores que não mudaram, mesmo após uma solicitação. O silêncio não identifica a causa. Só eventos recebidos preenchem as leituras; o envio nunca confirma um valor.</string>
     <string name="audit_title">Auditoria FYT</string>
     <string name="audit_back">Voltar</string>
     <string name="audit_summary">Conexão</string>

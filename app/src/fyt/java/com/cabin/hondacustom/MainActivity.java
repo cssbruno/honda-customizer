@@ -101,7 +101,7 @@ public final class MainActivity extends Activity {
         audit=new FytAuditView(this,this::closeAudit,()->{
             ((android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText(getString(R.string.fyt_clipboard_label),client.report()));
             Toast.makeText(this,R.string.fyt_report_copied,Toast.LENGTH_SHORT).show();
-        });
+        },()->client.requestData());
         controls.setVisibility(android.view.View.GONE);screen.addView(audit,new FrameLayout.LayoutParams(-1,-1));audit.refresh(client);
         auditClock.removeCallbacks(tickAudit);auditClock.postDelayed(tickAudit,1000);
     }

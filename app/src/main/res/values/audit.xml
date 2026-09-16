@@ -1,4 +1,14 @@
 <resources>
+    <string name="audit_read_button">Request FYT data</string>
+    <string name="audit_read_idle">No data request in this connection.</string>
+    <string name="audit_read_requested">Requested the stock XP data read (100 [0]).</string>
+    <string name="audit_read_sending">Sending the FYT data request…</string>
+    <string name="audit_read_waiting">Request dispatched. Observing feedback for 8 seconds: %1$d settings with valid events since dispatch.</string>
+    <string name="audit_read_observed">Observation finished: %1$d settings had valid events during the 8-second window. See current readings below.</string>
+    <string name="audit_read_no_feedback">Request dispatched; no valid setting feedback observed within 8 seconds.</string>
+    <string name="audit_read_call_timeout">FYT did not complete the request call within 8 seconds. Dispatch and vehicle response are unconfirmed.</string>
+    <string name="audit_read_failed">FYT data request failed: %1$s</string>
+    <string name="audit_read_help">The app requests data once after connecting to this XP profile. You can request again here. FYT may suppress unchanged values, including after a request. Silence does not identify the cause. Only received events populate readings; dispatch never confirms a value.</string>
     <string name="audit_title">FYT audit</string>
     <string name="audit_back">Back</string>
     <string name="audit_summary">Connection</string>

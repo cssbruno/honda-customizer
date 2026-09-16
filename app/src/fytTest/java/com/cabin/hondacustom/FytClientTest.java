@@ -19,7 +19,9 @@ public class FytClientTest {
     final java.util.List<String> actions=new java.util.ArrayList<>();
     final FytProtocol.Control alarm=FytProtocol.CONTROLS.get(9);
     static class FakeModule extends Binder {
-        volatile IBinder callback; volatile int writes;
+        volatile IBinder callback; volatile int writes,reads;
+        volatile boolean readBeforeSubscriptions;
+        int readCommand; int[] readArgs;
         final Map<Integer,Integer> notificationFlags=Collections.synchronizedMap(new HashMap<>()); int command; int[] args;
         volatile boolean holdWrite, rejectWrite, released, exceptionHeader;
         volatile boolean holdDescriptor,descriptorEntered,releaseDescriptor;
@@ -34,7 +36,9 @@ public class FytClientTest {
             d.enforceInterface("com.syu.ipc.IRemoteModule");
             if(code==3){callback=d.readStrongBinder();int field=d.readInt();fields.add(field);int notify=d.readInt();notificationFlags.put(field,notify);assertEquals(field==1000||field==1005?1:0,notify);}
             else if(code==4){d.readStrongBinder();fields.remove(d.readInt());}
-            else if(code==1){command=d.readInt();args=d.createIntArray();assertNull(d.createFloatArray());assertNull(d.createStringArray());writes++;
+            else if(code==1){int incoming=d.readInt();int[] input=d.createIntArray();assertNull(d.createFloatArray());assertNull(d.createStringArray());
+                if(incoming==100){readCommand=incoming;readArgs=input;readBeforeSubscriptions=fields.size()!=24;reads++;}
+                else{command=incoming;args=input;writes++;}
                 long end=System.nanoTime()+TimeUnit.SECONDS.toNanos(5);
                 while(holdWrite&&!released&&System.nanoTime()<end)try{Thread.sleep(5);}catch(InterruptedException e){throw new RemoteException("Interrupted");}
                 if(rejectWrite)throw new RemoteException("Rejected write");
@@ -81,7 +85,9 @@ public class FytClientTest {
     }
     @Test public void bindsOnlyFytModuleSeven()throws Exception{ready();assertEquals(1,bindings);assertEquals(Integer.valueOf(1),client.values.get(69));}
     void xpReady()throws Exception{
-        client.connect();await(()->module.fields.size()==1);module.emit(1000,0x4012a);await(()->client.canSendPacket());
+        client.connect();await(()->module.fields.size()==1);module.emit(1000,0x4012a);
+        await(()->client.auditSummary().contains("Request dispatched.")||client.auditSummary().contains("Solicitação enviada."));
+        ShadowLooper.idleMainLooper(FytClient.TIMEOUT_MS+1,TimeUnit.MILLISECONDS);assertTrue(client.canSendPacket());
     }
     @Test public void manualPacketDispatchNeverConfirmsVehicleAndDiscardsValues()throws Exception{
         xpReady();module.emit(78,0);await(()->client.values.containsKey(78));module.holdWrite=true;
@@ -133,7 +139,10 @@ public class FytClientTest {
         FytProtocol.Control tachometer=null;
         for(FytProtocol.Control c:FytProtocol.CONTROLS)if(c.xpOnly&&c.field==78)tachometer=c;
         final FytProtocol.Control control=tachometer;assertNotNull(control);
-        assertFalse(client.editable(control));module.emit(78,0);await(()->client.editable(control));
+        assertFalse(client.editable(control));
+        await(()->client.auditSummary().contains("Request dispatched."));
+        module.emit(78,0);ShadowLooper.idleMainLooper();assertFalse(client.editable(control));
+        ShadowLooper.idleMainLooper(FytClient.TIMEOUT_MS+1,TimeUnit.MILLISECONDS);assertTrue(client.editable(control));
         client.change(control,1,true);await(()->module.writes==1);
         assertEquals(105,module.command);assertArrayEquals(new int[]{22,1},module.args);
         assertTrue(client.busy());assertEquals(Integer.valueOf(0),client.value(control));

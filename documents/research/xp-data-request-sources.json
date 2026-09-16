@@ -1,0 +1,119 @@
+{
+  "scope": "Static source trace plus owner report photographs. No physical request/response test; photos and vendor binaries are not bundled.",
+  "canbus_apk_sha256": "98103bc4b64cfc87cd5957a3659304c078a69d8388ae4878fe4950119f15110d",
+  "service_apk_sha256": "4b428302e29c9e2503ccf7844a127f5bed59450736317629aa42b5eb35a9b577",
+  "sources": [
+    {
+      "path": "/tmp/honda-xp-canbus-full/smali/com/syu/canbus/ActivityLauncher.smali",
+      "sha256": "4f0478f1160400b928255dfb3e50a6f295748d08dd2ee16f43e947ea74804f0d",
+      "methods": [
+        {
+          "name": "launchCanbus",
+          "first_line": 19,
+          "sha256": "25f1c10e666aa29333344ba423b2823c3da8495b3c78ecf190a1314e6802773a"
+        }
+      ]
+    },
+    {
+      "path": "/tmp/honda-xp-canbus-full/smali/com/syu/carinfo/honda/HondaIndexActi.smali",
+      "sha256": "16ad3a26e5b6a885259fa148b8600252eda1d5239d7cc3f4eae8113add6e733c",
+      "methods": [
+        {
+          "name": "onCreate",
+          "first_line": 519,
+          "sha256": "b3b725b219c21dda5ce9360bfdfae95f28a319d4348093b4e27c903e76985809"
+        }
+      ]
+    },
+    {
+      "path": "/tmp/cabin-syu-ms-smali/f0/xp.smali",
+      "sha256": "8c3d76dd7c65e6a13c77ae9e06a415d7e44df59898f0f98028b53839ab1675cf",
+      "methods": [
+        {
+          "name": "cmd",
+          "first_line": 712,
+          "sha256": "366f9b0475f038899f07b119cc61aa21c104f42f448eaf0a27011c1bb135291d"
+        },
+        {
+          "name": "Q2",
+          "first_line": 70,
+          "sha256": "6af2435174b7324d0352150705636e26c0e4935d0b419cea5c52b1ad15b7720b"
+        }
+      ]
+    },
+    {
+      "path": "/tmp/cabin-syu-ms-smali/module/canbus/v.smali",
+      "sha256": "86d727f8ff26415bca860cea4f81dae406e0c6de480afa583d3172e09c5c82ba",
+      "methods": [
+        {
+          "name": "cmd",
+          "first_line": 12464,
+          "sha256": "21f8f222c34cf436f7fb045570a32e8bd1d29666fa113e211effbb2cecdcd15a"
+        },
+        {
+          "name": "M2",
+          "first_line": 4390,
+          "sha256": "ca9c0fcb75636ce078481cd67244717252f0ab591ee1a1806b5efdff3c594d00"
+        }
+      ]
+    },
+    {
+      "path": "/tmp/cabin-syu-ms-smali/f0/wp.smali",
+      "sha256": "3f062d15b1cf425c4cd526950dffbb6db1f865c03257415feb88ab6a2301ef6e",
+      "methods": [
+        {
+          "name": "g0",
+          "first_line": 13752,
+          "sha256": "d92f8ee8eb9a61f2cfd5bd09541ea84b85b1df923ba40fbe6b780a0c5c3787e1"
+        }
+      ]
+    },
+    {
+      "path": "/tmp/cabin-syu-ms-smali/i1/v.smali",
+      "sha256": "cdb405f8c8d56a7f764188147e595e6e9d4e8d12d20ae82cc21251825a290ce6",
+      "methods": [
+        {
+          "name": "s",
+          "first_line": 415,
+          "sha256": "801009afda01643524d1034f291b26a37800b78759ff1f2ac584fb0ad1053bd9"
+        }
+      ]
+    }
+  ],
+  "owner_observation": {
+    "received_date": "2026-09-16",
+    "profile": "0x4012A",
+    "profile_decimal": 262442,
+    "android": "10",
+    "head_unit": "sprd ums512_1h10_Natv",
+    "service_version": "2.23.0718.1700",
+    "service_version_code": 2123071817,
+    "decoder_version_reported": "CRI V1.13.108BYPT",
+    "app_version": null,
+    "visible_valid_setting_values": 0,
+    "mapped_settings_shown_unavailable": 22,
+    "photos": [
+      {
+        "name": "1-Foto-1.jpg",
+        "sha256": "cbfd3225cf2a58147fcc4e00ac8ab734a5c21690bd93a121a24c107b8885691c"
+      },
+      {
+        "name": "2-Foto-2.jpg",
+        "sha256": "aa07e7d7e3b61c4e432fa116501673fb153d86aac3c6f1bc74b51ddff749a7e6"
+      }
+    ]
+  },
+  "request": {
+    "module": 7,
+    "command": 100,
+    "ints": [
+      0
+    ],
+    "transport_inputs_hex": [
+      "E3 90 02 33 00",
+      "E3 90 02 32 00"
+    ],
+    "settings_receive_type": "0x32",
+    "physical_response_verified": false
+  }
+}

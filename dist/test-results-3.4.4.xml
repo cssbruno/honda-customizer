@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites tests="101" failures="0" errors="0" skipped="0"><testsuite name="com.cabin.hondacustom.AppUpdaterTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-09-16T11:37:53.971Z" hostname="fedora" time="0.131">
+  <properties />
+  <testcase name="restrictsRedirectHostsAndRequiresHttps" classname="com.cabin.hondacustom.AppUpdaterTest" time="0.017" />
+  <testcase name="rejectsWrongSignerPackageAndDowngrade" classname="com.cabin.hondacustom.AppUpdaterTest" time="0.013" />
+  <testcase name="selectsOnlyNewStableRelease" classname="com.cabin.hondacustom.AppUpdaterTest" time="0.018" />
+  <testcase name="rejectsMissingChecksumWrongRepositoryAndInvalidSize" classname="com.cabin.hondacustom.AppUpdaterTest" time="0.018" />
+  <testcase name="providerRejectsTraversalAndWrites" classname="com.cabin.hondacustom.AppUpdaterTest" time="0.063" />
+  <system-out />
+  <system-err />
+</testsuite><testsuite name="com.cabin.hondacustom.BnrProtocolTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-09-16T11:37:54.104Z" hostname="fedora" time="0.05">
+  <properties />
+  <testcase name="exactPerProfileSubscriptionsRespectHiddenRows" classname="com.cabin.hondacustom.BnrProtocolTest" time="0.015" />
+  <testcase name="bnrCommandsUseItsOwnKeysAndAttentionException" classname="com.cabin.hondacustom.BnrProtocolTest" time="0.021" />
+  <testcase name="bnrMappingsNeverAuthorizeWcOrRzcWrites" classname="com.cabin.hondacustom.BnrProtocolTest" time="0.014" />
+  <system-out />
+  <system-err />
+</testsuite><testsuite name="com.cabin.hondacustom.FytAuditTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-09-16T11:37:54.157Z" hostname="fedora" time="0.212">
+  <properties />
+  <testcase name="capabilityFindingsUseExactProfileAndAreNeverHardwareConfirmation" classname="com.cabin.hondacustom.FytAuditTest" time="0.054" />
+  <testcase name="readingReasonsFollowRealFeedbackAndNeverRetainExpiredValues" classname="com.cabin.hondacustom.FytAuditTest" time="0.046" />
+  <testcase name="decoderTimeoutCanRecoverAndInvalidReplyClearsEarlierIdentification" classname="com.cabin.hondacustom.FytAuditTest" time="0.059" />
+  <testcase name="disconnectMarksIdentificationHistoricalAndReconnectClearsIt" classname="com.cabin.hondacustom.FytAuditTest" time="0.052" />
+  <system-out />
+  <system-err />
+</testsuite><testsuite name="com.cabin.hondacustom.FytAuditUiTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-09-16T11:37:54.377Z" hostname="fedora" time="0.965">
+  <properties />
+  <testcase name="liveAuditAndCopyUseLatestFeedbackAndOfferExplicitDataRequest" classname="com.cabin.hondacustom.FytAuditUiTest" time="0.893" />
+  <testcase name="auditOpensOnScreenWhileDisconnectedAndBackReturnsToControls" classname="com.cabin.hondacustom.FytAuditUiTest" time="0.072" />
+  <system-out />
+  <system-err />
+</testsuite><testsuite name="com.cabin.hondacustom.FytClientTest" tests="48" skipped="0" failures="0" errors="0" timestamp="2026-09-16T11:37:50.785Z" hostname="fedora" time="3.179">
+  <properties />
+  <testcase name="exactProfilesAndVisibility" classname="com.cabin.hondacustom.FytClientTest" time="1.414" />
+  <testcase name="settingsSubscribeOnlyAfterVerifiedProfile" classname="com.cabin.hondacustom.FytClientTest" time="0.061" />
+  <testcase name="wrongBinderDescriptorRejected" classname="com.cabin.hondacustom.FytClientTest" time="0.017" />
+  <testcase name="bnrDoesNotExposeItsHiddenUnitsControl" classname="com.cabin.hondacustom.FytClientTest" time="0.035" />
+  <testcase name="blockedToolkitTimesOutWithoutFallback" classname="com.cabin.hondacustom.FytClientTest" time="0.027" />
+  <testcase name="oldSessionCannotRestoreValues" classname="com.cabin.hondacustom.FytClientTest" time="0.034" />
+  <testcase name="commandUsesFytEncodingAndWaitsForFeedback" classname="com.cabin.hondacustom.FytClientTest" time="0.049" />
+  <testcase name="synchronousNullBindingIsReleased" classname="com.cabin.hondacustom.FytClientTest" time="0.016" />
+  <testcase name="emptyReplyCleanupUnregistersEveryField" classname="com.cabin.hondacustom.FytClientTest" time="0.039" />
+  <testcase name="additionalControlsNeedRealFreshFeedback" classname="com.cabin.hondacustom.FytClientTest" time="0.049" />
+  <testcase name="manualPacketCannotRaceWithSettingsWrite" classname="com.cabin.hondacustom.FytClientTest" time="0.048" />
+  <testcase name="rzcMirrorRequiresRealMatchingFeedback" classname="com.cabin.hondacustom.FytClientTest" time="0.045" />
+  <testcase name="expiredFeedbackDisablesControl" classname="com.cabin.hondacustom.FytClientTest" time="0.069" />
+  <testcase name="binderDeathClearsValues" classname="com.cabin.hondacustom.FytClientTest" time="0.041" />
+  <testcase name="manualPacketTimeoutDoesNotRetryOrReportConfirmation" classname="com.cabin.hondacustom.FytClientTest" time="0.053" />
+  <testcase name="bindsOnlyFytModuleSeven" classname="com.cabin.hondacustom.FytClientTest" time="0.033" />
+  <testcase name="everyControlMatchesRecordedFytWireContract" classname="com.cabin.hondacustom.FytClientTest" time="0.015" />
+  <testcase name="manualPacketDisconnectDuringDescriptorLookupCancelsDispatch" classname="com.cabin.hondacustom.FytClientTest" time="0.053" />
+  <testcase name="rzcCivicUsesItsOwnUnitsAndTachometerCommands" classname="com.cabin.hondacustom.FytClientTest" time="0.032" />
+  <testcase name="decoderDialectsNeverShareCommandsOrLowByteDecoding" classname="com.cabin.hondacustom.FytClientTest" time="0.021" />
+  <testcase name="additionalWcContractsAreExactAndIsolated" classname="com.cabin.hondacustom.FytClientTest" time="0.023" />
+  <testcase name="earlyFeedbackIsConfirmedAfterSuccessfulTransaction" classname="com.cabin.hondacustom.FytClientTest" time="0.051" />
+  <testcase name="latestFeedbackMustStillMatchWhenTransactionCompletes" classname="com.cabin.hondacustom.FytClientTest" time="0.042" />
+  <testcase name="rzcAdditionalContractsAndDecoderIsolation" classname="com.cabin.hondacustom.FytClientTest" time="0.018" />
+  <testcase name="exceptionHeaderModuleStillConnectsAndConfirms" classname="com.cabin.hondacustom.FytClientTest" time="0.06" />
+  <testcase name="parkedRequired" classname="com.cabin.hondacustom.FytClientTest" time="0.041" />
+  <testcase name="invalidFeedbackDisablesControl" classname="com.cabin.hondacustom.FytClientTest" time="0.039" />
+  <testcase name="manualPacketUnavailableOnOtherDecoder" classname="com.cabin.hondacustom.FytClientTest" time="0.029" />
+  <testcase name="disconnectDuringWriteReportsUncertainOutcome" classname="com.cabin.hondacustom.FytClientTest" time="0.031" />
+  <testcase name="duplicateProfileDoesNotEraseWriteOutcome" classname="com.cabin.hondacustom.FytClientTest" time="0.042" />
+  <testcase name="manualPacketDispatchNeverConfirmsVehicleAndDiscardsValues" classname="com.cabin.hondacustom.FytClientTest" time="0.056" />
+  <testcase name="oneBasedBoundsAndLowByte" classname="com.cabin.hondacustom.FytClientTest" time="0.02" />
+  <testcase name="subscribesWithoutReplayingCachedVehicleSettings" classname="com.cabin.hondacustom.FytClientTest" time="0.029" />
+  <testcase name="reportedXpProfileSubscribesAndRequiresRealConfirmation" classname="com.cabin.hondacustom.FytClientTest" time="0.04" />
+  <testcase name="earlierExpiryDoesNotEraseNewerFeedback" classname="com.cabin.hondacustom.FytClientTest" time="0.044" />
+  <testcase name="feedbackBeforeDispatchCannotConfirmLaterWrite" classname="com.cabin.hondacustom.FytClientTest" time="0.053" />
+  <testcase name="lightingExclusionsAndDurationReadback" classname="com.cabin.hondacustom.FytClientTest" time="0.018" />
+  <testcase name="unsupportedProfileNeverSubscribesSettings" classname="com.cabin.hondacustom.FytClientTest" time="0.017" />
+  <testcase name="mismatchedFeedbackDoesNotConfirm" classname="com.cabin.hondacustom.FytClientTest" time="0.03" />
+  <testcase name="changedProfileInvalidatesValues" classname="com.cabin.hondacustom.FytClientTest" time="0.04" />
+  <testcase name="disconnectDuringDescriptorLookupPreventsDispatch" classname="com.cabin.hondacustom.FytClientTest" time="0.043" />
+  <testcase name="manualPacketRejectedDispatchDisconnectsWithoutRetry" classname="com.cabin.hondacustom.FytClientTest" time="0.05" />
+  <testcase name="unmappedProfileKeepsFytConnectionForReport" classname="com.cabin.hondacustom.FytClientTest" time="0.034" />
+  <testcase name="manualPacketRequiresParkedAcknowledgementAndCurrentSession" classname="com.cabin.hondacustom.FytClientTest" time="0.057" />
+  <testcase name="hiddenOrInvalidWritesRejected" classname="com.cabin.hondacustom.FytClientTest" time="0.013" />
+  <testcase name="earlyFeedbackCannotConfirmRejectedTransaction" classname="com.cabin.hondacustom.FytClientTest" time="0.049" />
+  <testcase name="missingToolkitFailsWithoutFallback" classname="com.cabin.hondacustom.FytClientTest" time="0.013" />
+  <testcase name="missingFeedbackTimesOut" classname="com.cabin.hondacustom.FytClientTest" time="0.04" />
+  <system-out />
+  <system-err />
+</testsuite><testsuite name="com.cabin.hondacustom.FytDecoderInfoTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-09-16T11:37:55.343Z" hostname="fedora" time="0.098">
+  <properties />
+  <testcase name="malformedTextAndWrongArrayShapeRejected" classname="com.cabin.hondacustom.FytDecoderInfoTest" time="0.011" />
+  <testcase name="textIsDiagnosticOnlyAndSubscriptionSendsNoCommand" classname="com.cabin.hondacustom.FytDecoderInfoTest" time="0.033" />
+  <testcase name="truncatedPayloadRejected" classname="com.cabin.hondacustom.FytDecoderInfoTest" time="0.012" />
+  <testcase name="oldConnectionCannotSupplyNewConnectionVersion" classname="com.cabin.hondacustom.FytDecoderInfoTest" time="0.031" />
+  <testcase name="nullAndEmptyVersionStayUnavailable" classname="com.cabin.hondacustom.FytDecoderInfoTest" time="0.01" />
+  <system-out />
+  <system-err />
+</testsuite><testsuite name="com.cabin.hondacustom.FytLocalizationTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-09-16T11:37:55.444Z" hostname="fedora" time="0.059">
+  <properties />
+  <testcase name="portugueseMainScreenExplainsRealConnectionRequirement" classname="com.cabin.hondacustom.FytLocalizationTest" time="0.037" />
+  <testcase name="portugueseFailureDoesNotCreateVehicleValuesOrFallback" classname="com.cabin.hondacustom.FytLocalizationTest" time="0.01" />
+  <testcase name="everyControlAndOptionHasEnglishAndPortugueseResources" classname="com.cabin.hondacustom.FytLocalizationTest" time="0.012" />
+  <system-out />
+  <system-err />
+</testsuite><testsuite name="com.cabin.hondacustom.FytTransportTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-09-16T11:37:55.506Z" hostname="fedora" time="0.072">
+  <properties />
+  <testcase name="emptyUnknownOperationReplyIsRejected" classname="com.cabin.hondacustom.FytTransportTest" time="0.011" />
+  <testcase name="joyingVoidOperationsAcceptEmptyReplies" classname="com.cabin.hondacustom.FytTransportTest" time="0.009" />
+  <testcase name="emptyToolkitReplyIsRejected" classname="com.cabin.hondacustom.FytTransportTest" time="0.012" />
+  <testcase name="nonemptyExceptionIsNotIgnored" classname="com.cabin.hondacustom.FytTransportTest" time="0.011" />
+  <testcase name="wrongInterfaceIsRejected" classname="com.cabin.hondacustom.FytTransportTest" time="0.008" />
+  <testcase name="emptyReadReplyIsRejected" classname="com.cabin.hondacustom.FytTransportTest" time="0.009" />
+  <testcase name="unhandledCommandFailsWithoutRetry" classname="com.cabin.hondacustom.FytTransportTest" time="0.01" />
+  <system-out />
+  <system-err />
+</testsuite><testsuite name="com.cabin.hondacustom.RzcProtocolTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-09-16T11:37:55.580Z" hostname="fedora" time="0.038">
+  <properties />
+  <testcase name="rzcRowsCannotWriteOnOtherDecoders" classname="com.cabin.hondacustom.RzcProtocolTest" time="0.011" />
+  <testcase name="allPersistentMappingsUseExactRzcWireValues" classname="com.cabin.hondacustom.RzcProtocolTest" time="0.01" />
+  <testcase name="optionLabelsPreserveDifferentDoorAndTimerSemantics" classname="com.cabin.hondacustom.RzcProtocolTest" time="0.009" />
+  <testcase name="sourceInventoryIsCoveredWithoutActionsOrDuplicateFields" classname="com.cabin.hondacustom.RzcProtocolTest" time="0.008" />
+  <system-out />
+  <system-err />
+</testsuite><testsuite name="com.cabin.hondacustom.XpDataRequestTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-09-16T11:37:55.620Z" hostname="fedora" time="0.231">
+  <properties />
+  <testcase name="explicitRequestClearsEarlierValuesAndCountsOnlyValidEventsAfterDispatch" classname="com.cabin.hondacustom.XpDataRequestTest" time="0.045" />
+  <testcase name="timedOutRequestCannotDispatchLaterOrRetryAutomatically" classname="com.cabin.hondacustom.XpDataRequestTest" time="0.05" />
+  <testcase name="protocolUsesStockRequestAndRejectsOtherProfilesAndCancellation" classname="com.cabin.hondacustom.XpDataRequestTest" time="0.01" />
+  <testcase name="disconnectDuringDescriptorLookupPreventsReadDispatch" classname="com.cabin.hondacustom.XpDataRequestTest" time="0.041" />
+  <testcase name="connectionRequestsOnceAfterSubscriptionsAndSilenceNeverCreatesValues" classname="com.cabin.hondacustom.XpDataRequestTest" time="0.048" />
+  <testcase name="failedDataRequestNeverConfirmsOrFallsBack" classname="com.cabin.hondacustom.XpDataRequestTest" time="0.037" />
+  <system-out />
+  <system-err />
+</testsuite><testsuite name="com.cabin.hondacustom.XpPacketTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-09-16T11:37:55.853Z" hostname="fedora" time="0.045">
+  <properties />
+  <testcase name="otherProfilesAndInvalidBodiesNeverDispatch" classname="com.cabin.hondacustom.XpPacketTest" time="0.01" />
+  <testcase name="rejectsEmptyMalformedAndOversizedInput" classname="com.cabin.hondacustom.XpPacketTest" time="0.009" />
+  <testcase name="cancellationImmediatelyBeforeDispatchDoesNotSend" classname="com.cabin.hondacustom.XpPacketTest" time="0.01" />
+  <testcase name="dispatchesExactBodyOnceWithoutAddingTheServicePrefix" classname="com.cabin.hondacustom.XpPacketTest" time="0.008" />
+  <testcase name="parsesOnlyExplicitBytesAndPreservesTheirOrder" classname="com.cabin.hondacustom.XpPacketTest" time="0.008" />
+  <system-out />
+  <system-err />
+</testsuite><testsuite name="com.cabin.hondacustom.XpPacketUiTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-09-16T11:37:55.900Z" hostname="fedora" time="0.784">
+  <properties />
+  <testcase name="restoreButtonSendsVerifiedPacket" classname="com.cabin.hondacustom.XpPacketUiTest" time="0.163" />
+  <testcase name="emptyEditorRequiresReviewAndExplicitSend" classname="com.cabin.hondacustom.XpPacketUiTest" time="0.158" />
+  <testcase name="maintenanceButtonSendsVerifiedPacket" classname="com.cabin.hondacustom.XpPacketUiTest" time="0.113" />
+  <testcase name="withdrawingParkedAcknowledgementCancelsConfirmation" classname="com.cabin.hondacustom.XpPacketUiTest" time="0.172" />
+  <testcase name="cancellingRestoreDoesNotSend" classname="com.cabin.hondacustom.XpPacketUiTest" time="0.087" />
+  <testcase name="tpmsButtonSendsVerifiedPacket" classname="com.cabin.hondacustom.XpPacketUiTest" time="0.091" />
+  <system-out />
+  <system-err />
+</testsuite><testsuite name="com.cabin.hondacustom.XpProtocolTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-09-16T11:37:56.686Z" hostname="fedora" time="0.028">
+  <properties />
+  <testcase name="profilesCannotUseEachOthersControls" classname="com.cabin.hondacustom.XpProtocolTest" time="0.012" />
+  <testcase name="onlyExactXpProfileAndSourceVisibleRowsAreEnabled" classname="com.cabin.hondacustom.XpProtocolTest" time="0.008" />
+  <testcase name="everyXpWireValueMatchesItsAuditedWriter" classname="com.cabin.hondacustom.XpProtocolTest" time="0.008" />
+  <system-out />
+  <system-err />
+</testsuite></testsuites>

@@ -16,7 +16,7 @@ The examined Joying service is `com.syu.ms` version 2.23.0711.1001. Its source i
 
 The app now requests an initial snapshot **only for profile 1000**. Vehicle settings use `notify=0` and stay unavailable until subsequent matching field events. Reconnect never upgrades an unknown-age cached setting to a fresh value. Expired values are removed from the screen and report, and an earlier expiry timer cannot remove newer feedback.
 
-This intentionally means some fields may remain unavailable on firmware that only emits changes. No active read/refresh command with fresh vehicle-response provenance has been established here. No connection fallback or cached/default substitute is used. Static tests cannot establish physical compatibility with the owner's head unit.
+This means some fields may remain unavailable on firmware that only emits changes. A follow-up found the stock XP entry request **100 [0]**, omitted through 3.4.3 and restored in 3.4.4; see [the exact source trace](../XP-DATA-REQUEST.md). It requests the settings packet but does not bypass changed-value suppression or establish a timestamped snapshot. No connection fallback or cached/default substitute is used. Static tests cannot establish physical compatibility with the owner's head unit.
 
 ## Remaining feature blockers
 
@@ -44,4 +44,4 @@ The follow-up inspected both `f0/xp.get` and the selected 298 driver’s `module
 - Wrapper command 1000 with an index returns an entry from `f0/tp.Z`; it does not request a new vehicle response or provide an observation timestamp. It cannot be substituted for setting feedback.
 - The driver’s command-105 branch sends its two supplied values to MCU transport and returns. It provides no action result in the Binder return path. Language/reset dispatch therefore does not establish successful completion.
 
-This closes the immediate synchronous-read alternative for the inspected firmware. The implementation remains event-driven and does not issue an unverified refresh or diagnostic command. Further feature implementation requires a matching firmware response contract or real-device evidence; repeating cached reads will not supply it.
+This closes the immediate synchronous-read alternative for the inspected firmware. The implementation remains event-driven. Version 3.4.4 adds the subsequently verified asynchronous XP entry request; it does not use these synchronous cache reads. Further features require matching response contracts or real-device evidence.

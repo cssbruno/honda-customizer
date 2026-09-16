@@ -4,11 +4,12 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.widget.*;
 
-/** Read-only, in-memory audit. Updating text preserves the user's scroll position. */
+/** In-memory audit with an explicit stock data request. Text updates preserve scrolling. */
 final class FytAuditView extends LinearLayout {
     private final TextView summary, identity, capabilities, feedback, history;
+    private final Button request;
 
-    FytAuditView(Context context, Runnable back, Runnable copy) {
+    FytAuditView(Context context, Runnable back, Runnable copy, Runnable requestData) {
         super(context);
         setOrientation(VERTICAL);
         int padding = (int) (12 * getResources().getDisplayMetrics().density);
@@ -30,6 +31,10 @@ final class FytAuditView extends LinearLayout {
         LinearLayout sections = new LinearLayout(context);
         sections.setOrientation(VERTICAL);
         summary = section(sections, R.string.audit_summary);
+        request = new Button(context);
+        request.setText(R.string.audit_read_button);
+        request.setOnClickListener(v -> requestData.run());
+        sections.addView(request);
         identity = section(sections, R.string.audit_identity);
         capabilities = section(sections, R.string.audit_capabilities);
         feedback = section(sections, R.string.audit_feedback);
@@ -57,6 +62,8 @@ final class FytAuditView extends LinearLayout {
     }
 
     void refresh(FytClient client) {
+        request.setVisibility(FytProtocol.xp(client.profile()) ? VISIBLE : GONE);
+        request.setEnabled(client.canRequestData());
         update(summary, client.auditSummary());
         update(identity, client.auditIdentity());
         update(capabilities, client.auditCapabilities());

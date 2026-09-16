@@ -9,6 +9,7 @@
 - [SYU service contracts](research/syu-ms-analysis/REPORT.md)
 - [Joying empty-reply transport fix](research/fyt-transport-audit/FINDINGS.md) — command/subscription wire contract and regression evidence.
 - [XP Civic 0x4012A mapping](research/XP-4012A.md) — exact profile reported by the owner's head unit and independently traced settings.
+- [XP stock data request](research/XP-DATA-REQUEST.md) — missing entry request restored in 3.4.4; new owner decoder identification and remaining feedback limits.
 - [XP lower-level packet send path](research/XP-RAW-SEND.md) — verified module command 1008; arbitrary vehicle CAN framing remains unresolved.
 - [FYT OBD transport audit](research/XP-OBD-AUDIT.md) — module 12 serial writes and why their routing does not establish XP raw CAN support.
 
