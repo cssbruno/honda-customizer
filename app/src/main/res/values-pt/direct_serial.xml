@@ -1,0 +1,12 @@
+<resources>
+    <string name="direct_title">Serial XP direta — teste manual</string>
+    <string name="direct_help">Escreve diretamente numa UART XP identificada, sem comando Binder ao SYU. Referência: perfil 0x4012A, g0/r → 2E + pacote + checksum. Informe o corpo do pacote do decodificador, não um ID CAN OEM. Isto não implementa layouts/cores extras do cluster.\n\nA porta precisa estar configurada na velocidade informada e saída raw 8N1. O app não altera essa configuração. Desconectar este app do SYU não encerra o serviço SYU nem libera suas portas. Use somente uma UART cuja ligação à XP e disponibilidade você verificou. Sem escolha automática de porta, root ou repetição automática.</string>
+    <string name="direct_path">Caminho exato da UART XP</string>
+    <string name="direct_baud">Velocidade atual da UART (baud)</string>
+    <string name="direct_ready">Estacionado; verifiquei que esta UART está ligada à XP e livre de outros leitores/escritores</string>
+    <string name="direct_send">Escrever os bytes revisados diretamente</string>
+    <string name="direct_no_feedback">Retorno do veículo indisponível. A compatibilidade da porta direta não foi testada nesta central.</string>
+    <string name="direct_written">O kernel aceitou %1$d de %2$d bytes. Veículo não confirmado. Sem repetição automática; escrita parcial significa pacote incompleto.</string>
+    <string name="direct_failed">Falha na escrita direta: %1$s\nVeículo não confirmado. Sem alternativa automática pelo SYU.</string>
+    <string name="direct_cancelled">Cancelado antes de abrir a porta; nenhum byte escrito.</string>
+</resources>

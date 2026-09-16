@@ -7,6 +7,7 @@ import android.widget.*;
 
 public final class MainActivity extends Activity {
     private AppUpdater updater;
+    private DirectXpView direct;
     private FrameLayout screen; private LinearLayout controls; private FytAuditView audit;
     private final android.os.Handler auditClock=new android.os.Handler(android.os.Looper.getMainLooper());
     private final Runnable tickAudit=new Runnable(){public void run(){if(audit!=null){audit.refresh(client);auditClock.postDelayed(this,1000);}}};
@@ -43,6 +44,9 @@ public final class MainActivity extends Activity {
             }
             Button packet=new Button(this);packet.setText(R.string.xp_packet_title);
             packet.setEnabled(parked.isChecked()&&client.canSendPacket());packet.setOnClickListener(v->packet());rows.addView(packet);
+            Button serial=new Button(this);serial.setText(R.string.direct_title);
+            serial.setEnabled(parked.isChecked()&&client.canSendPacket());
+            serial.setOnClickListener(v->direct());rows.addView(serial);
         }
         java.util.Set<String> categories=new java.util.LinkedHashSet<>();
         for(FytProtocol.Control c:FytProtocol.CONTROLS)if(FytProtocol.visible(client.profile(),c))categories.add(c.category);
@@ -96,6 +100,13 @@ public final class MainActivity extends Activity {
                 }).show();
         }));editor.show();
     }
+    private void direct(){
+        if(direct!=null||!FytProtocol.xp(client.profile())||!client.canSendPacket()||!parked.isChecked())return;
+        client.disconnect();
+        direct=new DirectXpView(this,this::closeDirect,client::recordDirect);
+        controls.setVisibility(android.view.View.GONE);screen.addView(direct,new FrameLayout.LayoutParams(-1,-1));
+    }
+    private void closeDirect(){if(direct!=null){direct.cancel();screen.removeView(direct);direct=null;}controls.setVisibility(android.view.View.VISIBLE);render();}
     private void report(){
         if(audit!=null)return;
         audit=new FytAuditView(this,this::closeAudit,()->{
@@ -106,10 +117,10 @@ public final class MainActivity extends Activity {
         auditClock.removeCallbacks(tickAudit);auditClock.postDelayed(tickAudit,1000);
     }
     private void closeAudit(){auditClock.removeCallbacks(tickAudit);if(audit!=null){screen.removeView(audit);audit=null;}controls.setVisibility(android.view.View.VISIBLE);render();}
-    @Override public void onBackPressed(){if(audit!=null)closeAudit();else super.onBackPressed();}
+    @Override public void onBackPressed(){if(direct!=null)closeDirect();else if(audit!=null)closeAudit();else super.onBackPressed();}
     @Override protected void onSaveInstanceState(Bundle state){state.putBoolean("audit_visible",audit!=null);super.onSaveInstanceState(state);}
     @Override protected void onResume(){super.onResume();auditClock.removeCallbacks(tickAudit);if(audit!=null)tickAudit.run();}
     @Override protected void onPause(){auditClock.removeCallbacks(tickAudit);super.onPause();}
-    @Override protected void onStop(){super.onStop();if(client!=null)client.disconnect();}
+    @Override protected void onStop(){super.onStop();if(direct!=null)closeDirect();if(client!=null)client.disconnect();}
     @Override protected void onDestroy(){auditClock.removeCallbacks(tickAudit);if(updater!=null)updater.close();if(client!=null)client.destroy();super.onDestroy();}
 }

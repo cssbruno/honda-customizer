@@ -1,0 +1,12 @@
+<resources>
+    <string name="direct_title">Direct XP serial — manual test</string>
+    <string name="direct_help">Writes directly to an explicitly identified XP UART, without a SYU Binder command. Reference: profile 0x4012A, g0/r → 2E + packet + checksum. Enter the decoder packet body, not an OEM CAN ID. This does not implement extra cluster layouts/colors.\n\nThe port must already have the entered baud rate and raw 8N1 output. The app does not change it. Disconnecting this app from SYU does not stop the SYU service or release its ports. Use only a UART whose XP wiring and availability you have established. No automatic port selection, root, or retry.</string>
+    <string name="direct_path">Exact XP UART path</string>
+    <string name="direct_baud">Existing UART baud rate</string>
+    <string name="direct_ready">Parked; I verified that this UART connects to XP and is free of other readers/writers</string>
+    <string name="direct_send">Write reviewed bytes directly</string>
+    <string name="direct_no_feedback">Vehicle feedback unavailable. Direct-port compatibility has not been tested on this head unit.</string>
+    <string name="direct_written">Kernel accepted %1$d of %2$d bytes. Vehicle unconfirmed. No automatic retry; a partial write is an incomplete packet.</string>
+    <string name="direct_failed">Direct write failed: %1$s\nVehicle unconfirmed. No SYU fallback.</string>
+    <string name="direct_cancelled">Cancelled before opening the port; no bytes written.</string>
+</resources>

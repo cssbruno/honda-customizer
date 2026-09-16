@@ -310,6 +310,7 @@ final class FytClient {
         }
         return out.toString().trim();
     }
+    void recordDirect(String text){trace.add(text);observer.run();}
     String auditHistory(){
         if(trace.isEmpty())return message(R.string.audit_history_empty);
         StringBuilder out=new StringBuilder();
