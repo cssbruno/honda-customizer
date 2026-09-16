@@ -114,7 +114,7 @@ def source_inputs() -> tuple[list[Path], list[Path]]:
     for optional in ('gradlew.bat', 'LICENSE', 'LICENSE.md', 'NOTICE', 'app/proguard-rules.pro'):
         if (ROOT / optional).is_file():
             files.append(ROOT / optional)
-    for folder in ('app/src', 'gradle', 'tools', 'documents', '.github'):
+    for folder in ('app/src', 'gradle', 'tools', 'documents', '.github', 'firmware/cluster-extension'):
         files.extend(tree_files(ROOT / folder))
     files = sorted(set(files))
     for path in files:

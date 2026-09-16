@@ -13,6 +13,13 @@
 - [XP lower-level packet send path](research/XP-RAW-SEND.md) — verified module command 1008; arbitrary vehicle CAN framing remains unresolved.
 - [FYT OBD transport audit](research/XP-OBD-AUDIT.md) — module 12 serial writes and why their routing does not establish XP raw CAN support.
 
+## Custom XP firmware: experimental
+
+- [HCX1 implementation and build](../firmware/cluster-extension/README.md) —
+  four new cluster operations for the audited 111 image; not an installable port.
+- [HCX1 custom protocol](../firmware/cluster-extension/PROTOCOL.md) — strict
+  requests and transaction results; stock SYU receive integration remains pending.
+
 ## Original Honda head unit: reference only
 
 These documents describe the earlier OEM implementation. They do not describe features shipped in the current FYT APK.

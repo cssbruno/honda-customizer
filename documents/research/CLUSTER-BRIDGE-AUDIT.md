@@ -1,5 +1,34 @@
 # Cluster bridge investigation — 2026-09-16
 
+## Implementation scope
+
+The owner has now explicitly authorized **custom XP firmware**, superseding
+the earlier APK-only constraint. [HCX1](../../firmware/cluster-extension/README.md)
+implements four new operations and 20 OEM values in a custom extension for
+the SHA-pinned 111 binary. Source, build tools and isolated tests are retained.
+No firmware has been installed; the owner's 108 board and updater format are
+still unverified.
+
+The existing APK already exposes caller-controlled XP packet dispatch through
+module 7 / command 1008. The remaining gap is the installed decoder's accepted
+packet format for the additional OEM cluster messages and its response path.
+The fixed-table audit below does not prove that a firmware change is needed,
+or that every existing transport route has been exhausted. The new custom
+extension implements layout, color selection and navigation packet generation;
+their installed-box port and APK response integration remain incomplete.
+
+## New box-side evidence
+
+The [manufacturer firmware audit](XP-BOX-FIRMWARE.md) now traces the actual
+Honda XP **111** receiver and CAN customization table. An isolated ARM harness
+verifies 17 cases, including tachometer/ambient-change translation and decoder
+acknowledgements without CAN queue inputs. The owner's reported **108** binary
+has not been obtained. Layout, color selection and navigation have no new
+stock-XP mapping; their OEM menus are absent from the inspected fixed table.
+The earlier unresolved transport discussion below is retained as the Android
+and OEM side of the investigation, not a statement that no box firmware has
+now been located.
+
 ## Work completed
 
 The OEM byte construction is now executable for six cluster settings, not only
@@ -78,6 +107,25 @@ only the previous Honda activity extracts:
 This does not prove that the hardware has no passthrough mode. It establishes
 what these specific service branches do. MCU routing prefixes alone cannot
 define an unknown CAN-box command.
+
+### Factory test entry points
+
+The same reference SYU service's module factory `b/i.G2` maps module 13 to
+`v0/a.E2`. Its `cmd` method checks command 0 and a string before calling
+`b/h.o`; the inspected implementation exposes no CAN transmit structure.
+
+`module/canbus/HJ_AutoTestService` reads the `SetInfo` integer array when its
+`from` extra is `set`, and forwards that array directly to `y/k.t`. This is
+another entry to the previously traced MCU writer. Its other media/test
+branches do not supply the missing Honda CAN-ID/DLC/payload encoding. No
+service was launched or added as a fallback.
+
+The [box firmware audit](XP-BOX-FIRMWARE.md#literal-oem-bytes-through-the-serial-receiver)
+now also exercises the real byte receiver using the reference SYU encoder's
+framing. The known XP command succeeds at the isolated CAN queue boundary;
+18 literal OEM payload/native/IPC cases do not. This distinguishes an Android
+API that forwards arbitrary bytes from a box command that transmits a chosen
+Honda CAN frame. The compatible latter contract is still missing.
 
 ## ProtocolUpdate APK ruled out as a firmware source
 

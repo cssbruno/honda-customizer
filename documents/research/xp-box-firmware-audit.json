@@ -1,0 +1,918 @@
+{
+  "firmware_version": "CRI V1.13.111BYPT",
+  "firmware_sha256": "df254fb42d5fe02e985ab57f9d23fcce963fa70868e337eb9941a99c8196bf99",
+  "manufacturer_archive_url": "http://www.ssinterface.com/upload/file/20230825/1692940642406248.zip",
+  "physical_hardware_tested": false,
+  "scope": "Isolated 111 firmware receiver and one ready-state settings step; no peripherals, RTOS, boot or complete vehicle simulation",
+  "fixture_preconditions": {
+    "0x2000439F": "01: settings state machine ready",
+    "0x20004418": "01: settings table available",
+    "other_mapped_ram": "Zero-initialized harness memory; not captured vehicle state",
+    "hardware_register_parser_selection": "Not executed; explicitly exercise the normal 2E receiver"
+  },
+  "installed_108_firmware_compatibility": "Not established by this 111 binary",
+  "fixed_templates": [
+    {
+      "index": 0,
+      "file_offset": "0x14E78",
+      "can_id": "0x16305054",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 07 00"
+    },
+    {
+      "index": 1,
+      "file_offset": "0x14E8C",
+      "can_id": "0x16305054",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 06 00"
+    },
+    {
+      "index": 2,
+      "file_offset": "0x14EA0",
+      "can_id": "0x16305054",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 16 00"
+    },
+    {
+      "index": 3,
+      "file_offset": "0x14EB4",
+      "can_id": "0x16305054",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 1A 00"
+    },
+    {
+      "index": 4,
+      "file_offset": "0x14EC8",
+      "can_id": "0x16305054",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 1B 00"
+    },
+    {
+      "index": 5,
+      "file_offset": "0x14EDC",
+      "can_id": "0x16301854",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 06 00"
+    },
+    {
+      "index": 6,
+      "file_offset": "0x14EF0",
+      "can_id": "0x16301854",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 08 00"
+    },
+    {
+      "index": 7,
+      "file_offset": "0x14F04",
+      "can_id": "0x16307254",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 01 00"
+    },
+    {
+      "index": 8,
+      "file_offset": "0x14F18",
+      "can_id": "0x16301854",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 01 00"
+    },
+    {
+      "index": 9,
+      "file_offset": "0x14F2C",
+      "can_id": "0x16301854",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 17 00"
+    },
+    {
+      "index": 10,
+      "file_offset": "0x14F40",
+      "can_id": "0x16301854",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 03 00"
+    },
+    {
+      "index": 11,
+      "file_offset": "0x14F54",
+      "can_id": "0x16301854",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 04 00"
+    },
+    {
+      "index": 12,
+      "file_offset": "0x14F68",
+      "can_id": "0x16301854",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 05 00"
+    },
+    {
+      "index": 13,
+      "file_offset": "0x14F7C",
+      "can_id": "0x16309054",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 06 00"
+    },
+    {
+      "index": 14,
+      "file_offset": "0x14F90",
+      "can_id": "0x16301854",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 2D 00"
+    },
+    {
+      "index": 15,
+      "file_offset": "0x14FA4",
+      "can_id": "0x12F96E54",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 8,
+      "data_template": "20 02 20 00 20 00 00 00"
+    },
+    {
+      "index": 16,
+      "file_offset": "0x14FB8",
+      "can_id": "0x12F81010",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 5,
+      "data_template": "28 00 80 00 00"
+    },
+    {
+      "index": 17,
+      "file_offset": "0x14FCC",
+      "can_id": "0x16305054",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 2,
+      "data_template": "40 00"
+    },
+    {
+      "index": 18,
+      "file_offset": "0x14FE0",
+      "can_id": "0x12EAFF54",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 2,
+      "data_template": "31 54"
+    },
+    {
+      "index": 19,
+      "file_offset": "0x14FF4",
+      "can_id": "0x16305054",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 0B 00"
+    },
+    {
+      "index": 20,
+      "file_offset": "0x15008",
+      "can_id": "0x16305054",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 16 00"
+    },
+    {
+      "index": 21,
+      "file_offset": "0x1501C",
+      "can_id": "0x16305054",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 37 00"
+    },
+    {
+      "index": 22,
+      "file_offset": "0x15030",
+      "can_id": "0x16305054",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 2F 00"
+    },
+    {
+      "index": 23,
+      "file_offset": "0x15044",
+      "can_id": "0x16305054",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 2E 00"
+    },
+    {
+      "index": 24,
+      "file_offset": "0x15058",
+      "can_id": "0x16301854",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 31 00"
+    },
+    {
+      "index": 25,
+      "file_offset": "0x1506C",
+      "can_id": "0x16301854",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 30 00"
+    },
+    {
+      "index": 26,
+      "file_offset": "0x15080",
+      "can_id": "0x16301854",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 29 00"
+    },
+    {
+      "index": 27,
+      "file_offset": "0x15094",
+      "can_id": "0x16301854",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 2C 00"
+    },
+    {
+      "index": 28,
+      "file_offset": "0x150A8",
+      "can_id": "0x16307254",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 02 00"
+    },
+    {
+      "index": 29,
+      "file_offset": "0x150BC",
+      "can_id": "0x16307254",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 03 00"
+    },
+    {
+      "index": 30,
+      "file_offset": "0x150D0",
+      "can_id": "0x16305054",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 1E 00"
+    },
+    {
+      "index": 31,
+      "file_offset": "0x150E4",
+      "can_id": "0x16301854",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 2B 00"
+    },
+    {
+      "index": 32,
+      "file_offset": "0x150F8",
+      "can_id": "0x16301154",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 04 00"
+    },
+    {
+      "index": 33,
+      "file_offset": "0x1510C",
+      "can_id": "0x16303154",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 01 00"
+    },
+    {
+      "index": 34,
+      "file_offset": "0x15120",
+      "can_id": "0x16303154",
+      "ide": 4,
+      "rtr": 0,
+      "dlc": 3,
+      "data_template": "00 02 00"
+    }
+  ],
+  "c6_cases": [
+    {
+      "decoder_packet": "C6 02 01 00",
+      "decoder_ack_routine_calls": 1,
+      "captured_can_queue_inputs": [
+        {
+          "can_id": "0x16305054",
+          "ide": 4,
+          "rtr": 0,
+          "dlc": 3,
+          "payload": "40 16 01"
+        }
+      ],
+      "captured_serial_outputs": [],
+      "hardware_verified": false,
+      "matches_oem_setting": "03/28"
+    },
+    {
+      "decoder_packet": "C6 02 01 01",
+      "decoder_ack_routine_calls": 1,
+      "captured_can_queue_inputs": [
+        {
+          "can_id": "0x16305054",
+          "ide": 4,
+          "rtr": 0,
+          "dlc": 3,
+          "payload": "40 16 00"
+        }
+      ],
+      "captured_serial_outputs": [],
+      "hardware_verified": false,
+      "matches_oem_setting": "03/28"
+    },
+    {
+      "decoder_packet": "C6 02 13 00",
+      "decoder_ack_routine_calls": 1,
+      "captured_can_queue_inputs": [
+        {
+          "can_id": "0x16305054",
+          "ide": 4,
+          "rtr": 0,
+          "dlc": 3,
+          "payload": "40 16 01"
+        }
+      ],
+      "captured_serial_outputs": [],
+      "hardware_verified": false,
+      "matches_oem_setting": "03/28"
+    },
+    {
+      "decoder_packet": "C6 02 13 01",
+      "decoder_ack_routine_calls": 1,
+      "captured_can_queue_inputs": [
+        {
+          "can_id": "0x16305054",
+          "ide": 4,
+          "rtr": 0,
+          "dlc": 3,
+          "payload": "40 16 00"
+        }
+      ],
+      "captured_serial_outputs": [],
+      "hardware_verified": false,
+      "matches_oem_setting": "03/28"
+    },
+    {
+      "decoder_packet": "C6 02 16 00",
+      "decoder_ack_routine_calls": 1,
+      "captured_can_queue_inputs": [
+        {
+          "can_id": "0x16305054",
+          "ide": 4,
+          "rtr": 0,
+          "dlc": 3,
+          "payload": "40 2E 01"
+        }
+      ],
+      "captured_serial_outputs": [],
+      "hardware_verified": false,
+      "matches_oem_setting": "03/5C"
+    },
+    {
+      "decoder_packet": "C6 02 16 01",
+      "decoder_ack_routine_calls": 1,
+      "captured_can_queue_inputs": [
+        {
+          "can_id": "0x16305054",
+          "ide": 4,
+          "rtr": 0,
+          "dlc": 3,
+          "payload": "40 2E 00"
+        }
+      ],
+      "captured_serial_outputs": [],
+      "hardware_verified": false,
+      "matches_oem_setting": "03/5C"
+    },
+    {
+      "decoder_packet": "C6 02 23 00",
+      "decoder_ack_routine_calls": 1,
+      "captured_can_queue_inputs": [
+        {
+          "can_id": "0x16305054",
+          "ide": 4,
+          "rtr": 0,
+          "dlc": 3,
+          "payload": "40 2E 01"
+        }
+      ],
+      "captured_serial_outputs": [],
+      "hardware_verified": false,
+      "matches_oem_setting": "03/5C"
+    },
+    {
+      "decoder_packet": "C6 02 23 01",
+      "decoder_ack_routine_calls": 1,
+      "captured_can_queue_inputs": [
+        {
+          "can_id": "0x16305054",
+          "ide": 4,
+          "rtr": 0,
+          "dlc": 3,
+          "payload": "40 2E 00"
+        }
+      ],
+      "captured_serial_outputs": [],
+      "hardware_verified": false,
+      "matches_oem_setting": "03/5C"
+    },
+    {
+      "decoder_packet": "C6 02 15 00",
+      "decoder_ack_routine_calls": 1,
+      "captured_can_queue_inputs": [
+        {
+          "can_id": "0x16305054",
+          "ide": 4,
+          "rtr": 0,
+          "dlc": 3,
+          "payload": "40 2F 00"
+        }
+      ],
+      "captured_serial_outputs": [],
+      "hardware_verified": false
+    },
+    {
+      "decoder_packet": "C6 02 15 01",
+      "decoder_ack_routine_calls": 1,
+      "captured_can_queue_inputs": [
+        {
+          "can_id": "0x16305054",
+          "ide": 4,
+          "rtr": 0,
+          "dlc": 3,
+          "payload": "40 2F 01"
+        }
+      ],
+      "captured_serial_outputs": [],
+      "hardware_verified": false
+    },
+    {
+      "decoder_packet": "C6 02 20 00",
+      "decoder_ack_routine_calls": 1,
+      "captured_can_queue_inputs": [],
+      "captured_serial_outputs": [],
+      "hardware_verified": false
+    },
+    {
+      "decoder_packet": "C6 02 20 01",
+      "decoder_ack_routine_calls": 1,
+      "captured_can_queue_inputs": [],
+      "captured_serial_outputs": [],
+      "hardware_verified": false
+    },
+    {
+      "decoder_packet": "C6 02 32 00",
+      "decoder_ack_routine_calls": 1,
+      "captured_can_queue_inputs": [],
+      "captured_serial_outputs": [],
+      "hardware_verified": false
+    },
+    {
+      "decoder_packet": "C6 02 32 01",
+      "decoder_ack_routine_calls": 1,
+      "captured_can_queue_inputs": [],
+      "captured_serial_outputs": [],
+      "hardware_verified": false
+    },
+    {
+      "decoder_packet": "C6 02 33 00",
+      "decoder_ack_routine_calls": 1,
+      "captured_can_queue_inputs": [],
+      "captured_serial_outputs": [],
+      "hardware_verified": false
+    },
+    {
+      "decoder_packet": "C6 02 33 01",
+      "decoder_ack_routine_calls": 1,
+      "captured_can_queue_inputs": [],
+      "captured_serial_outputs": [],
+      "hardware_verified": false
+    }
+  ],
+  "invalid_checksum_case": {
+    "decoder_packet": "C6 02 16 01",
+    "decoder_ack_routine_calls": 0,
+    "captured_can_queue_inputs": [],
+    "captured_serial_outputs": [
+      "F0"
+    ],
+    "hardware_verified": false
+  },
+  "serial_receiver_audit": {
+    "scope": "Actual byte receiver, pending-message processing and one ready-state settings step; RTOS notification intercepted",
+    "framing_reference": "SYU 2.23.0711.1001 g0/r.f: 2E + caller body + complemented sum; outer E9 removed",
+    "known_xp_case": {
+      "literal_caller_body": "C6 02 16 01",
+      "serial_input": "2E C6 02 16 01 20",
+      "receiver_notifications": 1,
+      "receiver_state": 4,
+      "receiver_buffered_bytes": 5,
+      "decoder_ack_routine_calls": 1,
+      "captured_can_queue_inputs": [
+        {
+          "can_id": "0x16305054",
+          "ide": 4,
+          "rtr": 0,
+          "dlc": 3,
+          "payload": "40 2E 00"
+        }
+      ],
+      "captured_serial_outputs": [],
+      "hardware_verified": false
+    },
+    "invalid_checksum_case": {
+      "literal_caller_body": "C6 02 16 01",
+      "serial_input": "2E C6 02 16 01 21",
+      "receiver_notifications": 1,
+      "receiver_state": 4,
+      "receiver_buffered_bytes": 5,
+      "decoder_ack_routine_calls": 0,
+      "captured_can_queue_inputs": [],
+      "captured_serial_outputs": [
+        "F0"
+      ],
+      "hardware_verified": false
+    },
+    "literal_oem_cases": [
+      {
+        "literal_caller_body": "40 16 00",
+        "serial_input": "2E 40 16 00 A9",
+        "receiver_notifications": 0,
+        "receiver_state": 2,
+        "receiver_buffered_bytes": 4,
+        "decoder_ack_routine_calls": 0,
+        "captured_can_queue_inputs": [],
+        "captured_serial_outputs": [],
+        "hardware_verified": false,
+        "oem_setting": "03/28",
+        "representation": "oem_payload",
+        "oem_can_id": "0x16305054",
+        "oem_api_value": 1,
+        "oem_payload": "40 16 00"
+      },
+      {
+        "literal_caller_body": "00 00 00 03 16 30 50 54 40 16 00 00 00 00 00 00",
+        "serial_input": "2E 00 00 00 03 16 30 50 54 40 16 00 00 00 00 00 00 BC",
+        "receiver_notifications": 1,
+        "receiver_state": 1,
+        "receiver_buffered_bytes": 13,
+        "decoder_ack_routine_calls": 0,
+        "captured_can_queue_inputs": [],
+        "captured_serial_outputs": [
+          "F0"
+        ],
+        "hardware_verified": false,
+        "oem_setting": "03/28",
+        "representation": "oem_native",
+        "oem_can_id": "0x16305054",
+        "oem_api_value": 1,
+        "oem_payload": "40 16 00"
+      },
+      {
+        "literal_caller_body": "02 00 15 FF EA 51 07 44 00 00 00 00 03 16 30 50 54 40 16 00 00 00 00 00 00 03",
+        "serial_input": "2E 02 00 15 FF EA 51 07 44 00 00 00 00 03 16 30 50 54 40 16 00 00 00 00 00 00 03 1D",
+        "receiver_notifications": 2,
+        "receiver_state": 1,
+        "receiver_buffered_bytes": 23,
+        "decoder_ack_routine_calls": 0,
+        "captured_can_queue_inputs": [],
+        "captured_serial_outputs": [
+          "F0"
+        ],
+        "hardware_verified": false,
+        "oem_setting": "03/28",
+        "representation": "oem_syscon_ipc",
+        "oem_can_id": "0x16305054",
+        "oem_api_value": 1,
+        "oem_payload": "40 16 00"
+      },
+      {
+        "literal_caller_body": "40 32 01",
+        "serial_input": "2E 40 32 01 8C",
+        "receiver_notifications": 0,
+        "receiver_state": 2,
+        "receiver_buffered_bytes": 4,
+        "decoder_ack_routine_calls": 0,
+        "captured_can_queue_inputs": [],
+        "captured_serial_outputs": [],
+        "hardware_verified": false,
+        "oem_setting": "03/29",
+        "representation": "oem_payload",
+        "oem_can_id": "0x16305054",
+        "oem_api_value": 1,
+        "oem_payload": "40 32 01"
+      },
+      {
+        "literal_caller_body": "00 00 00 03 16 30 50 54 40 32 01 00 00 00 00 00",
+        "serial_input": "2E 00 00 00 03 16 30 50 54 40 32 01 00 00 00 00 00 9F",
+        "receiver_notifications": 1,
+        "receiver_state": 1,
+        "receiver_buffered_bytes": 13,
+        "decoder_ack_routine_calls": 0,
+        "captured_can_queue_inputs": [],
+        "captured_serial_outputs": [
+          "F0"
+        ],
+        "hardware_verified": false,
+        "oem_setting": "03/29",
+        "representation": "oem_native",
+        "oem_can_id": "0x16305054",
+        "oem_api_value": 1,
+        "oem_payload": "40 32 01"
+      },
+      {
+        "literal_caller_body": "02 00 15 FF EA 51 07 44 00 00 00 00 03 16 30 50 54 40 32 01 00 00 00 00 00 03",
+        "serial_input": "2E 02 00 15 FF EA 51 07 44 00 00 00 00 03 16 30 50 54 40 32 01 00 00 00 00 00 03 00",
+        "receiver_notifications": 2,
+        "receiver_state": 1,
+        "receiver_buffered_bytes": 23,
+        "decoder_ack_routine_calls": 0,
+        "captured_can_queue_inputs": [],
+        "captured_serial_outputs": [
+          "F0"
+        ],
+        "hardware_verified": false,
+        "oem_setting": "03/29",
+        "representation": "oem_syscon_ipc",
+        "oem_can_id": "0x16305054",
+        "oem_api_value": 1,
+        "oem_payload": "40 32 01"
+      },
+      {
+        "literal_caller_body": "40 33 07",
+        "serial_input": "2E 40 33 07 85",
+        "receiver_notifications": 0,
+        "receiver_state": 2,
+        "receiver_buffered_bytes": 4,
+        "decoder_ack_routine_calls": 0,
+        "captured_can_queue_inputs": [],
+        "captured_serial_outputs": [],
+        "hardware_verified": false,
+        "oem_setting": "03/2A",
+        "representation": "oem_payload",
+        "oem_can_id": "0x16305054",
+        "oem_api_value": 1,
+        "oem_payload": "40 33 07"
+      },
+      {
+        "literal_caller_body": "00 00 00 03 16 30 50 54 40 33 07 00 00 00 00 00",
+        "serial_input": "2E 00 00 00 03 16 30 50 54 40 33 07 00 00 00 00 00 98",
+        "receiver_notifications": 1,
+        "receiver_state": 1,
+        "receiver_buffered_bytes": 13,
+        "decoder_ack_routine_calls": 0,
+        "captured_can_queue_inputs": [],
+        "captured_serial_outputs": [
+          "F0"
+        ],
+        "hardware_verified": false,
+        "oem_setting": "03/2A",
+        "representation": "oem_native",
+        "oem_can_id": "0x16305054",
+        "oem_api_value": 1,
+        "oem_payload": "40 33 07"
+      },
+      {
+        "literal_caller_body": "02 00 15 FF EA 51 07 44 00 00 00 00 03 16 30 50 54 40 33 07 00 00 00 00 00 03",
+        "serial_input": "2E 02 00 15 FF EA 51 07 44 00 00 00 00 03 16 30 50 54 40 33 07 00 00 00 00 00 03 F9",
+        "receiver_notifications": 2,
+        "receiver_state": 1,
+        "receiver_buffered_bytes": 23,
+        "decoder_ack_routine_calls": 0,
+        "captured_can_queue_inputs": [],
+        "captured_serial_outputs": [
+          "F0"
+        ],
+        "hardware_verified": false,
+        "oem_setting": "03/2A",
+        "representation": "oem_syscon_ipc",
+        "oem_can_id": "0x16305054",
+        "oem_api_value": 1,
+        "oem_payload": "40 33 07"
+      },
+      {
+        "literal_caller_body": "40 20 00",
+        "serial_input": "2E 40 20 00 9F",
+        "receiver_notifications": 0,
+        "receiver_state": 2,
+        "receiver_buffered_bytes": 4,
+        "decoder_ack_routine_calls": 0,
+        "captured_can_queue_inputs": [],
+        "captured_serial_outputs": [],
+        "hardware_verified": false,
+        "oem_setting": "03/38",
+        "representation": "oem_payload",
+        "oem_can_id": "0x16305054",
+        "oem_api_value": 1,
+        "oem_payload": "40 20 00"
+      },
+      {
+        "literal_caller_body": "00 00 00 03 16 30 50 54 40 20 00 00 00 00 00 00",
+        "serial_input": "2E 00 00 00 03 16 30 50 54 40 20 00 00 00 00 00 00 B2",
+        "receiver_notifications": 1,
+        "receiver_state": 1,
+        "receiver_buffered_bytes": 13,
+        "decoder_ack_routine_calls": 0,
+        "captured_can_queue_inputs": [],
+        "captured_serial_outputs": [
+          "F0"
+        ],
+        "hardware_verified": false,
+        "oem_setting": "03/38",
+        "representation": "oem_native",
+        "oem_can_id": "0x16305054",
+        "oem_api_value": 1,
+        "oem_payload": "40 20 00"
+      },
+      {
+        "literal_caller_body": "02 00 15 FF EA 51 07 44 00 00 00 00 03 16 30 50 54 40 20 00 00 00 00 00 00 03",
+        "serial_input": "2E 02 00 15 FF EA 51 07 44 00 00 00 00 03 16 30 50 54 40 20 00 00 00 00 00 00 03 13",
+        "receiver_notifications": 2,
+        "receiver_state": 1,
+        "receiver_buffered_bytes": 23,
+        "decoder_ack_routine_calls": 0,
+        "captured_can_queue_inputs": [],
+        "captured_serial_outputs": [
+          "F0"
+        ],
+        "hardware_verified": false,
+        "oem_setting": "03/38",
+        "representation": "oem_syscon_ipc",
+        "oem_can_id": "0x16305054",
+        "oem_api_value": 1,
+        "oem_payload": "40 20 00"
+      },
+      {
+        "literal_caller_body": "40 15 00",
+        "serial_input": "2E 40 15 00 AA",
+        "receiver_notifications": 0,
+        "receiver_state": 2,
+        "receiver_buffered_bytes": 4,
+        "decoder_ack_routine_calls": 0,
+        "captured_can_queue_inputs": [],
+        "captured_serial_outputs": [],
+        "hardware_verified": false,
+        "oem_setting": "03/5B",
+        "representation": "oem_payload",
+        "oem_can_id": "0x16305054",
+        "oem_api_value": 1,
+        "oem_payload": "40 15 00"
+      },
+      {
+        "literal_caller_body": "00 00 00 03 16 30 50 54 40 15 00 00 00 00 00 00",
+        "serial_input": "2E 00 00 00 03 16 30 50 54 40 15 00 00 00 00 00 00 BD",
+        "receiver_notifications": 1,
+        "receiver_state": 1,
+        "receiver_buffered_bytes": 13,
+        "decoder_ack_routine_calls": 0,
+        "captured_can_queue_inputs": [],
+        "captured_serial_outputs": [
+          "F0"
+        ],
+        "hardware_verified": false,
+        "oem_setting": "03/5B",
+        "representation": "oem_native",
+        "oem_can_id": "0x16305054",
+        "oem_api_value": 1,
+        "oem_payload": "40 15 00"
+      },
+      {
+        "literal_caller_body": "02 00 15 FF EA 51 07 44 00 00 00 00 03 16 30 50 54 40 15 00 00 00 00 00 00 03",
+        "serial_input": "2E 02 00 15 FF EA 51 07 44 00 00 00 00 03 16 30 50 54 40 15 00 00 00 00 00 00 03 1E",
+        "receiver_notifications": 2,
+        "receiver_state": 1,
+        "receiver_buffered_bytes": 23,
+        "decoder_ack_routine_calls": 0,
+        "captured_can_queue_inputs": [],
+        "captured_serial_outputs": [
+          "F0"
+        ],
+        "hardware_verified": false,
+        "oem_setting": "03/5B",
+        "representation": "oem_syscon_ipc",
+        "oem_can_id": "0x16305054",
+        "oem_api_value": 1,
+        "oem_payload": "40 15 00"
+      },
+      {
+        "literal_caller_body": "40 2E 00",
+        "serial_input": "2E 40 2E 00 91",
+        "receiver_notifications": 0,
+        "receiver_state": 2,
+        "receiver_buffered_bytes": 2,
+        "decoder_ack_routine_calls": 0,
+        "captured_can_queue_inputs": [],
+        "captured_serial_outputs": [],
+        "hardware_verified": false,
+        "oem_setting": "03/5C",
+        "representation": "oem_payload",
+        "oem_can_id": "0x16305054",
+        "oem_api_value": 1,
+        "oem_payload": "40 2E 00"
+      },
+      {
+        "literal_caller_body": "00 00 00 03 16 30 50 54 40 2E 00 00 00 00 00 00",
+        "serial_input": "2E 00 00 00 03 16 30 50 54 40 2E 00 00 00 00 00 00 A4",
+        "receiver_notifications": 2,
+        "receiver_state": 1,
+        "receiver_buffered_bytes": 3,
+        "decoder_ack_routine_calls": 0,
+        "captured_can_queue_inputs": [],
+        "captured_serial_outputs": [
+          "F0",
+          "F0"
+        ],
+        "hardware_verified": false,
+        "oem_setting": "03/5C",
+        "representation": "oem_native",
+        "oem_can_id": "0x16305054",
+        "oem_api_value": 1,
+        "oem_payload": "40 2E 00"
+      },
+      {
+        "literal_caller_body": "02 00 15 FF EA 51 07 44 00 00 00 00 03 16 30 50 54 40 2E 00 00 00 00 00 00 03",
+        "serial_input": "2E 02 00 15 FF EA 51 07 44 00 00 00 00 03 16 30 50 54 40 2E 00 00 00 00 00 00 03 05",
+        "receiver_notifications": 3,
+        "receiver_state": 255,
+        "receiver_buffered_bytes": 0,
+        "decoder_ack_routine_calls": 0,
+        "captured_can_queue_inputs": [],
+        "captured_serial_outputs": [
+          "F0",
+          "F0"
+        ],
+        "hardware_verified": false,
+        "oem_setting": "03/5C",
+        "representation": "oem_syscon_ipc",
+        "oem_can_id": "0x16305054",
+        "oem_api_value": 1,
+        "oem_payload": "40 2E 00"
+      }
+    ],
+    "conclusion": "Literal OEM payload, native and syscon representations do not substitute for an XP CAN transmit contract on the tested 111 path"
+  },
+  "extra_cluster_menus_absent_from_fixed_table": [
+    {
+      "oem_setting": "03/29",
+      "menu": "0x32",
+      "matching_fixed_templates": []
+    },
+    {
+      "oem_setting": "03/2A",
+      "menu": "0x33",
+      "matching_fixed_templates": []
+    },
+    {
+      "oem_setting": "03/38",
+      "menu": "0x20",
+      "matching_fixed_templates": []
+    },
+    {
+      "oem_setting": "03/5B",
+      "menu": "0x15",
+      "matching_fixed_templates": []
+    }
+  ],
+  "generic_can_passthrough_contract": null
+}

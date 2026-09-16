@@ -4,6 +4,10 @@ An Android app for FYT head units using the installed `com.syu.ms` service. It h
 
 [3.4.4 release notes](documents/RELEASE-3.4.4.md)
 
+[HCX1 custom firmware development](firmware/cluster-extension/README.md):
+experimental cluster extension with four extra operations, tested in isolated
+ARM execution. Not an installable update or a new APK capability.
+
 ## Repository
 
 This directory is the independent Honda Customizer Git repository. Run build and Git commands here. Its original project history was extracted from Cabin. This project lives outside the Cabin directory and has its own Git repository. The older original-head-unit workspace is preserved at `../R/honda-customizer-original-hu-backup`.

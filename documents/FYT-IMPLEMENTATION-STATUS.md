@@ -14,6 +14,18 @@ The goal remains full FYT Honda implementation. A researched row is not automati
 
 ## Still required
 
+Read-only decoder audit: the [official Honda XP 111 firmware audit](research/XP-BOX-FIRMWARE.md)
+reproduces existing tachometer/ambient-change packets in isolated ARM execution.
+It does not supply additional layout/color-selection/navigation commands for
+the owner's reported 108 firmware. An additional 20 serial-receiver cases
+confirm the stock XP tachometer packet reaches the CAN queue while literal
+OEM payload/native/IPC substitutions do not, on that isolated 111 path.
+No additional cluster feature is released in the APK. The owner subsequently
+authorized [HCX1 custom firmware](../firmware/cluster-extension/README.md):
+four new operations are implemented and tested in isolated execution for the
+audited 111 binary. An installable port for the owner's 108 box and a verified
+FYT receive path remain unfinished.
+
 - Remaining in-scope SiYu maintenance data/actions. New sound and camera additions are excluded by the project owner. Their newly traced contracts are not enabled. The hidden beep-volume row remains excluded.
 - Resolve vehicle language feedback before enabling language writes; Portuguese command is known, acknowledgement is not.
 - Resolve completion evidence for maintenance reset, initial-values restore and TPMS calibration.
@@ -72,7 +84,7 @@ New sound/camera work has been removed at the owner’s direction. The current s
 
 The service subscription path was traced beyond the UI. Settings now use notify=0 so that untimestamped cache entries (including startup zeros) cannot be presented as fresh vehicle feedback. Only profile identity uses notify=1. Expired values are removed from the UI/report; expiry of an older observation cannot erase a newer one. Some values remain unavailable on firmware that suppresses unchanged notifications; no fresh-read command is assumed.
 
-The full feature goal remains incomplete. Language/reset completion responses, additional physical cluster contracts and exact vehicle diagnostic contracts are still missing. No physical head-unit report or validation has been supplied.
+The full feature goal remains incomplete. Language/reset completion responses, additional physical cluster contracts and exact vehicle diagnostic contracts are still missing. The owner's photos show profile 0x4012A, service 2.23.0718.1700, decoder text CRI V1.13.108BYPT, and unavailable feedback for the 22 mapped settings. These are connection reports, not validation of a successful cluster change. The earlier APK-only constraint was superseded by explicit authorization for custom firmware; HCX1 remains experimental and not installable on that unvalidated box.
 
 ## 3.3.2 transport correction
 
