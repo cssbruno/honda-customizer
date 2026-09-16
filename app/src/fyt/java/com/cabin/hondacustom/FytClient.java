@@ -133,6 +133,11 @@ final class FytClient {
         Session s=session;Long time=received.get(c.field);
         return s!=null&&s.ready&&s.module!=null&&!busy()&&FytProtocol.visible(profile,c)&&values.containsKey(c.field)&&time!=null&&SystemClock.elapsedRealtime()-time<FRESH_MS;
     }
+    void sendAction(XpAction action,boolean parked,Object expectedConnection){
+        if(action==null||!parked||!canSendPacket()||session!=expectedConnection)return;
+        trace.add(message(action.title));
+        sendPacket(action.bytes(),parked,expectedConnection);
+    }
     void sendPacket(byte[] input,boolean parked,Object expectedConnection){
         if(!parked||!canSendPacket()||session!=expectedConnection)return;
         XpPacket.unsigned(input);final byte[] bytes=input.clone();

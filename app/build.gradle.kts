@@ -3,7 +3,7 @@ android {
  namespace = "com.cabin.hondacustom"
  compileSdk = 36
  defaultConfig {
-  applicationId = "com.cabin.hondacustom"; minSdk = 17; targetSdk = 28; versionCode = 12; versionName = "3.4.0"
+  applicationId = "com.cabin.hondacustom"; minSdk = 17; targetSdk = 28; versionCode = 13; versionName = "3.4.1"
   testInstrumentationRunner = "com.cabin.hondacustom.SmokeInstrumentation"
  }
  buildTypes.getByName("release") {

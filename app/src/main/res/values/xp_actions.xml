@@ -1,0 +1,11 @@
+<resources>
+    <string name="xp_actions_title">Vehicle actions</string>
+    <string name="xp_action_maintenance">Reset maintenance information</string>
+    <string name="xp_action_maintenance_help">Use after the maintenance has been performed. Requests a reset of vehicle maintenance information.</string>
+    <string name="xp_action_restore">Restore vehicle settings</string>
+    <string name="xp_action_restore_help">Requests restoration of vehicle customization settings to their initial values.</string>
+    <string name="xp_action_tpms">Request TPMS calibration</string>
+    <string name="xp_action_tpms_help">Requests tire pressure monitoring calibration.</string>
+    <string name="xp_action_confirm">Send this request? Completion cannot be confirmed by the app. It disconnects after sending; reconnect for new vehicle readings.</string>
+    <string name="xp_action_send">Send request</string>
+</resources>

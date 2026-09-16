@@ -1,0 +1,11 @@
+<resources>
+    <string name="xp_actions_title">Ações do veículo</string>
+    <string name="xp_action_maintenance">Redefinir informações de manutenção</string>
+    <string name="xp_action_maintenance_help">Use após realizar a manutenção. Solicita a redefinição das informações de manutenção do veículo.</string>
+    <string name="xp_action_restore">Restaurar configurações do veículo</string>
+    <string name="xp_action_restore_help">Solicita a restauração das configurações de personalização do veículo aos valores iniciais.</string>
+    <string name="xp_action_tpms">Solicitar calibração TPMS</string>
+    <string name="xp_action_tpms_help">Solicita a calibração do monitoramento da pressão dos pneus.</string>
+    <string name="xp_action_confirm">Enviar esta solicitação? O app não consegue confirmar a conclusão. Ele desconecta após o envio; reconecte para receber novas leituras do veículo.</string>
+    <string name="xp_action_send">Enviar solicitação</string>
+</resources>

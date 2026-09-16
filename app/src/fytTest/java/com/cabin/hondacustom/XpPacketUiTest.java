@@ -40,6 +40,33 @@ public class XpPacketUiTest {
             else{fixture.await(()->!fixture.client.connected());assertEquals(1,fixture.module.writes);assertEquals(1008,fixture.module.command);}
         }finally{controller.pause().stop().destroy();fixture.close();}
     }
+    private void readyAction(XpAction action,int key,boolean cancel)throws Exception{
+        FytClientTest fixture=new FytClientTest();fixture.setup();
+        ActivityController<MainActivity> controller=Robolectric.buildActivity(MainActivity.class).setup();
+        MainActivity activity=controller.get();
+        try{
+            fixture.xpReady();java.lang.reflect.Field field=MainActivity.class.getDeclaredField("client");field.setAccessible(true);
+            ((FytClient)field.get(activity)).destroy();field.set(activity,fixture.client);
+            CheckBox parked=(CheckBox)find(activity.getWindow().getDecorView(),CheckBox.class,null);parked.setChecked(true);
+            View button=find(activity.getWindow().getDecorView(),Button.class,activity.getString(action.title));
+            assertNotNull(button);assertTrue(button.isEnabled());button.performClick();
+            AlertDialog confirmation=ShadowAlertDialog.getLatestAlertDialog();
+            assertNull(find(confirmation.getWindow().getDecorView(),EditText.class,null));
+            assertEquals(0,fixture.module.writes);
+            if(cancel){confirmation.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();assertEquals(0,fixture.module.writes);}
+            else{
+                confirmation.getButton(AlertDialog.BUTTON_POSITIVE).performClick();fixture.await(()->!fixture.client.connected());
+                assertEquals(1,fixture.module.writes);assertEquals(1008,fixture.module.command);
+                assertArrayEquals(new int[]{0xc6,2,key,0},fixture.module.args);
+                assertTrue(fixture.client.report().contains(activity.getString(action.title)));
+                assertTrue(fixture.client.values.isEmpty());
+            }
+        }finally{controller.pause().stop().destroy();fixture.close();}
+    }
+    @Test public void maintenanceButtonSendsVerifiedPacket()throws Exception{readyAction(XpAction.MAINTENANCE,14,false);}
+    @Test public void restoreButtonSendsVerifiedPacket()throws Exception{readyAction(XpAction.RESTORE,15,false);}
+    @Test public void tpmsButtonSendsVerifiedPacket()throws Exception{readyAction(XpAction.TPMS,17,false);}
+    @Test public void cancellingRestoreDoesNotSend()throws Exception{readyAction(XpAction.RESTORE,15,true);}
     @Test public void emptyEditorRequiresReviewAndExplicitSend()throws Exception{exercise(false);}
     @Test public void withdrawingParkedAcknowledgementCancelsConfirmation()throws Exception{exercise(true);}
 }

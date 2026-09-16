@@ -30,6 +30,12 @@ public final class MainActivity extends Activity {
             rows.addView(text(client.connected()&&client.profile()!=0?getString(R.string.fyt_unmapped_help):getString(R.string.fyt_connect_help),18));return;
         }
         if(FytProtocol.xp(client.profile())){
+            rows.addView(text(getString(R.string.xp_actions_title),22));
+            for(XpAction action:XpAction.values()){
+                Button button=new Button(this);button.setText(action.title);
+                button.setEnabled(parked.isChecked()&&client.canSendPacket());
+                button.setOnClickListener(v->action(action));rows.addView(button);
+            }
             Button packet=new Button(this);packet.setText(R.string.xp_packet_title);
             packet.setEnabled(parked.isChecked()&&client.canSendPacket());packet.setOnClickListener(v->packet());rows.addView(packet);
         }
@@ -46,6 +52,17 @@ public final class MainActivity extends Activity {
         }
         }
         rows.addView(text(getString(R.string.fyt_feedback_help),14));
+    }
+    private void action(XpAction action){
+        final Object owner=client.connectionToken();
+        new AlertDialog.Builder(this).setTitle(action.title)
+            .setMessage(getString(action.help)+"\n\n"+getString(R.string.xp_action_confirm))
+            .setNegativeButton(R.string.fyt_cancel,null).setPositiveButton(R.string.xp_action_send,(d,w)->{
+                if(owner!=client.connectionToken()||!client.canSendPacket()||!parked.isChecked()){
+                    Toast.makeText(this,R.string.xp_packet_session_expired,Toast.LENGTH_LONG).show();return;
+                }
+                client.sendAction(action,parked.isChecked(),owner);
+            }).show();
     }
     private void packet(){
         final Object owner=client.connectionToken();
