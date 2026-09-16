@@ -1,0 +1,147 @@
+{
+  "protocol_update_apk_sha256": "8e9d005368f53cd39016ce4c0546143db3a7558a6fd8e564156e002f4793517d",
+  "profile": "0x4012A",
+  "databases": {
+    "canbus": {
+      "sha256": "5b77016392d72fba877d4eac36d686bbf146fac08f207c0074a76dc466a3e9c7",
+      "tables": [
+        {
+          "name": "sqlite_sequence",
+          "sql": "CREATE TABLE sqlite_sequence(name,seq)"
+        },
+        {
+          "name": "canbus_carset",
+          "sql": "CREATE TABLE \"canbus_carset\" (\r\n\"id\"  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\r\n\"canbus_carset_name_ch\"  TEXT,\r\n\"canbus_carset_name_en\"  TEXT,\r\n\"canbus_carset_name_tw\"  TEXT,\r\n\"name\"  TEXT\r\n)"
+        },
+        {
+          "name": "canbus_cartype",
+          "sql": "CREATE TABLE \"canbus_cartype\" (\r\n\"id\"  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\r\n\"canbus_cartype_ch\"  TEXT,\r\n\"canbus_cartype_en\"  TEXT,\r\n\"canbus_cartype_tw\"  TEXT,\r\n\"name\"  TEXT,\r\n\"msg\"  TEXT\r\n)"
+        },
+        {
+          "name": "android_metadata",
+          "sql": "CREATE TABLE android_metadata (locale TEXT)"
+        },
+        {
+          "name": "canbus_company",
+          "sql": "CREATE TABLE \"canbus_company\" (\r\n\"id\"  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\r\n\"canbus_company_name_ch\"  TEXT,\r\n\"canbus_company_name_en\"  TEXT,\r\n\"canbus_company_name_tw\"  TEXT,\r\n\"name\"  TEXT,\r\n\"order_num\"  INTEGER\r\n)"
+        },
+        {
+          "name": "canbus_canbox",
+          "sql": "CREATE TABLE \"canbus_canbox\" (\n\t\"id\"\tINTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n\t\"canbus_canbox_ch\"\tTEXT,\n\t\"canbus_canbox_en\"\tTEXT,\n\t\"canbus_canbox_tw\"\tTEXT,\n\t\"id_value\"\tINTEGER,\n\t\"disp\"\tINTEGER,\n\t\"name\"\tTEXT,\n\t\"company_id\"\tINTEGER,\n\t\"carset_id\"\tINTEGER,\n\t\"cartype_id\"\tINTEGER,\n\t\"limit\"\tTEXT,\n\t\"limit_byid\"\tTEXT\n)"
+        }
+      ],
+      "profile_rows": [
+        {
+          "id": 618,
+          "canbus_canbox_ch": "2016-2021款.高配",
+          "canbus_canbox_en": "2016-2021.HIGH",
+          "canbus_canbox_tw": "2016-2021款.高配",
+          "id_value": 262442,
+          "disp": 1,
+          "name": "16-21款思域高配",
+          "company_id": 4,
+          "carset_id": 5,
+          "cartype_id": 632,
+          "limit": null,
+          "limit_byid": null
+        }
+      ]
+    },
+    "canbus_hsp": {
+      "sha256": "3d0c68f7405475f11948125c88aa1f97a7b33d9905882d7106bdb0f9bfd1bcfa",
+      "tables": [
+        {
+          "name": "sqlite_sequence",
+          "sql": "CREATE TABLE sqlite_sequence(name,seq)"
+        },
+        {
+          "name": "canbus_carset",
+          "sql": "CREATE TABLE \"canbus_carset\" (\r\n\"id\"  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\r\n\"canbus_carset_name_ch\"  TEXT,\r\n\"canbus_carset_name_en\"  TEXT,\r\n\"canbus_carset_name_tw\"  TEXT,\r\n\"name\"  TEXT\r\n)"
+        },
+        {
+          "name": "canbus_cartype",
+          "sql": "CREATE TABLE \"canbus_cartype\" (\r\n\"id\"  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\r\n\"canbus_cartype_ch\"  TEXT,\r\n\"canbus_cartype_en\"  TEXT,\r\n\"canbus_cartype_tw\"  TEXT,\r\n\"name\"  TEXT,\r\n\"msg\"  TEXT\r\n)"
+        },
+        {
+          "name": "android_metadata",
+          "sql": "CREATE TABLE android_metadata (locale TEXT)"
+        },
+        {
+          "name": "canbus_company",
+          "sql": "CREATE TABLE \"canbus_company\" (\r\n\"id\"  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\r\n\"canbus_company_name_ch\"  TEXT,\r\n\"canbus_company_name_en\"  TEXT,\r\n\"canbus_company_name_tw\"  TEXT,\r\n\"name\"  TEXT,\r\n\"order_num\"  INTEGER\r\n)"
+        },
+        {
+          "name": "canbus_canbox",
+          "sql": "CREATE TABLE \"canbus_canbox\" (\r\n\"id\"  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\r\n\"canbus_canbox_ch\"  TEXT,\r\n\"canbus_canbox_en\"  TEXT,\r\n\"canbus_canbox_tw\"  TEXT,\r\n\"id_value\"  INTEGER,\r\n\"disp\"  INTEGER,\r\n\"name\"  TEXT,\r\n\"company_id\"  INTEGER,\r\n\"carset_id\"  INTEGER,\r\n\"cartype_id\"  INTEGER,\r\n\"limitt\"  TEXT,\r\n\"horv\"  TEXT\r\n)"
+        }
+      ],
+      "profile_rows": [
+        {
+          "id": 328,
+          "canbus_canbox_ch": "欣朴/睿智城(16款思域.带右视)",
+          "canbus_canbox_en": "XP/RZC(16SIYU.RIGHT)",
+          "canbus_canbox_tw": "欣樸/睿智城(16款思域.帶右視)",
+          "id_value": 262442,
+          "disp": 1,
+          "name": "欣朴16款思域带右视",
+          "company_id": 3,
+          "carset_id": 5,
+          "cartype_id": 29,
+          "limitt": null,
+          "horv": "h"
+        },
+        {
+          "id": 618,
+          "canbus_canbox_ch": "欣朴/睿智城(16款思域.带右视)",
+          "canbus_canbox_en": "XP/RZC(16SIYU.RIGHT)",
+          "canbus_canbox_tw": "欣樸/睿智城(16款思域.帶右視)",
+          "id_value": 262442,
+          "disp": 1,
+          "name": "欣朴16款思域带右视",
+          "company_id": 4,
+          "carset_id": 5,
+          "cartype_id": 29,
+          "limitt": null,
+          "horv": "h"
+        }
+      ]
+    },
+    "canbus_sp": {
+      "sha256": "c0bf734dd38ab6cd3654a6e90dab21c879c2949f8a276de073b8e9efd5e79132",
+      "tables": [
+        {
+          "name": "sqlite_sequence",
+          "sql": "CREATE TABLE sqlite_sequence(name,seq)"
+        },
+        {
+          "name": "android_metadata",
+          "sql": "CREATE TABLE android_metadata (locale TEXT)"
+        },
+        {
+          "name": "canbus_canbox",
+          "sql": "CREATE TABLE \"canbus_canbox\" (\r\n\"id\"  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\r\n\"canbus_canbox_ch\"  TEXT,\r\n\"canbus_canbox_en\"  TEXT,\r\n\"canbus_canbox_tw\"  TEXT,\r\n\"id_value\"  INTEGER,\r\n\"disp\"  INTEGER,\r\n\"name\"  TEXT,\r\n\"company_id\"  INTEGER,\r\n\"carset_id\"  INTEGER,\r\n\"cartype_id\"  INTEGER,\r\n\"limit\"  TEXT\r\n)"
+        },
+        {
+          "name": "canbus_company",
+          "sql": "CREATE TABLE \"canbus_company\" (\r\n\"id\"  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\r\n\"canbus_company_name_ch\"  TEXT,\r\n\"canbus_company_name_en\"  TEXT,\r\n\"canbus_company_name_tw\"  TEXT,\r\n\"name\"  TEXT,\r\n\"order_num\"  INTEGER,\r\n\"relation_horizontal\"  INTEGER\r\n)"
+        },
+        {
+          "name": "canbus_carset",
+          "sql": "CREATE TABLE \"canbus_carset\" (\r\n\"id\"  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\r\n\"canbus_carset_name_ch\"  TEXT,\r\n\"canbus_carset_name_en\"  TEXT,\r\n\"canbus_carset_name_tw\"  TEXT,\r\n\"name\"  TEXT,\r\n\"relation_horizontal\"  INTEGER\r\n)"
+        },
+        {
+          "name": "canbus_cartype",
+          "sql": "CREATE TABLE \"canbus_cartype\" (\r\n\"id\"  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\r\n\"canbus_cartype_ch\"  TEXT,\r\n\"canbus_cartype_en\"  TEXT,\r\n\"canbus_cartype_tw\"  TEXT,\r\n\"name\"  TEXT,\r\n\"msg\"  TEXT\r\n)"
+        }
+      ],
+      "profile_rows": []
+    }
+  },
+  "source_sha256": {
+    "f0/xp.smali": "8c3d76dd7c65e6a13c77ae9e06a415d7e44df59898f0f98028b53839ab1675cf",
+    "module/canbus/v.smali": "86d727f8ff26415bca860cea4f81dae406e0c6de480afa583d3172e09c5c82ba",
+    "g0/r.smali": "d745581aac1f597bfb9b579038e91902bbc28fe1e4251b592be8df82b9083f4f",
+    "g0/a.smali": "14dc55c148bbea7f9792a93a4f2a2629901a147e403291014b75a7e422195b56",
+    "y/k.smali": "67b4de3f52163c19e083fbbd68363de3a23f6d8d9ae707584aac66ce2964b606"
+  }
+}

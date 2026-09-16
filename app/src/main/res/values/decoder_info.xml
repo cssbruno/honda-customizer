@@ -1,0 +1,5 @@
+<resources>
+    <string name="fyt_decoder_version">CAN decoder version [1005], as reported by the FYT service: %1$s. May be cached; does not confirm current hardware identity or vehicle state.</string>
+    <string name="fyt_decoder_version_unavailable">unavailable</string>
+    <string name="fyt_decoder_version_failed">Decoder version subscription unavailable.</string>
+</resources>

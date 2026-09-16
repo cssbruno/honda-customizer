@@ -17,6 +17,7 @@ final class FytClient {
     private volatile int profile;
     private boolean closed;
     private int lastProfile;
+    private String decoderVersion;
     private final List<String> trace=new ArrayList<>();
     private volatile Write pending;
     private volatile Object pendingPacket;
@@ -46,7 +47,14 @@ final class FytClient {
                 if(code!=1)return super.onTransact(code,data,reply,flags);
                 data.enforceInterface(FytProtocol.CALLBACK);
                 if(data.dataAvail()<8||data.dataAvail()>4096)return false;
-                int field=data.readInt(),count=data.readInt();
+                int field=data.readInt();
+                if(field==FytDecoderInfo.VERSION){
+                    final String text;
+                    try{text=FytDecoderInfo.readVersion(data);}catch(RuntimeException invalid){return false;}
+                    main.post(()->{if(session==Session.this&&FytProtocol.xp(profile))decoderVersion=text;});
+                    if(reply!=null)reply.writeNoException();return true;
+                }
+                int count=data.readInt();
                 if(count>16||count< -1||count>data.dataAvail()/4)return false;
                 if(count>0){int raw=data.readInt();long arrived=SystemClock.elapsedRealtime();
                     Write request=pending;
@@ -70,7 +78,7 @@ final class FytClient {
         @Override public void onNullBinding(ComponentName name){connectionFailed(this,message(R.string.fyt_service_unavailable));}
     }
     void connect(){
-        if(closed)return;trace.clear();lastProfile=0;disconnect();bindRoute();
+        if(closed)return;trace.clear();lastProfile=0;decoderVersion=null;disconnect();bindRoute();
     }
     private void bindRoute(){
         if(closed)return;
@@ -107,6 +115,11 @@ final class FytClient {
             owner.worker.execute(()->{try{
                 // Subscribe to future setting events only; cached startup zeros are not vehicle feedback.
                 for(FytProtocol.Control c:FytProtocol.CONTROLS){if(session!=owner)return;if(!FytProtocol.visible(raw,c))continue;owner.registered.add(c.field);FytProtocol.register(owner.module,owner.callback,c.field,true);}
+                if(FytProtocol.xp(raw)&&session==owner){
+                    owner.registered.add(FytDecoderInfo.VERSION);
+                    try{FytProtocol.registerDecoderInfo(owner.module,owner.callback);}
+                    catch(Exception e){main.post(()->{if(session==owner)trace.add(message(R.string.fyt_decoder_version_failed));});}
+                }
                 main.post(()->{if(session==owner){owner.ready=true;status=message(R.string.fyt_connected,raw);observer.run();}});
             }catch(Exception e){main.post(()->connectionFailed(owner,message(R.string.fyt_settings_failed,e.getMessage())));}});
             return;
@@ -194,6 +207,8 @@ final class FytClient {
             out.append(message(R.string.fyt_report_service,info.versionName,info.versionCode));
         }catch(Exception e){out.append(message(R.string.fyt_package_missing));}
         out.append(message(R.string.fyt_report_status,status,lastProfile,lastProfile,family(lastProfile)));
+        if(FytProtocol.xp(lastProfile))out.append(message(R.string.fyt_decoder_version,
+            decoderVersion==null?message(R.string.fyt_decoder_version_unavailable):decoderVersion)).append('\n');
         for(String line:trace)out.append(line).append('\n');
         for(FytProtocol.Control c:FytProtocol.CONTROLS)if(FytProtocol.visible(profile,c))
             out.append(FytText.label(context,c.title)).append(" [").append(c.field).append("]: ")

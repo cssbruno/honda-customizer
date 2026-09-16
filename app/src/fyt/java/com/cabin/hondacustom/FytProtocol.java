@@ -257,6 +257,11 @@ final class FytProtocol {
     static void register(IBinder module,IBinder callback,int field,boolean add)throws RemoteException{
         exchange(module,MODULE,add?3:4,p->{p.writeStrongBinder(callback);p.writeInt(field);if(add)p.writeInt(field==PROFILE?1:0);},p->null);
     }
+    static void registerDecoderInfo(IBinder module,IBinder callback)throws RemoteException{
+        // Snapshot of the service's version string. Never interpreted as a
+        // fresh vehicle value, hardware-model guarantee or write permission.
+        exchange(module,MODULE,3,p->{p.writeStrongBinder(callback);p.writeInt(FytDecoderInfo.VERSION);p.writeInt(1);},p->null);
+    }
     static void change(IBinder module,int profile,Control c,int value)throws RemoteException{
         change(module,profile,c,value,()->{});
     }

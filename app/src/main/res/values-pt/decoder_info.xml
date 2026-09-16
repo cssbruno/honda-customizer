@@ -1,0 +1,5 @@
+<resources>
+    <string name="fyt_decoder_version">Versão do decodificador CAN [1005], informada pelo serviço FYT: %1$s. Pode ser cache; não confirma a identidade do hardware atual nem o estado do veículo.</string>
+    <string name="fyt_decoder_version_unavailable">indisponível</string>
+    <string name="fyt_decoder_version_failed">Leitura da versão do decodificador indisponível.</string>
+</resources>

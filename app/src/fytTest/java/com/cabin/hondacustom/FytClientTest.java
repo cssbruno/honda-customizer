@@ -32,7 +32,7 @@ public class FytClientTest {
         }
         @Override protected boolean onTransact(int code,Parcel d,Parcel r,int flags)throws RemoteException{
             d.enforceInterface("com.syu.ipc.IRemoteModule");
-            if(code==3){callback=d.readStrongBinder();int field=d.readInt();fields.add(field);int notify=d.readInt();notificationFlags.put(field,notify);assertEquals(field==1000?1:0,notify);}
+            if(code==3){callback=d.readStrongBinder();int field=d.readInt();fields.add(field);int notify=d.readInt();notificationFlags.put(field,notify);assertEquals(field==1000||field==1005?1:0,notify);}
             else if(code==4){d.readStrongBinder();fields.remove(d.readInt());}
             else if(code==1){command=d.readInt();args=d.createIntArray();assertNull(d.createFloatArray());assertNull(d.createStringArray());writes++;
                 long end=System.nanoTime()+TimeUnit.SECONDS.toNanos(5);
@@ -126,8 +126,9 @@ public class FytClientTest {
     }
     @Test public void reportedXpProfileSubscribesAndRequiresRealConfirmation()throws Exception{
         client.connect();await(()->module.fields.size()==1);module.emit(1000,0x4012a);
-        await(()->module.fields.size()==XpProtocolTest.fields().size());
-        assertEquals(XpProtocolTest.fields(),module.fields);assertTrue(client.values.isEmpty());
+        Set<Integer> expected=new HashSet<>(XpProtocolTest.fields());expected.add(1005);
+        await(()->module.fields.size()==expected.size());
+        assertEquals(expected,module.fields);assertTrue(client.values.isEmpty());
         assertTrue(client.report().contains("XP"));
         FytProtocol.Control tachometer=null;
         for(FytProtocol.Control c:FytProtocol.CONTROLS)if(c.xpOnly&&c.field==78)tachometer=c;
