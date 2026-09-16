@@ -1,0 +1,36 @@
+<resources>
+    <string name="audit_title">Auditoria FYT</string>
+    <string name="audit_back">Voltar</string>
+    <string name="audit_summary">Conexão</string>
+    <string name="audit_identity">Central e decodificador</string>
+    <string name="audit_capabilities">Cluster e comandos brutos</string>
+    <string name="audit_feedback">Leituras do veículo</string>
+    <string name="audit_history">Histórico da conexão</string>
+    <string name="audit_feedback_count">Leituras recentes: %1$d de %2$d configurações mapeadas.</string>
+    <string name="audit_connect_hint">Volte aos controles e conecte ao FYT para receber dados atuais.</string>
+    <string name="audit_profile_waiting">Aguardando o perfil FYT. Nenhum decodificador foi identificado nesta conexão.</string>
+    <string name="audit_live_hint">Esta tela acompanha as respostas do FYT. Copiar é opcional.</string>
+    <string name="audit_app_version">App: %1$s / %2$d</string>
+    <string name="audit_app_unavailable">Versão do app: indisponível</string>
+    <string name="audit_profile_unavailable">Último perfil: indisponível — nenhum perfil recebido.</string>
+    <string name="audit_previous_session">A identificação abaixo pertence à conexão anterior.</string>
+    <string name="audit_decoder_waiting">indisponível — aguardando identificação do FYT</string>
+    <string name="audit_decoder_empty">indisponível — FYT retornou a versão vazia</string>
+    <string name="audit_decoder_invalid">indisponível — FYT retornou uma identificação inválida</string>
+    <string name="audit_decoder_timeout">indisponível — nenhuma identificação recebida em 8 segundos</string>
+    <string name="audit_decoder_failed">indisponível — falha ao solicitar identificação</string>
+    <string name="audit_capabilities_waiting">Conecte e aguarde o perfil FYT exato para ver as conclusões aplicáveis. O envio CAN/OBD bruto não foi verificado nesta central.</string>
+    <string name="audit_capabilities_other">A investigação XP se aplica somente ao perfil 0x4012A. O envio CAN/OBD bruto não foi estabelecido para esta conexão. Apenas os ajustes mapeados deste perfil estão disponíveis.</string>
+    <string name="audit_cluster_pending">Ajustes extras do cluster XP: não implementados. Layout do painel, cor ambiente e navegação OEM ainda não têm uma tradução verificada para o transporte XP.</string>
+    <string name="audit_xp_packet">Pacotes XP manuais: o app implementa a rota documentada de pacotes do decodificador FYT. O despacho não confirma transmissão CAN nem alteração no veículo.</string>
+    <string name="audit_obd_unknown">CAN/OBD bruto: não verificado. A rota serial OBD estudada não estabelece um comando XP que aceite endereço CAN e dados. Esta auditoria não faz teste de transmissão.</string>
+    <string name="audit_protocol_reference">Referência do protocolo: SYU 2.23.0711.1001. São conclusões do código estudado; compare com o serviço instalado acima. A versão do decodificador, sozinha, não confirma compatibilidade física.</string>
+    <string name="audit_feedback_help">Só aparecem valores recebidos há menos de 30 segundos. O tempo abaixo começa quando o app recebe a resposta FYT; não é um horário informado pelo veículo. Valores ausentes permanecem indisponíveis.</string>
+    <string name="audit_feedback_age">recebido há %1$d s</string>
+    <string name="audit_feedback_waiting">Indisponível — nenhum retorno válido recebido</string>
+    <string name="audit_feedback_invalid">Indisponível — valor FYT inválido</string>
+    <string name="audit_feedback_expired">Indisponível — retorno vencido (30 s)</string>
+    <string name="audit_feedback_disconnected">Indisponível — desconectado. As leituras anteriores do veículo foram apagadas.</string>
+    <string name="audit_feedback_unmapped">Indisponível — aguardando um perfil mapeado.</string>
+    <string name="audit_history_empty">Nenhuma tentativa de conexão nesta sessão do app.</string>
+</resources>

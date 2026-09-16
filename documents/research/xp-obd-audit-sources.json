@@ -1,0 +1,55 @@
+{
+  "reference_service_version": "2.23.0711.1001",
+  "reference_service_apk_sha256": "4b428302e29c9e2503ccf7844a127f5bed59450736317629aa42b5eb35a9b577",
+  "owner_reported_service_version": "2.23.0718.1700",
+  "owner_service_inspected": false,
+  "hardware_tested": false,
+  "xp_passthrough_packet": null,
+  "sources": {
+    "b/i.smali": "f2ff0abed0cacd3d1692bccb05929624f57370e291deedb88d2918d000fa9423",
+    "app/ModuleService.smali": "16df15576fabd276fe275791fde55a64f24f81461d321cd7da39b5e54d184222",
+    "q0/b.smali": "592301ebbf04c20790d4f82e36dd86edf9d6758eb3c5fb5b0093a38483cdae50",
+    "q0/d.smali": "21ef81813aff4399089fdaec67f8df4fe4cb8b2a015e7e79e3f540f46a1b0e52",
+    "q0/h.smali": "ff6ba675402a00713e08c38c9e3ea8d8c9160054fb8fdcf75c047f655554edd2",
+    "q0/i.smali": "e11f2ea9748079cf6d8552a9cf61072fe4cc53c1d60a95ebdcf0a1be515f4a33",
+    "q0/j.smali": "d32bc4cd979b913e8402debf0881a50713b87c9d373603e1ad9f49f1b4f5a57e",
+    "q0/k.smali": "1d0849f1dae7d724391bcf99d70c0596be2224b48d27a37b54b9e1c721da88a4",
+    "q0/l.smali": "942b1686aed9dff9dc92f7b231d1ae743057d19970963babff8dc8e7e9bb3de6",
+    "q0/m.smali": "685f142f4cc35ac47f486b9c7322786db221ff548dfd2053603045bd09af82f2",
+    "i0/e.smali": "414196430b94540bcac3e4390e18482047ec8fc70fabe21da04545b264f76ee0",
+    "i0/h1.smali": "69786db2be0c25d8ba4354c3eeaf2410f4520d6f8513a6309b13fbfab4330816",
+    "i0/j.smali": "74d75d90adbb12cc1710d33dec2a7540d5a4318179633771a66da01fcb245fd0",
+    "y/k.smali": "67b4de3f52163c19e083fbbd68363de3a23f6d8d9ae707584aac66ce2964b606",
+    "w0/n.smali": "36dad81782e89da71d759e4c873f240853c785d55c090e103446e4b0616ca91e",
+    "chip/Chip.smali": "14add910c6fd416ff434b6656fa4381d2550a3b0d118fa7cc995a44a131ea86c",
+    "app/Receiver.smali": "d0b1dc73e4f700346c080e9ce3cea323ff9cfcbf054f5d7f792e085ae22b532f",
+    "module/canbus/c.smali": "6f7e75241a06e3af5787514c930b0b66bbff0d15c4e254d20b8b9f8f49f0c025",
+    "module/canbus/p.smali": "aede43ff669db7cdeefd8946e5e39ae563b74101e30eda9e2d953a9a1f05793a",
+    "f0/zd.smali": "1f928862d2d93de250539b118cf6cf2a79e799a8b1b6d6ae739e1aa907f83272"
+  },
+  "packaged_notes": {
+    "dev/readme.txt": {
+      "sha256": "0af876f1b353a65b39ead2b685d33c7a60996d312b79e9f2bd4861fcce066174",
+      "encoding": "gb18030"
+    },
+    "module/obd/TIP.txt": {
+      "sha256": "bbb4f380d8d510f2b5932ae5b379503af8b66a1db7f5a81081084fb34fa29a02",
+      "encoding": "gb18030"
+    },
+    "module/canbus/TIP.txt": {
+      "sha256": "5505e792f91fea7f81c219a1660f8318a44c5c61db3cdc3b7e97cf40f431eaa4",
+      "encoding": "gb18030"
+    },
+    "module/customer/各平台串口配置表.txt": {
+      "sha256": "0dad0588224c237e5a72e2cb3069c16ddd1834ec766dc7ca6bf8bad57dfb9d44",
+      "encoding": "gb18030"
+    }
+  },
+  "packaged_notes_provenance": {
+    "extraction_path": "/home/bruno/Documentos/ChatGPT/R/firmware-hardening-20260507/sources/mainservice",
+    "version_code_from_apktool": 2122120314,
+    "version_name_from_apktool": "1.0",
+    "apktool_yml_sha256": "aa355c4f17a51b504866a77641c2b0c0d809320a8962d991f5054da6a328044d",
+    "same_build_as_reference_established": false
+  }
+}

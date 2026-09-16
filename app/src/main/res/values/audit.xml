@@ -1,0 +1,36 @@
+<resources>
+    <string name="audit_title">FYT audit</string>
+    <string name="audit_back">Back</string>
+    <string name="audit_summary">Connection</string>
+    <string name="audit_identity">Head unit and decoder</string>
+    <string name="audit_capabilities">Cluster and raw commands</string>
+    <string name="audit_feedback">Vehicle readings</string>
+    <string name="audit_history">Connection history</string>
+    <string name="audit_feedback_count">Recent readings: %1$d of %2$d mapped settings.</string>
+    <string name="audit_connect_hint">Return to the controls and connect to FYT to receive current data.</string>
+    <string name="audit_profile_waiting">Waiting for the FYT profile. No decoder has been identified for this connection.</string>
+    <string name="audit_live_hint">This screen updates as FYT replies arrive. Copying is optional.</string>
+    <string name="audit_app_version">App: %1$s / %2$d</string>
+    <string name="audit_app_unavailable">App version: unavailable</string>
+    <string name="audit_profile_unavailable">Last profile: unavailable — no profile received.</string>
+    <string name="audit_previous_session">The identification below belongs to the previous connection.</string>
+    <string name="audit_decoder_waiting">unavailable — waiting for FYT identification</string>
+    <string name="audit_decoder_empty">unavailable — FYT returned no version text</string>
+    <string name="audit_decoder_invalid">unavailable — FYT returned an invalid identification</string>
+    <string name="audit_decoder_timeout">unavailable — no identification received within 8 seconds</string>
+    <string name="audit_decoder_failed">unavailable — identification subscription failed</string>
+    <string name="audit_capabilities_waiting">Connect and wait for the exact FYT profile to see the applicable protocol findings. Raw CAN/OBD capability has not been verified on this head unit.</string>
+    <string name="audit_capabilities_other">The XP investigation applies only to profile 0x4012A. Raw CAN/OBD capability has not been established for this connection. Only this profile’s mapped settings are available.</string>
+    <string name="audit_cluster_pending">Extra XP cluster settings: not implemented. Meter layout, ambient color and OEM navigation display still lack a verified XP transport mapping.</string>
+    <string name="audit_xp_packet">Manual XP packets: the app implements the documented FYT decoder-packet route. Dispatch does not confirm a CAN transmission or a change in the vehicle.</string>
+    <string name="audit_obd_unknown">Raw CAN/OBD: unverified. The researched OBD serial route does not establish an XP command accepting CAN address and data. This audit performs no transmission test.</string>
+    <string name="audit_protocol_reference">Protocol reference: SYU 2.23.0711.1001. These are source-code findings; compare the installed service above. Decoder version text alone does not establish physical compatibility.</string>
+    <string name="audit_feedback_help">Only received values less than 30 seconds old are shown. The age below starts when the app receives FYT feedback; it is not a vehicle timestamp. Missing values remain unavailable.</string>
+    <string name="audit_feedback_age">received %1$d s ago</string>
+    <string name="audit_feedback_waiting">Unavailable — no valid feedback received</string>
+    <string name="audit_feedback_invalid">Unavailable — invalid FYT value</string>
+    <string name="audit_feedback_expired">Unavailable — feedback expired (30 s)</string>
+    <string name="audit_feedback_disconnected">Unavailable — disconnected. Earlier vehicle readings have been cleared.</string>
+    <string name="audit_feedback_unmapped">Unavailable — waiting for a mapped profile.</string>
+    <string name="audit_history_empty">No connection attempt in this app session.</string>
+</resources>

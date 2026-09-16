@@ -31,7 +31,7 @@ public class FytLocalizationTest {
         MainActivity activity=Robolectric.buildActivity(MainActivity.class).setup().get();
         try{
             View root=activity.getWindow().getDecorView();
-            assertNotNull(find(root,"Conectar ao FYT"));assertNotNull(find(root,"Relatório"));
+            assertNotNull(find(root,"Conectar ao FYT"));assertNotNull(find(root,"Auditoria FYT"));
             assertNotNull(find(root,"Desconectado"));assertNotNull(find(root,"Estou estacionado"));
             assertNotNull(find(root,"Apenas configurações FYT verificadas"));
             assertNull(find(root,"Connect to FYT"));

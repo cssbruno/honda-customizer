@@ -4,7 +4,7 @@
     <string name="fyt_report">"Relatório"</string>
     <string name="fyt_disconnect">"Desconectar"</string>
     <string name="fyt_connect">"Conectar ao FYT"</string>
-    <string name="fyt_unmapped_help">"O serviço FYT está conectado. Este decodificador CAN precisa de um mapeamento de configurações. Use Relatório para copiar o perfil detectado e a versão do serviço."</string>
+    <string name="fyt_unmapped_help">"O serviço FYT está conectado. Este decodificador CAN precisa de um mapeamento de configurações. Abra Auditoria FYT para ver o perfil detectado e a versão do serviço."</string>
     <string name="fyt_connect_help">"Conecte para carregar as configurações do seu perfil FYT CANBUS.\n\nOs controles disponíveis dependem do decodificador CAN instalado. Apenas configurações FYT verificadas são exibidas."</string>
     <string name="fyt_wait_value">"Aguardando atualização ao vivo do FYT"</string>
     <string name="fyt_refresh_required">" · Atualização ao vivo necessária"</string>
@@ -30,7 +30,7 @@
     <string name="fyt_discovery_timeout">"A identificação do FYT não terminou; reconecte"</string>
     <string name="fyt_profile_changed">"O perfil FYT mudou; reconecte para recarregar as configurações"</string>
     <string name="fyt_profile_trace">"Perfil FYT: 0x%1$X (%2$d), %3$s"</string>
-    <string name="fyt_unmapped_status">"FYT conectado · O perfil 0x%1$X ainda não tem controles mapeados. Copie o Relatório."</string>
+    <string name="fyt_unmapped_status">"FYT conectado · O perfil 0x%1$X ainda não tem controles mapeados. Abra Auditoria FYT."</string>
     <string name="fyt_loading">"Carregando configurações FYT · Perfil 0x%1$X"</string>
     <string name="fyt_connected">"FYT conectado · Perfil 0x%1$X"</string>
     <string name="fyt_settings_failed">"Falha ao identificar as configurações FYT: %1$s"</string>

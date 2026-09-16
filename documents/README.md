@@ -10,6 +10,7 @@
 - [Joying empty-reply transport fix](research/fyt-transport-audit/FINDINGS.md) — command/subscription wire contract and regression evidence.
 - [XP Civic 0x4012A mapping](research/XP-4012A.md) — exact profile reported by the owner's head unit and independently traced settings.
 - [XP lower-level packet send path](research/XP-RAW-SEND.md) — verified module command 1008; arbitrary vehicle CAN framing remains unresolved.
+- [FYT OBD transport audit](research/XP-OBD-AUDIT.md) — module 12 serial writes and why their routing does not establish XP raw CAN support.
 
 ## Original Honda head unit: reference only
 

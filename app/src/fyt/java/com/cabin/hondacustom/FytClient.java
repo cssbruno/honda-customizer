@@ -10,6 +10,7 @@ final class FytClient {
     static final long FRESH_MS=30000, TIMEOUT_MS=8000;
     final Map<Integer,Integer> values=new HashMap<>();
     private final Map<Integer,Long> received=new HashMap<>();
+    private final Map<Integer,Integer> unavailableReasons=new HashMap<>();
     private final Context context; private final Runnable observer;
     private final Handler main=new Handler(Looper.getMainLooper());
     private final ExecutorService worker=Executors.newSingleThreadExecutor();
@@ -18,6 +19,7 @@ final class FytClient {
     private boolean closed;
     private int lastProfile;
     private String decoderVersion;
+    private int decoderIssue=R.string.audit_decoder_waiting;
     private final List<String> trace=new ArrayList<>();
     private volatile Write pending;
     private volatile Object pendingPacket;
@@ -50,8 +52,10 @@ final class FytClient {
                 int field=data.readInt();
                 if(field==FytDecoderInfo.VERSION){
                     final String text;
-                    try{text=FytDecoderInfo.readVersion(data);}catch(RuntimeException invalid){return false;}
-                    main.post(()->{if(session==Session.this&&FytProtocol.xp(profile))decoderVersion=text;});
+                    try{text=FytDecoderInfo.readVersion(data);}catch(RuntimeException invalid){
+                        main.post(()->decoderInfo(Session.this,null,R.string.audit_decoder_invalid));return false;
+                    }
+                    main.post(()->decoderInfo(Session.this,text,R.string.audit_decoder_empty));
                     if(reply!=null)reply.writeNoException();return true;
                 }
                 int count=data.readInt();
@@ -78,7 +82,11 @@ final class FytClient {
         @Override public void onNullBinding(ComponentName name){connectionFailed(this,message(R.string.fyt_service_unavailable));}
     }
     void connect(){
-        if(closed)return;trace.clear();lastProfile=0;decoderVersion=null;disconnect();bindRoute();
+        if(closed)return;trace.clear();lastProfile=0;decoderVersion=null;decoderIssue=R.string.audit_decoder_waiting;disconnect();bindRoute();
+    }
+    private void decoderInfo(Session owner,String text,int issue){
+        if(session!=owner||!FytProtocol.xp(profile))return;
+        decoderVersion=text;decoderIssue=issue;observer.run();
     }
     private void bindRoute(){
         if(closed)return;
@@ -117,8 +125,12 @@ final class FytClient {
                 for(FytProtocol.Control c:FytProtocol.CONTROLS){if(session!=owner)return;if(!FytProtocol.visible(raw,c))continue;owner.registered.add(c.field);FytProtocol.register(owner.module,owner.callback,c.field,true);}
                 if(FytProtocol.xp(raw)&&session==owner){
                     owner.registered.add(FytDecoderInfo.VERSION);
+                    main.post(()->{if(session==owner)main.postDelayed(()->{
+                        if(session==owner&&decoderVersion==null&&decoderIssue==R.string.audit_decoder_waiting)
+                            decoderInfo(owner,null,R.string.audit_decoder_timeout);
+                    },TIMEOUT_MS);});
                     try{FytProtocol.registerDecoderInfo(owner.module,owner.callback);}
-                    catch(Exception e){main.post(()->{if(session==owner)trace.add(message(R.string.fyt_decoder_version_failed));});}
+                    catch(Exception e){main.post(()->{if(session==owner){trace.add(message(R.string.fyt_decoder_version_failed));decoderInfo(owner,null,R.string.audit_decoder_failed);}});}
                 }
                 main.post(()->{if(session==owner){owner.ready=true;status=message(R.string.fyt_connected,raw);observer.run();}});
             }catch(Exception e){main.post(()->connectionFailed(owner,message(R.string.fyt_settings_failed,e.getMessage())));}});
@@ -128,13 +140,14 @@ final class FytClient {
         if(pendingPacket!=null)return;
         for(FytProtocol.Control c:FytProtocol.CONTROLS)if(c.field==field&&FytProtocol.visible(profile,c)){
             Integer value=c.decode(raw);
-            if(value==null){values.remove(field);received.remove(field);}else{values.put(field,value);received.put(field,arrived);}
+            if(value==null){values.remove(field);received.remove(field);unavailableReasons.put(field,R.string.audit_feedback_invalid);}
+            else{values.put(field,value);received.put(field,arrived);unavailableReasons.remove(field);}
             if(observed!=null&&pending==observed&&observed.control==c){observed.feedback=value;finishIfConfirmed(observed);}
             observer.run();
             main.postDelayed(()->{
                 if(session!=owner)return;
                 Long time=received.get(field);
-                if(time!=null&&SystemClock.elapsedRealtime()-time>=FRESH_MS){values.remove(field);received.remove(field);observer.run();}
+                if(time!=null&&SystemClock.elapsedRealtime()-time>=FRESH_MS){values.remove(field);received.remove(field);unavailableReasons.put(field,R.string.audit_feedback_expired);observer.run();}
             },FRESH_MS+1);return;
         }
     }
@@ -156,7 +169,7 @@ final class FytClient {
         XpPacket.unsigned(input);final byte[] bytes=input.clone();
         final Session owner=session;final int expectedProfile=profile;
         final Object request=new Object();final long deadline=SystemClock.elapsedRealtime()+TIMEOUT_MS;
-        pendingPacket=request;values.clear();received.clear();
+        pendingPacket=request;values.clear();received.clear();unavailableReasons.clear();
         status=message(R.string.xp_packet_sending);trace.add(message(R.string.xp_packet_requested,XpPacket.hex(bytes)));observer.run();
         if(closed||session!=owner||pendingPacket!=request)return;
         owner.worker.execute(()->{
@@ -200,24 +213,75 @@ final class FytClient {
     }
     private void releaseBinding(Session owner){if(owner.bound){owner.bound=false;try{context.unbindService(owner);}catch(RuntimeException ignored){}}}
     private void fail(Session owner,String message){if(session!=owner)return;trace.add(message);disconnect();status=message;observer.run();}
-    String report(){
-        StringBuilder out=new StringBuilder(message(R.string.fyt_title)).append('\n');
+    String auditSummary(){
+        StringBuilder out=new StringBuilder(status);
+        if(FytProtocol.supported(profile)){
+            int total=0,fresh=0;
+            for(FytProtocol.Control c:FytProtocol.CONTROLS)if(FytProtocol.visible(profile,c)){total++;if(value(c)!=null)fresh++;}
+            out.append('\n').append(message(R.string.audit_feedback_count,fresh,total));
+        }
+        if(!connected())out.append('\n').append(message(R.string.audit_connect_hint));
+        else if(profile==0)out.append('\n').append(message(R.string.audit_profile_waiting));
+        else if(!FytProtocol.supported(profile))out.append('\n').append(message(R.string.fyt_unmapped_help));
+        else out.append('\n').append(message(R.string.audit_live_hint));
+        return out.toString();
+    }
+    String auditIdentity(){
+        StringBuilder out=new StringBuilder();
+        try{android.content.pm.PackageInfo info=context.getPackageManager().getPackageInfo(context.getPackageName(),0);
+            out.append(message(R.string.audit_app_version,info.versionName,info.versionCode)).append('\n');
+        }catch(Exception e){out.append(message(R.string.audit_app_unavailable)).append('\n');}
         out.append(message(R.string.fyt_report_unit,Build.MANUFACTURER,Build.MODEL,Build.VERSION.RELEASE));
         try{android.content.pm.PackageInfo info=context.getPackageManager().getPackageInfo("com.syu.ms",0);
             out.append(message(R.string.fyt_report_service,info.versionName,info.versionCode));
         }catch(Exception e){out.append(message(R.string.fyt_package_missing));}
-        out.append(message(R.string.fyt_report_status,status,lastProfile,lastProfile,family(lastProfile)));
-        if(FytProtocol.xp(lastProfile))out.append(message(R.string.fyt_decoder_version,
-            decoderVersion==null?message(R.string.fyt_decoder_version_unavailable):decoderVersion)).append('\n');
+        if(lastProfile==0)out.append(message(R.string.audit_profile_unavailable)).append('\n');
+        else out.append(message(R.string.fyt_report_status,status,lastProfile,lastProfile,family(lastProfile)));
+        if(FytProtocol.xp(lastProfile)){
+            if(!connected())out.append(message(R.string.audit_previous_session)).append('\n');
+            out.append(message(R.string.fyt_decoder_version,
+                decoderVersion==null?message(decoderIssue):decoderVersion)).append('\n');
+        }
+        return out.toString().trim();
+    }
+    String auditCapabilities(){
+        if(!connected()||profile==0)return message(R.string.audit_capabilities_waiting);
+        if(!FytProtocol.xp(profile))return message(R.string.audit_capabilities_other);
+        return message(R.string.audit_cluster_pending)+"\n\n"+message(R.string.audit_xp_packet)+"\n\n"+
+            message(R.string.audit_obd_unknown)+"\n\n"+message(R.string.audit_protocol_reference);
+    }
+    String auditFeedback(){
+        if(!connected())return message(R.string.audit_feedback_disconnected);
+        if(!FytProtocol.supported(profile))return message(R.string.audit_feedback_unmapped);
+        StringBuilder out=new StringBuilder(message(R.string.audit_feedback_help)).append("\n\n");
+        for(FytProtocol.Control c:FytProtocol.CONTROLS)if(FytProtocol.visible(profile,c)){
+            Integer current=value(c);Long time=received.get(c.field);
+            out.append(FytText.label(context,c.title)).append(" [").append(c.field).append("]: ");
+            if(current!=null)out.append(FytText.label(context,c.options[current])).append(" — ")
+                .append(message(R.string.audit_feedback_age,(SystemClock.elapsedRealtime()-time)/1000));
+            else if(time!=null)out.append(message(R.string.audit_feedback_expired));
+            else out.append(message(unavailableReasons.containsKey(c.field)?unavailableReasons.get(c.field):R.string.audit_feedback_waiting));
+            out.append("\n\n");
+        }
+        return out.toString().trim();
+    }
+    String auditHistory(){
+        if(trace.isEmpty())return message(R.string.audit_history_empty);
+        StringBuilder out=new StringBuilder();
         for(String line:trace)out.append(line).append('\n');
-        for(FytProtocol.Control c:FytProtocol.CONTROLS)if(FytProtocol.visible(profile,c))
-            out.append(FytText.label(context,c.title)).append(" [").append(c.field).append("]: ")
-                .append(value(c)!=null?FytText.label(context,c.options[value(c)]):message(R.string.fyt_no_feedback)).append('\n');
-        return out.toString();
+        return out.toString().trim();
+    }
+    String report(){
+        return message(R.string.fyt_title)+"\n\n"+
+            message(R.string.audit_summary)+"\n"+auditSummary()+"\n\n"+
+            message(R.string.audit_identity)+"\n"+auditIdentity()+"\n\n"+
+            message(R.string.audit_capabilities)+"\n"+auditCapabilities()+"\n\n"+
+            message(R.string.audit_feedback)+"\n"+auditFeedback()+"\n\n"+
+            message(R.string.audit_history)+"\n"+auditHistory();
     }
     void disconnect(){
         boolean unconfirmed=busy();
-        Session old=session;session=null;profile=0;pending=null;pendingPacket=null;values.clear();received.clear();main.removeCallbacksAndMessages(null);
+        Session old=session;session=null;profile=0;pending=null;pendingPacket=null;values.clear();received.clear();unavailableReasons.clear();main.removeCallbacksAndMessages(null);
         if(old!=null){
             releaseBinding(old);
             old.worker.execute(()->{if(old.module!=null)for(int field:old.registered)try{FytProtocol.register(old.module,old.callback,field,false);}catch(Exception ignored){}});

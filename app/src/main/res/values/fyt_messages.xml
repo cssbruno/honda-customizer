@@ -4,7 +4,7 @@
     <string name="fyt_report">"Report"</string>
     <string name="fyt_disconnect">"Disconnect"</string>
     <string name="fyt_connect">"Connect to FYT"</string>
-    <string name="fyt_unmapped_help">"Your FYT service is connected. This CAN decoder needs a setting map. Use Report to copy its detected profile and service version."</string>
+    <string name="fyt_unmapped_help">"Your FYT service is connected. This CAN decoder needs a setting map. Open FYT audit to see its detected profile and service version."</string>
     <string name="fyt_connect_help">"Connect to load settings for your FYT CANBUS profile.\n\nAvailable controls depend on the installed CAN decoder. Only verified FYT settings are shown."</string>
     <string name="fyt_wait_value">"Waiting for a live FYT update"</string>
     <string name="fyt_refresh_required">" · Live update required"</string>
@@ -30,7 +30,7 @@
     <string name="fyt_discovery_timeout">"FYT discovery did not finish; reconnect"</string>
     <string name="fyt_profile_changed">"FYT profile changed; reconnect to reload settings"</string>
     <string name="fyt_profile_trace">"FYT profile: 0x%1$X (%2$d), %3$s"</string>
-    <string name="fyt_unmapped_status">"FYT connected · profile 0x%1$X has no mapped controls yet. Copy the Report."</string>
+    <string name="fyt_unmapped_status">"FYT connected · profile 0x%1$X has no mapped controls yet. Open FYT audit."</string>
     <string name="fyt_loading">"Loading FYT settings · profile 0x%1$X"</string>
     <string name="fyt_connected">"FYT connected · profile 0x%1$X"</string>
     <string name="fyt_settings_failed">"FYT setting discovery failed: %1$s"</string>
